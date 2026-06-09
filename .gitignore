@@ -1,6 +1,6 @@
 .env
 cache.json
-report.html
+/report.html
 signals.json
 __pycache__/
 *.pyc
