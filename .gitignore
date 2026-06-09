@@ -1,0 +1,6 @@
+.env
+cache.json
+report.html
+signals.json
+__pycache__/
+*.pyc

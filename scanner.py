@@ -13,13 +13,20 @@ import html as _html
 import json
 import math
 import os
+import smtplib
+import ssl
 import threading
 import warnings
 import webbrowser
 from concurrent.futures import ThreadPoolExecutor, as_completed
 from datetime import datetime, timedelta
+from email.mime.multipart import MIMEMultipart
+from email.mime.text import MIMEText
 import pandas as pd
 import yfinance as yf
+from dotenv import load_dotenv
+
+load_dotenv()
 
 warnings.filterwarnings("ignore")
 
@@ -1977,6 +1984,57 @@ def generate_html_report(results, meta):
 
 
 # ─────────────────────────────────────────────
+# EMAIL
+# ─────────────────────────────────────────────
+
+def send_report_email(report_path: str) -> None:
+    sender    = os.environ.get("GMAIL_ADDRESS")
+    password  = os.environ.get("GMAIL_APP_PASSWORD")
+    recipients_raw = os.environ.get("EMAIL_RECIPIENTS")
+
+    missing = [name for name, val in [
+        ("GMAIL_ADDRESS",    sender),
+        ("GMAIL_APP_PASSWORD", password),
+        ("EMAIL_RECIPIENTS",   recipients_raw),
+    ] if not val]
+
+    if missing:
+        print(f"  ⚠  Email skipped — missing env var(s): {', '.join(missing)}")
+        return
+
+    recipients = [r.strip() for r in recipients_raw.split(",") if r.strip()]
+    if not recipients:
+        print("  ⚠  Email skipped — EMAIL_RECIPIENTS is empty after parsing")
+        return
+
+    try:
+        with open(report_path, "r", encoding="utf-8") as fh:
+            html_body = fh.read()
+    except OSError as exc:
+        print(f"  ⚠  Email skipped — could not read report: {exc}")
+        return
+
+    subject = f"Earnings Strategy Signals — {datetime.now().strftime('%Y-%m-%d')}"
+
+    msg = MIMEMultipart("alternative")
+    msg["Subject"] = subject
+    msg["From"]    = sender
+    msg["To"]      = ", ".join(recipients)
+    msg.attach(MIMEText(html_body, "html", "utf-8"))
+
+    try:
+        ctx = ssl.create_default_context()
+        with smtplib.SMTP_SSL("smtp.gmail.com", 465, context=ctx) as server:
+            server.login(sender, password)
+            server.sendmail(sender, recipients, msg.as_string())
+        print(f"  ✉  Report emailed to: {', '.join(recipients)}")
+    except smtplib.SMTPAuthenticationError:
+        print("  ⚠  Email failed — authentication error (check GMAIL_ADDRESS and GMAIL_APP_PASSWORD)")
+    except Exception as exc:
+        print(f"  ⚠  Email failed — {exc}")
+
+
+# ─────────────────────────────────────────────
 # MAIN
 # ─────────────────────────────────────────────
 
@@ -2142,6 +2200,9 @@ def main():
         },
     )
     print(f"Report saved → {report_path}  (opening in browser…)")
+
+    # 9. Send the HTML report by email
+    send_report_email(report_path)
 
 
 if __name__ == "__main__":
