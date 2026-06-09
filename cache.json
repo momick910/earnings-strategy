@@ -1,0 +1,5572 @@
+{
+  "CRWD": {
+    "timestamp": "2026-06-02T14:25:43.448870",
+    "data": [
+      {
+        "date": "2026-02-21",
+        "reaction_pct": -9.85,
+        "drift_pct": -9.55
+      },
+      {
+        "date": "2025-11-21",
+        "reaction_pct": 1.1,
+        "drift_pct": -6.74
+      },
+      {
+        "date": "2025-08-21",
+        "reaction_pct": 0.33,
+        "drift_pct": -1.34
+      },
+      {
+        "date": "2025-05-21",
+        "reaction_pct": 0.41,
+        "drift_pct": 1.45
+      }
+    ]
+  },
+  "MDT": {
+    "timestamp": "2026-06-02T14:25:43.520976",
+    "data": [
+      {
+        "date": "2026-02-21",
+        "reaction_pct": 1.81,
+        "drift_pct": -2.64
+      },
+      {
+        "date": "2025-11-21",
+        "reaction_pct": 3.88,
+        "drift_pct": 3.63
+      },
+      {
+        "date": "2025-08-21",
+        "reaction_pct": -0.55,
+        "drift_pct": 1.35
+      },
+      {
+        "date": "2025-05-21",
+        "reaction_pct": -6.32,
+        "drift_pct": 2.52
+      }
+    ]
+  },
+  "ORCL": {
+    "timestamp": "2026-06-02T14:25:43.568144",
+    "data": [
+      {
+        "date": "2026-03-21",
+        "reaction_pct": 3.11,
+        "drift_pct": -4.03
+      },
+      {
+        "date": "2025-12-21",
+        "reaction_pct": 3.34,
+        "drift_pct": 3.81
+      },
+      {
+        "date": "2025-09-21",
+        "reaction_pct": 6.31,
+        "drift_pct": 2.16
+      },
+      {
+        "date": "2025-06-21",
+        "reaction_pct": 0.91,
+        "drift_pct": -4.67
+      }
+    ]
+  },
+  "JBL": {
+    "timestamp": "2026-06-02T14:25:43.577742",
+    "data": [
+      {
+        "date": "2026-03-21",
+        "reaction_pct": 4.98,
+        "drift_pct": -1.69
+      },
+      {
+        "date": "2025-12-21",
+        "reaction_pct": 1.39,
+        "drift_pct": 2.45
+      },
+      {
+        "date": "2025-09-21",
+        "reaction_pct": 3.96,
+        "drift_pct": 3.83
+      },
+      {
+        "date": "2025-06-21",
+        "reaction_pct": 1.04,
+        "drift_pct": 17.27
+      }
+    ]
+  },
+  "AVGO": {
+    "timestamp": "2026-06-02T14:25:43.587477",
+    "data": [
+      {
+        "date": "2026-02-21",
+        "reaction_pct": -0.69,
+        "drift_pct": 2.3
+      },
+      {
+        "date": "2025-11-21",
+        "reaction_pct": 8.98,
+        "drift_pct": 1.27
+      },
+      {
+        "date": "2025-08-21",
+        "reaction_pct": 0.97,
+        "drift_pct": -6.45
+      },
+      {
+        "date": "2025-05-21",
+        "reaction_pct": -0.5,
+        "drift_pct": -0.19
+      }
+    ]
+  },
+  "CIEN": {
+    "timestamp": "2026-06-02T14:25:43.594036",
+    "data": [
+      {
+        "date": "2026-02-21",
+        "reaction_pct": 2.95,
+        "drift_pct": 10.21
+      },
+      {
+        "date": "2025-11-21",
+        "reaction_pct": 10.34,
+        "drift_pct": -7.96
+      },
+      {
+        "date": "2025-08-21",
+        "reaction_pct": 3.66,
+        "drift_pct": -5.23
+      },
+      {
+        "date": "2025-05-21",
+        "reaction_pct": -1.15,
+        "drift_pct": 1.91
+      }
+    ]
+  },
+  "PANW": {
+    "timestamp": "2026-06-02T14:25:43.669334",
+    "data": [
+      {
+        "date": "2026-02-21",
+        "reaction_pct": -3.07,
+        "drift_pct": -10.93
+      },
+      {
+        "date": "2025-11-21",
+        "reaction_pct": -0.64,
+        "drift_pct": -9.83
+      },
+      {
+        "date": "2025-08-21",
+        "reaction_pct": 0.79,
+        "drift_pct": 6.27
+      },
+      {
+        "date": "2025-05-21",
+        "reaction_pct": -4.29,
+        "drift_pct": 1.88
+      }
+    ]
+  },
+  "ACN": {
+    "timestamp": "2026-06-02T14:25:43.723080",
+    "data": [
+      {
+        "date": "2026-03-21",
+        "reaction_pct": 0.01,
+        "drift_pct": 0.34
+      },
+      {
+        "date": "2025-12-21",
+        "reaction_pct": -0.58,
+        "drift_pct": -0.88
+      },
+      {
+        "date": "2025-09-21",
+        "reaction_pct": 0.12,
+        "drift_pct": 0.77
+      },
+      {
+        "date": "2025-06-21",
+        "reaction_pct": 3.37,
+        "drift_pct": -8.45
+      }
+    ]
+  },
+  "KR": {
+    "timestamp": "2026-06-02T14:25:43.869318",
+    "data": [
+      {
+        "date": "2026-02-21",
+        "reaction_pct": 2.86,
+        "drift_pct": -6.86
+      },
+      {
+        "date": "2025-11-21",
+        "reaction_pct": -2.44,
+        "drift_pct": -1.21
+      },
+      {
+        "date": "2025-08-21",
+        "reaction_pct": -3.16,
+        "drift_pct": 4.28
+      },
+      {
+        "date": "2025-05-21",
+        "reaction_pct": -2.23,
+        "drift_pct": 5.27
+      }
+    ]
+  },
+  "ADBE": {
+    "timestamp": "2026-06-02T14:25:44.105563",
+    "data": [
+      {
+        "date": "2026-03-21",
+        "reaction_pct": -0.21,
+        "drift_pct": -1.47
+      },
+      {
+        "date": "2025-12-21",
+        "reaction_pct": 0.47,
+        "drift_pct": 1.34
+      },
+      {
+        "date": "2025-09-21",
+        "reaction_pct": -0.5,
+        "drift_pct": 5.42
+      },
+      {
+        "date": "2025-06-21",
+        "reaction_pct": 0.85,
+        "drift_pct": -3.77
+      }
+    ]
+  },
+  "DG": {
+    "timestamp": "2026-06-02T14:25:45.644722",
+    "data": [
+      {
+        "date": "2026-02-21",
+        "reaction_pct": 1.5,
+        "drift_pct": -2.08
+      },
+      {
+        "date": "2025-11-21",
+        "reaction_pct": 1.4,
+        "drift_pct": -3.84
+      },
+      {
+        "date": "2025-08-21",
+        "reaction_pct": -2.13,
+        "drift_pct": 0.13
+      },
+      {
+        "date": "2025-05-21",
+        "reaction_pct": -1.53,
+        "drift_pct": 16.53
+      }
+    ]
+  },
+  "CASY": {
+    "timestamp": "2026-06-02T14:25:45.655600",
+    "data": [
+      {
+        "date": "2026-02-21",
+        "reaction_pct": 0.68,
+        "drift_pct": 0.2
+      },
+      {
+        "date": "2025-11-21",
+        "reaction_pct": -1.9,
+        "drift_pct": 2.42
+      },
+      {
+        "date": "2025-08-21",
+        "reaction_pct": -1.97,
+        "drift_pct": 1.03
+      },
+      {
+        "date": "2025-05-21",
+        "reaction_pct": -3.18,
+        "drift_pct": 6.45
+      }
+    ]
+  },
+  "ULTA": {
+    "timestamp": "2026-06-02T14:25:45.733822",
+    "data": [
+      {
+        "date": "2026-02-21",
+        "reaction_pct": -1.91,
+        "drift_pct": -0.07
+      },
+      {
+        "date": "2025-11-21",
+        "reaction_pct": 3.66,
+        "drift_pct": -6.22
+      },
+      {
+        "date": "2025-08-21",
+        "reaction_pct": 2.48,
+        "drift_pct": -1.8
+      },
+      {
+        "date": "2025-05-21",
+        "reaction_pct": -0.97,
+        "drift_pct": 0.73
+      }
+    ]
+  },
+  "IOT": {
+    "timestamp": "2026-06-02T14:25:45.802806",
+    "data": [
+      {
+        "date": "2026-02-21",
+        "reaction_pct": -7.73,
+        "drift_pct": -1.94
+      },
+      {
+        "date": "2025-11-21",
+        "reaction_pct": 3.57,
+        "drift_pct": -7.35
+      },
+      {
+        "date": "2025-08-21",
+        "reaction_pct": 5.42,
+        "drift_pct": 2.42
+      },
+      {
+        "date": "2025-05-21",
+        "reaction_pct": -2.47,
+        "drift_pct": -0.9
+      }
+    ]
+  },
+  "TCOM": {
+    "timestamp": "2026-06-02T14:25:45.838934",
+    "data": [
+      {
+        "date": "2026-01-21",
+        "reaction_pct": 2.7,
+        "drift_pct": -20.1
+      },
+      {
+        "date": "2025-10-21",
+        "reaction_pct": -0.85,
+        "drift_pct": 1.74
+      },
+      {
+        "date": "2025-07-21",
+        "reaction_pct": -0.49,
+        "drift_pct": 3.16
+      },
+      {
+        "date": "2025-04-21",
+        "reaction_pct": 3.68,
+        "drift_pct": 0.22
+      }
+    ]
+  },
+  "LEN": {
+    "timestamp": "2026-06-02T14:25:45.944384",
+    "data": [
+      {
+        "date": "2026-03-21",
+        "reaction_pct": 3.21,
+        "drift_pct": -5.63
+      },
+      {
+        "date": "2025-12-21",
+        "reaction_pct": -0.93,
+        "drift_pct": -9.81
+      },
+      {
+        "date": "2025-09-21",
+        "reaction_pct": -4.25,
+        "drift_pct": -4.82
+      },
+      {
+        "date": "2025-06-21",
+        "reaction_pct": 3.96,
+        "drift_pct": -2.02
+      }
+    ]
+  },
+  "VEEV": {
+    "timestamp": "2026-06-02T14:25:45.962918",
+    "data": [
+      {
+        "date": "2026-02-21",
+        "reaction_pct": -4.51,
+        "drift_pct": 3.56
+      },
+      {
+        "date": "2025-11-21",
+        "reaction_pct": -12.85,
+        "drift_pct": -7.79
+      },
+      {
+        "date": "2025-08-21",
+        "reaction_pct": 2.41,
+        "drift_pct": 3.29
+      },
+      {
+        "date": "2025-05-21",
+        "reaction_pct": -2.18,
+        "drift_pct": 0.2
+      }
+    ]
+  },
+  "LEN-B": {
+    "timestamp": "2026-06-02T14:25:46.039836",
+    "data": [
+      {
+        "date": "2026-03-21",
+        "reaction_pct": 3.0,
+        "drift_pct": -4.53
+      },
+      {
+        "date": "2025-12-21",
+        "reaction_pct": -0.17,
+        "drift_pct": -12.86
+      },
+      {
+        "date": "2025-09-21",
+        "reaction_pct": -4.88,
+        "drift_pct": -5.21
+      },
+      {
+        "date": "2025-06-21",
+        "reaction_pct": 4.15,
+        "drift_pct": -2.55
+      }
+    ]
+  },
+  "PL": {
+    "timestamp": "2026-06-02T14:25:46.138985",
+    "data": [
+      {
+        "date": "2026-02-21",
+        "reaction_pct": -0.5,
+        "drift_pct": 6.6
+      },
+      {
+        "date": "2025-11-21",
+        "reaction_pct": 2.76,
+        "drift_pct": -1.49
+      },
+      {
+        "date": "2025-08-21",
+        "reaction_pct": 5.75,
+        "drift_pct": -5.72
+      },
+      {
+        "date": "2025-05-21",
+        "reaction_pct": -4.4,
+        "drift_pct": -0.77
+      }
+    ]
+  },
+  "LULU": {
+    "timestamp": "2026-06-02T14:25:46.177623",
+    "data": [
+      {
+        "date": "2026-02-21",
+        "reaction_pct": -4.91,
+        "drift_pct": 6.17
+      },
+      {
+        "date": "2025-11-21",
+        "reaction_pct": 3.02,
+        "drift_pct": -3.51
+      },
+      {
+        "date": "2025-08-21",
+        "reaction_pct": 4.78,
+        "drift_pct": 1.5
+      },
+      {
+        "date": "2025-05-21",
+        "reaction_pct": -2.05,
+        "drift_pct": 3.59
+      }
+    ]
+  },
+  "RBRK": {
+    "timestamp": "2026-06-02T14:25:47.562472",
+    "data": [
+      {
+        "date": "2026-02-21",
+        "reaction_pct": -5.86,
+        "drift_pct": -7.97
+      },
+      {
+        "date": "2025-11-21",
+        "reaction_pct": -0.44,
+        "drift_pct": -5.39
+      },
+      {
+        "date": "2025-08-21",
+        "reaction_pct": 4.31,
+        "drift_pct": 0.77
+      },
+      {
+        "date": "2025-05-21",
+        "reaction_pct": 2.36,
+        "drift_pct": 5.2
+      }
+    ]
+  },
+  "SKHSF": {
+    "timestamp": "2026-06-02T14:25:47.769868",
+    "data": [
+      {
+        "date": "2026-02-21",
+        "reaction_pct": 0.0,
+        "drift_pct": -5.68
+      },
+      {
+        "date": "2025-11-21",
+        "reaction_pct": 8.1,
+        "drift_pct": -6.14
+      },
+      {
+        "date": "2025-08-21",
+        "reaction_pct": -7.58,
+        "drift_pct": 2.9
+      },
+      {
+        "date": "2025-05-21",
+        "reaction_pct": -6.04,
+        "drift_pct": 6.91
+      }
+    ]
+  },
+  "FIVE": {
+    "timestamp": "2026-06-02T14:25:47.829225",
+    "data": [
+      {
+        "date": "2026-02-21",
+        "reaction_pct": -0.36,
+        "drift_pct": 6.88
+      },
+      {
+        "date": "2025-11-21",
+        "reaction_pct": 5.46,
+        "drift_pct": 1.46
+      },
+      {
+        "date": "2025-08-21",
+        "reaction_pct": 1.82,
+        "drift_pct": 3.66
+      },
+      {
+        "date": "2025-05-21",
+        "reaction_pct": -1.7,
+        "drift_pct": 7.29
+      }
+    ]
+  },
+  "COO": {
+    "timestamp": "2026-06-02T14:25:47.932174",
+    "data": [
+      {
+        "date": "2026-02-21",
+        "reaction_pct": -1.34,
+        "drift_pct": 1.3
+      },
+      {
+        "date": "2025-11-21",
+        "reaction_pct": 6.89,
+        "drift_pct": -1.41
+      },
+      {
+        "date": "2025-08-21",
+        "reaction_pct": 2.34,
+        "drift_pct": 0.08
+      },
+      {
+        "date": "2025-05-21",
+        "reaction_pct": -2.7,
+        "drift_pct": 1.28
+      }
+    ]
+  },
+  "BF-B": {
+    "timestamp": "2026-06-02T14:25:48.394637",
+    "data": [
+      {
+        "date": "2026-02-21",
+        "reaction_pct": 0.7,
+        "drift_pct": 0.13
+      },
+      {
+        "date": "2025-11-21",
+        "reaction_pct": 2.33,
+        "drift_pct": 0.11
+      },
+      {
+        "date": "2025-08-21",
+        "reaction_pct": 2.73,
+        "drift_pct": 0.83
+      },
+      {
+        "date": "2025-05-21",
+        "reaction_pct": -3.25,
+        "drift_pct": 1.58
+      }
+    ]
+  },
+  "BF-A": {
+    "timestamp": "2026-06-02T14:25:48.412719",
+    "data": [
+      {
+        "date": "2026-02-21",
+        "reaction_pct": 1.19,
+        "drift_pct": 0.4
+      },
+      {
+        "date": "2025-11-21",
+        "reaction_pct": 1.78,
+        "drift_pct": -0.72
+      },
+      {
+        "date": "2025-08-21",
+        "reaction_pct": 3.09,
+        "drift_pct": 0.53
+      },
+      {
+        "date": "2025-05-21",
+        "reaction_pct": -3.43,
+        "drift_pct": 2.11
+      }
+    ]
+  },
+  "SJM": {
+    "timestamp": "2026-06-02T14:25:48.414305",
+    "data": [
+      {
+        "date": "2026-02-21",
+        "reaction_pct": 0.56,
+        "drift_pct": -0.14
+      },
+      {
+        "date": "2025-11-21",
+        "reaction_pct": 0.5,
+        "drift_pct": -4.94
+      },
+      {
+        "date": "2025-08-21",
+        "reaction_pct": 0.13,
+        "drift_pct": 2.46
+      },
+      {
+        "date": "2025-05-21",
+        "reaction_pct": -2.58,
+        "drift_pct": 5.26
+      }
+    ]
+  },
+  "GWRE": {
+    "timestamp": "2026-06-02T14:25:48.545676",
+    "data": [
+      {
+        "date": "2026-02-21",
+        "reaction_pct": -4.26,
+        "drift_pct": 0.5
+      },
+      {
+        "date": "2025-11-21",
+        "reaction_pct": 1.05,
+        "drift_pct": -5.53
+      },
+      {
+        "date": "2025-08-21",
+        "reaction_pct": -1.0,
+        "drift_pct": 3.48
+      },
+      {
+        "date": "2025-05-21",
+        "reaction_pct": -3.39,
+        "drift_pct": 0.26
+      }
+    ]
+  },
+  "GME": {
+    "timestamp": "2026-06-02T14:25:49.668057",
+    "data": [
+      {
+        "date": "2026-02-21",
+        "reaction_pct": 0.9,
+        "drift_pct": -0.59
+      },
+      {
+        "date": "2025-11-21",
+        "reaction_pct": 2.76,
+        "drift_pct": -3.48
+      },
+      {
+        "date": "2025-08-21",
+        "reaction_pct": 1.15,
+        "drift_pct": -1.14
+      },
+      {
+        "date": "2025-05-21",
+        "reaction_pct": 8.24,
+        "drift_pct": -0.77
+      }
+    ]
+  },
+  "DCI": {
+    "timestamp": "2026-06-02T14:25:50.030218",
+    "data": [
+      {
+        "date": "2026-02-21",
+        "reaction_pct": -0.93,
+        "drift_pct": -1.55
+      },
+      {
+        "date": "2025-11-21",
+        "reaction_pct": 4.35,
+        "drift_pct": -0.7
+      },
+      {
+        "date": "2025-08-21",
+        "reaction_pct": 1.88,
+        "drift_pct": 0.04
+      },
+      {
+        "date": "2025-05-21",
+        "reaction_pct": -2.31,
+        "drift_pct": 0.97
+      }
+    ]
+  },
+  "DOCU": {
+    "timestamp": "2026-06-02T14:25:50.036646",
+    "data": [
+      {
+        "date": "2026-02-21",
+        "reaction_pct": -6.14,
+        "drift_pct": -0.76
+      },
+      {
+        "date": "2025-11-21",
+        "reaction_pct": 3.0,
+        "drift_pct": -5.53
+      },
+      {
+        "date": "2025-08-21",
+        "reaction_pct": 5.23,
+        "drift_pct": 3.03
+      },
+      {
+        "date": "2025-05-21",
+        "reaction_pct": -3.57,
+        "drift_pct": -0.6
+      }
+    ]
+  },
+  "CNM": {
+    "timestamp": "2026-06-02T14:25:50.121357",
+    "data": [
+      {
+        "date": "2026-02-21",
+        "reaction_pct": -3.12,
+        "drift_pct": -3.08
+      },
+      {
+        "date": "2025-11-21",
+        "reaction_pct": 1.38,
+        "drift_pct": -6.07
+      },
+      {
+        "date": "2025-08-21",
+        "reaction_pct": 2.38,
+        "drift_pct": -0.84
+      },
+      {
+        "date": "2025-05-21",
+        "reaction_pct": -0.56,
+        "drift_pct": 1.04
+      }
+    ]
+  },
+  "AGX": {
+    "timestamp": "2026-06-02T14:25:50.214455",
+    "data": [
+      {
+        "date": "2026-02-21",
+        "reaction_pct": 0.94,
+        "drift_pct": 6.75
+      },
+      {
+        "date": "2025-11-21",
+        "reaction_pct": 5.28,
+        "drift_pct": 0.47
+      },
+      {
+        "date": "2025-08-21",
+        "reaction_pct": 2.9,
+        "drift_pct": -3.85
+      },
+      {
+        "date": "2025-05-21",
+        "reaction_pct": 3.83,
+        "drift_pct": 5.89
+      }
+    ]
+  },
+  "SAIL": {
+    "timestamp": "2026-06-02T14:25:50.506837",
+    "data": [
+      {
+        "date": "2026-02-21",
+        "reaction_pct": -9.37,
+        "drift_pct": -10.87
+      },
+      {
+        "date": "2025-11-21",
+        "reaction_pct": 5.28,
+        "drift_pct": -11.6
+      },
+      {
+        "date": "2025-08-21",
+        "reaction_pct": 4.65,
+        "drift_pct": -1.21
+      },
+      {
+        "date": "2025-05-21",
+        "reaction_pct": -3.09,
+        "drift_pct": -6.32
+      }
+    ]
+  },
+  "ICLR": {
+    "timestamp": "2026-06-02T14:25:50.517546",
+    "data": [
+      {
+        "date": "2026-01-21",
+        "reaction_pct": 5.76,
+        "drift_pct": -3.67
+      },
+      {
+        "date": "2025-10-21",
+        "reaction_pct": 2.2,
+        "drift_pct": 1.37
+      },
+      {
+        "date": "2025-07-21",
+        "reaction_pct": 12.51,
+        "drift_pct": -4.0
+      },
+      {
+        "date": "2025-04-21",
+        "reaction_pct": -1.82,
+        "drift_pct": -3.28
+      }
+    ]
+  },
+  "TTC": {
+    "timestamp": "2026-06-02T14:25:50.573452",
+    "data": [
+      {
+        "date": "2026-02-21",
+        "reaction_pct": -1.11,
+        "drift_pct": 1.67
+      },
+      {
+        "date": "2025-11-21",
+        "reaction_pct": 2.6,
+        "drift_pct": -3.27
+      },
+      {
+        "date": "2025-08-21",
+        "reaction_pct": 4.08,
+        "drift_pct": -2.59
+      },
+      {
+        "date": "2025-05-21",
+        "reaction_pct": -2.31,
+        "drift_pct": 1.76
+      }
+    ]
+  },
+  "CHWY": {
+    "timestamp": "2026-06-02T14:25:50.650059",
+    "data": [
+      {
+        "date": "2026-02-21",
+        "reaction_pct": -6.58,
+        "drift_pct": 9.16
+      },
+      {
+        "date": "2025-11-21",
+        "reaction_pct": -1.87,
+        "drift_pct": -1.19
+      },
+      {
+        "date": "2025-08-21",
+        "reaction_pct": -3.32,
+        "drift_pct": 5.11
+      },
+      {
+        "date": "2025-05-21",
+        "reaction_pct": -0.43,
+        "drift_pct": 7.64
+      }
+    ]
+  },
+  "TTAN": {
+    "timestamp": "2026-06-02T14:25:52.198111",
+    "data": [
+      {
+        "date": "2026-02-21",
+        "reaction_pct": -5.73,
+        "drift_pct": 6.06
+      },
+      {
+        "date": "2025-11-21",
+        "reaction_pct": 4.4,
+        "drift_pct": -4.7
+      },
+      {
+        "date": "2025-08-21",
+        "reaction_pct": 2.21,
+        "drift_pct": 0.92
+      },
+      {
+        "date": "2025-05-21",
+        "reaction_pct": -2.89,
+        "drift_pct": 0.86
+      }
+    ]
+  },
+  "UEC": {
+    "timestamp": "2026-06-02T14:25:52.328543",
+    "data": [
+      {
+        "date": "2026-02-21",
+        "reaction_pct": -1.72,
+        "drift_pct": 4.7
+      },
+      {
+        "date": "2025-11-21",
+        "reaction_pct": 9.41,
+        "drift_pct": -4.66
+      },
+      {
+        "date": "2025-08-21",
+        "reaction_pct": 12.14,
+        "drift_pct": -8.48
+      },
+      {
+        "date": "2025-05-21",
+        "reaction_pct": -0.58,
+        "drift_pct": -8.47
+      }
+    ]
+  },
+  "CPB": {
+    "timestamp": "2026-06-02T14:25:52.337032",
+    "data": [
+      {
+        "date": "2026-02-21",
+        "reaction_pct": 1.04,
+        "drift_pct": -9.02
+      },
+      {
+        "date": "2025-11-21",
+        "reaction_pct": -0.62,
+        "drift_pct": -1.57
+      },
+      {
+        "date": "2025-08-21",
+        "reaction_pct": 2.32,
+        "drift_pct": -0.03
+      },
+      {
+        "date": "2025-05-21",
+        "reaction_pct": -4.43,
+        "drift_pct": 4.02
+      }
+    ]
+  },
+  "DSGX": {
+    "timestamp": "2026-06-02T14:25:52.527907",
+    "data": [
+      {
+        "date": "2026-02-21",
+        "reaction_pct": -6.35,
+        "drift_pct": 2.04
+      },
+      {
+        "date": "2025-11-21",
+        "reaction_pct": 1.26,
+        "drift_pct": -4.19
+      },
+      {
+        "date": "2025-08-21",
+        "reaction_pct": 3.38,
+        "drift_pct": 0.22
+      },
+      {
+        "date": "2025-05-21",
+        "reaction_pct": 0.05,
+        "drift_pct": 1.47
+      }
+    ]
+  },
+  "KMX": {
+    "timestamp": "2026-06-02T14:25:52.623295",
+    "data": [
+      {
+        "date": "2026-03-21",
+        "reaction_pct": 2.46,
+        "drift_pct": 0.36
+      },
+      {
+        "date": "2025-12-21",
+        "reaction_pct": -0.83,
+        "drift_pct": -5.99
+      },
+      {
+        "date": "2025-09-21",
+        "reaction_pct": -0.56,
+        "drift_pct": -3.29
+      },
+      {
+        "date": "2025-06-21",
+        "reaction_pct": -2.04,
+        "drift_pct": 5.64
+      }
+    ]
+  },
+  "OLLI": {
+    "timestamp": "2026-06-02T14:25:52.669946",
+    "data": [
+      {
+        "date": "2026-02-21",
+        "reaction_pct": -1.37,
+        "drift_pct": -4.39
+      },
+      {
+        "date": "2025-11-21",
+        "reaction_pct": 0.0,
+        "drift_pct": -3.06
+      },
+      {
+        "date": "2025-08-21",
+        "reaction_pct": -1.99,
+        "drift_pct": 2.26
+      },
+      {
+        "date": "2025-05-21",
+        "reaction_pct": -2.21,
+        "drift_pct": 2.91
+      }
+    ]
+  },
+  "NTSK": {
+    "timestamp": "2026-06-02T14:25:52.707782",
+    "data": [
+      {
+        "date": "2026-02-21",
+        "reaction_pct": -12.06,
+        "drift_pct": -11.44
+      },
+      {
+        "date": "2025-11-21",
+        "reaction_pct": 2.68,
+        "drift_pct": -9.91
+      }
+    ]
+  },
+  "VFS": {
+    "timestamp": "2026-06-02T14:25:52.782524",
+    "data": [
+      {
+        "date": "2026-01-21",
+        "reaction_pct": 3.29,
+        "drift_pct": -4.3
+      },
+      {
+        "date": "2025-10-21",
+        "reaction_pct": -2.44,
+        "drift_pct": 0.31
+      },
+      {
+        "date": "2025-07-21",
+        "reaction_pct": -0.83,
+        "drift_pct": 1.98
+      },
+      {
+        "date": "2025-04-21",
+        "reaction_pct": 0.64,
+        "drift_pct": 7.56
+      }
+    ]
+  },
+  "M": {
+    "timestamp": "2026-06-02T14:25:52.903444",
+    "data": [
+      {
+        "date": "2026-02-21",
+        "reaction_pct": -5.09,
+        "drift_pct": 3.61
+      },
+      {
+        "date": "2025-11-21",
+        "reaction_pct": 5.04,
+        "drift_pct": -4.65
+      },
+      {
+        "date": "2025-08-21",
+        "reaction_pct": 5.43,
+        "drift_pct": -0.62
+      },
+      {
+        "date": "2025-05-21",
+        "reaction_pct": -1.41,
+        "drift_pct": -0.08
+      }
+    ]
+  },
+  "NAVN": {
+    "timestamp": "2026-06-02T14:25:53.780200",
+    "data": [
+      {
+        "date": "2026-02-21",
+        "reaction_pct": -9.35,
+        "drift_pct": -3.16
+      },
+      {
+        "date": "2025-11-21",
+        "reaction_pct": 7.45,
+        "drift_pct": -15.4
+      }
+    ]
+  },
+  "GTLB": {
+    "timestamp": "2026-06-02T14:25:54.262833",
+    "data": [
+      {
+        "date": "2026-02-21",
+        "reaction_pct": -8.94,
+        "drift_pct": -10.69
+      },
+      {
+        "date": "2025-11-21",
+        "reaction_pct": -2.49,
+        "drift_pct": -4.11
+      },
+      {
+        "date": "2025-08-21",
+        "reaction_pct": 3.39,
+        "drift_pct": 6.72
+      },
+      {
+        "date": "2025-05-21",
+        "reaction_pct": -4.76,
+        "drift_pct": -6.12
+      }
+    ]
+  },
+  "VSCO": {
+    "timestamp": "2026-06-02T14:25:54.592610",
+    "data": [
+      {
+        "date": "2026-02-21",
+        "reaction_pct": -5.44,
+        "drift_pct": 9.96
+      },
+      {
+        "date": "2025-11-21",
+        "reaction_pct": 8.52,
+        "drift_pct": -5.35
+      },
+      {
+        "date": "2025-08-21",
+        "reaction_pct": 0.64,
+        "drift_pct": -1.83
+      },
+      {
+        "date": "2025-05-21",
+        "reaction_pct": -2.89,
+        "drift_pct": 3.29
+      }
+    ]
+  },
+  "PVH": {
+    "timestamp": "2026-06-02T14:25:54.715379",
+    "data": [
+      {
+        "date": "2026-02-21",
+        "reaction_pct": -4.23,
+        "drift_pct": 5.04
+      },
+      {
+        "date": "2025-11-21",
+        "reaction_pct": 6.97,
+        "drift_pct": -6.38
+      },
+      {
+        "date": "2025-08-21",
+        "reaction_pct": 5.23,
+        "drift_pct": -0.28
+      },
+      {
+        "date": "2025-05-21",
+        "reaction_pct": -2.87,
+        "drift_pct": -1.72
+      }
+    ]
+  },
+  "THO": {
+    "timestamp": "2026-06-02T14:25:54.727520",
+    "data": [
+      {
+        "date": "2026-02-21",
+        "reaction_pct": -4.95,
+        "drift_pct": -0.99
+      },
+      {
+        "date": "2025-11-21",
+        "reaction_pct": 7.69,
+        "drift_pct": -2.66
+      },
+      {
+        "date": "2025-08-21",
+        "reaction_pct": 5.7,
+        "drift_pct": -2.58
+      },
+      {
+        "date": "2025-05-21",
+        "reaction_pct": -4.16,
+        "drift_pct": 2.64
+      }
+    ]
+  },
+  "KFY": {
+    "timestamp": "2026-06-02T14:25:54.791798",
+    "data": [
+      {
+        "date": "2026-02-21",
+        "reaction_pct": -4.28,
+        "drift_pct": 1.58
+      },
+      {
+        "date": "2025-11-21",
+        "reaction_pct": 2.89,
+        "drift_pct": -3.74
+      },
+      {
+        "date": "2025-08-21",
+        "reaction_pct": 4.6,
+        "drift_pct": -0.2
+      },
+      {
+        "date": "2025-05-21",
+        "reaction_pct": -1.33,
+        "drift_pct": 1.81
+      }
+    ]
+  },
+  "ASO": {
+    "timestamp": "2026-06-02T14:25:54.837814",
+    "data": [
+      {
+        "date": "2026-02-21",
+        "reaction_pct": 0.19,
+        "drift_pct": 0.38
+      },
+      {
+        "date": "2025-11-21",
+        "reaction_pct": 8.22,
+        "drift_pct": -6.69
+      },
+      {
+        "date": "2025-08-21",
+        "reaction_pct": 5.35,
+        "drift_pct": -6.57
+      },
+      {
+        "date": "2025-05-21",
+        "reaction_pct": -6.0,
+        "drift_pct": -2.64
+      }
+    ]
+  },
+  "SIG": {
+    "timestamp": "2026-06-02T14:25:54.977146",
+    "data": [
+      {
+        "date": "2026-02-21",
+        "reaction_pct": -3.5,
+        "drift_pct": 8.69
+      },
+      {
+        "date": "2025-11-21",
+        "reaction_pct": 2.64,
+        "drift_pct": -9.25
+      },
+      {
+        "date": "2025-08-21",
+        "reaction_pct": 8.88,
+        "drift_pct": -3.13
+      },
+      {
+        "date": "2025-05-21",
+        "reaction_pct": -0.39,
+        "drift_pct": -3.3
+      }
+    ]
+  },
+  "MTN": {
+    "timestamp": "2026-06-02T14:25:55.230233",
+    "data": [
+      {
+        "date": "2026-02-21",
+        "reaction_pct": -1.65,
+        "drift_pct": 6.34
+      },
+      {
+        "date": "2025-11-21",
+        "reaction_pct": -1.68,
+        "drift_pct": -6.07
+      },
+      {
+        "date": "2025-08-21",
+        "reaction_pct": 5.78,
+        "drift_pct": 1.07
+      },
+      {
+        "date": "2025-05-21",
+        "reaction_pct": -1.58,
+        "drift_pct": 0.65
+      }
+    ]
+  },
+  "BWLP": {
+    "timestamp": "2026-06-02T14:25:55.401270",
+    "data": [
+      {
+        "date": "2026-01-21",
+        "reaction_pct": -2.18,
+        "drift_pct": 0.14
+      },
+      {
+        "date": "2025-10-21",
+        "reaction_pct": 2.05,
+        "drift_pct": 0.0
+      },
+      {
+        "date": "2025-07-21",
+        "reaction_pct": 0.99,
+        "drift_pct": 0.77
+      },
+      {
+        "date": "2025-04-21",
+        "reaction_pct": -0.53,
+        "drift_pct": 1.72
+      }
+    ]
+  },
+  "UNFI": {
+    "timestamp": "2026-06-02T14:25:56.306891",
+    "data": [
+      {
+        "date": "2026-02-21",
+        "reaction_pct": -1.29,
+        "drift_pct": -3.87
+      },
+      {
+        "date": "2025-11-21",
+        "reaction_pct": 2.04,
+        "drift_pct": -9.81
+      },
+      {
+        "date": "2025-08-21",
+        "reaction_pct": 0.44,
+        "drift_pct": 3.29
+      },
+      {
+        "date": "2025-05-21",
+        "reaction_pct": -4.76,
+        "drift_pct": 8.76
+      }
+    ]
+  },
+  "RH": {
+    "timestamp": "2026-06-02T14:25:56.654684",
+    "data": [
+      {
+        "date": "2026-02-21",
+        "reaction_pct": -8.83,
+        "drift_pct": 1.3
+      },
+      {
+        "date": "2025-11-21",
+        "reaction_pct": 7.12,
+        "drift_pct": -6.61
+      },
+      {
+        "date": "2025-08-21",
+        "reaction_pct": 12.51,
+        "drift_pct": -7.86
+      },
+      {
+        "date": "2025-05-21",
+        "reaction_pct": -9.76,
+        "drift_pct": -3.91
+      }
+    ]
+  },
+  "MH": {
+    "timestamp": "2026-06-02T14:25:56.810476",
+    "data": [
+      {
+        "date": "2026-01-21",
+        "reaction_pct": 7.79,
+        "drift_pct": -8.79
+      },
+      {
+        "date": "2025-10-21",
+        "reaction_pct": -1.69,
+        "drift_pct": 3.17
+      }
+    ]
+  },
+  "WLY": {
+    "timestamp": "2026-06-02T14:25:56.975688",
+    "data": [
+      {
+        "date": "2026-02-21",
+        "reaction_pct": -2.68,
+        "drift_pct": 1.46
+      },
+      {
+        "date": "2025-11-21",
+        "reaction_pct": 3.24,
+        "drift_pct": -4.69
+      },
+      {
+        "date": "2025-08-21",
+        "reaction_pct": 3.51,
+        "drift_pct": 1.22
+      },
+      {
+        "date": "2025-05-21",
+        "reaction_pct": -5.14,
+        "drift_pct": 0.61
+      }
+    ]
+  },
+  "ABM": {
+    "timestamp": "2026-06-02T14:25:57.114089",
+    "data": [
+      {
+        "date": "2026-02-21",
+        "reaction_pct": -3.12,
+        "drift_pct": 2.34
+      },
+      {
+        "date": "2025-11-21",
+        "reaction_pct": 0.89,
+        "drift_pct": -1.0
+      },
+      {
+        "date": "2025-08-21",
+        "reaction_pct": 3.09,
+        "drift_pct": -0.45
+      },
+      {
+        "date": "2025-05-21",
+        "reaction_pct": -2.13,
+        "drift_pct": 1.8
+      }
+    ]
+  },
+  "LZB": {
+    "timestamp": "2026-06-02T14:25:57.672306",
+    "data": [
+      {
+        "date": "2026-02-21",
+        "reaction_pct": -4.73,
+        "drift_pct": -3.44
+      },
+      {
+        "date": "2025-11-21",
+        "reaction_pct": 1.51,
+        "drift_pct": 19.76
+      },
+      {
+        "date": "2025-08-21",
+        "reaction_pct": 6.4,
+        "drift_pct": -10.96
+      },
+      {
+        "date": "2025-05-21",
+        "reaction_pct": -2.81,
+        "drift_pct": 0.35
+      }
+    ]
+  },
+  "WLYB": {
+    "timestamp": "2026-06-02T14:25:57.825300",
+    "data": [
+      {
+        "date": "2026-02-21",
+        "reaction_pct": 0.0,
+        "drift_pct": -1.27
+      },
+      {
+        "date": "2025-11-21",
+        "reaction_pct": 0.0,
+        "drift_pct": -6.26
+      },
+      {
+        "date": "2025-08-21",
+        "reaction_pct": 0.0,
+        "drift_pct": -0.38
+      },
+      {
+        "date": "2025-05-21",
+        "reaction_pct": 0.0,
+        "drift_pct": -1.68
+      }
+    ]
+  },
+  "AI": {
+    "timestamp": "2026-06-02T14:25:57.878428",
+    "data": [
+      {
+        "date": "2026-02-21",
+        "reaction_pct": -5.68,
+        "drift_pct": -3.71
+      },
+      {
+        "date": "2025-11-21",
+        "reaction_pct": 5.21,
+        "drift_pct": -8.67
+      },
+      {
+        "date": "2025-08-21",
+        "reaction_pct": 3.31,
+        "drift_pct": -5.68
+      },
+      {
+        "date": "2025-05-21",
+        "reaction_pct": -1.81,
+        "drift_pct": -3.06
+      }
+    ]
+  },
+  "GIII": {
+    "timestamp": "2026-06-02T14:25:58.490033",
+    "data": [
+      {
+        "date": "2026-02-21",
+        "reaction_pct": -4.05,
+        "drift_pct": 5.77
+      },
+      {
+        "date": "2025-11-21",
+        "reaction_pct": 4.21,
+        "drift_pct": -3.01
+      },
+      {
+        "date": "2025-08-21",
+        "reaction_pct": 4.41,
+        "drift_pct": 0.86
+      },
+      {
+        "date": "2025-05-21",
+        "reaction_pct": -3.2,
+        "drift_pct": 1.32
+      }
+    ]
+  },
+  "IDT": {
+    "timestamp": "2026-06-02T14:25:58.820335",
+    "data": [
+      {
+        "date": "2026-02-21",
+        "reaction_pct": -0.99,
+        "drift_pct": 1.76
+      },
+      {
+        "date": "2025-11-21",
+        "reaction_pct": 2.5,
+        "drift_pct": -7.27
+      },
+      {
+        "date": "2025-08-21",
+        "reaction_pct": 2.1,
+        "drift_pct": -0.97
+      },
+      {
+        "date": "2025-05-21",
+        "reaction_pct": -1.1,
+        "drift_pct": 7.24
+      }
+    ]
+  },
+  "CXM": {
+    "timestamp": "2026-06-02T14:25:58.960876",
+    "data": [
+      {
+        "date": "2026-02-21",
+        "reaction_pct": -6.62,
+        "drift_pct": 1.82
+      },
+      {
+        "date": "2025-11-21",
+        "reaction_pct": 2.31,
+        "drift_pct": -4.81
+      },
+      {
+        "date": "2025-08-21",
+        "reaction_pct": 5.31,
+        "drift_pct": 2.99
+      },
+      {
+        "date": "2025-05-21",
+        "reaction_pct": -0.85,
+        "drift_pct": -2.36
+      }
+    ]
+  },
+  "ATEX": {
+    "timestamp": "2026-06-02T14:25:59.131747",
+    "data": [
+      {
+        "date": "2026-01-21",
+        "reaction_pct": -3.54,
+        "drift_pct": 7.75
+      },
+      {
+        "date": "2025-10-21",
+        "reaction_pct": -6.12,
+        "drift_pct": -2.72
+      },
+      {
+        "date": "2025-07-21",
+        "reaction_pct": -3.5,
+        "drift_pct": -2.81
+      },
+      {
+        "date": "2025-04-21",
+        "reaction_pct": -8.81,
+        "drift_pct": -0.15
+      }
+    ]
+  },
+  "FCEL": {
+    "timestamp": "2026-06-02T14:25:59.166851",
+    "data": [
+      {
+        "date": "2026-02-21",
+        "reaction_pct": 0.13,
+        "drift_pct": 6.37
+      },
+      {
+        "date": "2025-11-21",
+        "reaction_pct": -4.46,
+        "drift_pct": -10.8
+      },
+      {
+        "date": "2025-08-21",
+        "reaction_pct": 6.87,
+        "drift_pct": -7.09
+      },
+      {
+        "date": "2025-05-21",
+        "reaction_pct": 0.0,
+        "drift_pct": 13.65
+      }
+    ]
+  },
+  "ODC": {
+    "timestamp": "2026-06-02T14:25:59.563370",
+    "data": [
+      {
+        "date": "2026-02-21",
+        "reaction_pct": 0.03,
+        "drift_pct": -0.78
+      },
+      {
+        "date": "2025-11-21",
+        "reaction_pct": 0.54,
+        "drift_pct": -5.48
+      },
+      {
+        "date": "2025-05-21",
+        "reaction_pct": -1.2,
+        "drift_pct": 4.27
+      },
+      {
+        "date": "2025-02-21",
+        "reaction_pct": -0.41,
+        "drift_pct": -1.4
+      }
+    ]
+  },
+  "GHM": {
+    "timestamp": "2026-06-02T14:25:59.776795",
+    "data": [
+      {
+        "date": "2026-01-21",
+        "reaction_pct": 3.37,
+        "drift_pct": -0.69
+      },
+      {
+        "date": "2025-10-21",
+        "reaction_pct": -4.63,
+        "drift_pct": 2.28
+      },
+      {
+        "date": "2025-07-21",
+        "reaction_pct": 3.29,
+        "drift_pct": 1.02
+      },
+      {
+        "date": "2025-04-21",
+        "reaction_pct": -0.74,
+        "drift_pct": -0.37
+      }
+    ]
+  },
+  "SENEA": {
+    "timestamp": "2026-06-02T14:25:59.979964",
+    "data": [
+      {
+        "date": "2026-01-21",
+        "reaction_pct": -1.34,
+        "drift_pct": 4.24
+      },
+      {
+        "date": "2025-10-21",
+        "reaction_pct": 2.59,
+        "drift_pct": 1.54
+      },
+      {
+        "date": "2025-07-21",
+        "reaction_pct": 1.88,
+        "drift_pct": -0.63
+      },
+      {
+        "date": "2025-04-21",
+        "reaction_pct": 5.83,
+        "drift_pct": -0.92
+      }
+    ]
+  },
+  "HIVE": {
+    "timestamp": "2026-06-02T14:26:00.023189",
+    "data": [
+      {
+        "date": "2026-01-21",
+        "reaction_pct": -3.76,
+        "drift_pct": -9.89
+      },
+      {
+        "date": "2025-10-21",
+        "reaction_pct": -11.63,
+        "drift_pct": -19.22
+      },
+      {
+        "date": "2025-07-21",
+        "reaction_pct": 12.11,
+        "drift_pct": -3.04
+      },
+      {
+        "date": "2025-04-21",
+        "reaction_pct": 7.38,
+        "drift_pct": 0.68
+      }
+    ]
+  },
+  "TIGR": {
+    "timestamp": "2026-06-02T14:26:00.233853",
+    "data": [
+      {
+        "date": "2026-01-21",
+        "reaction_pct": -4.63,
+        "drift_pct": -4.62
+      },
+      {
+        "date": "2025-10-21",
+        "reaction_pct": -3.13,
+        "drift_pct": 5.76
+      },
+      {
+        "date": "2025-07-21",
+        "reaction_pct": 3.78,
+        "drift_pct": 2.92
+      },
+      {
+        "date": "2025-04-21",
+        "reaction_pct": 7.46,
+        "drift_pct": -5.35
+      }
+    ]
+  },
+  "WOOF": {
+    "timestamp": "2026-06-02T14:26:01.018821",
+    "data": [
+      {
+        "date": "2026-02-21",
+        "reaction_pct": -3.91,
+        "drift_pct": 1.99
+      },
+      {
+        "date": "2025-11-21",
+        "reaction_pct": 6.08,
+        "drift_pct": -11.15
+      },
+      {
+        "date": "2025-08-21",
+        "reaction_pct": 2.06,
+        "drift_pct": -0.88
+      },
+      {
+        "date": "2025-05-21",
+        "reaction_pct": -4.4,
+        "drift_pct": 21.77
+      }
+    ]
+  },
+  "MOMO": {
+    "timestamp": "2026-06-02T14:26:01.220232",
+    "data": [
+      {
+        "date": "2026-01-21",
+        "reaction_pct": 1.92,
+        "drift_pct": -2.73
+      },
+      {
+        "date": "2025-10-21",
+        "reaction_pct": -2.73,
+        "drift_pct": 1.16
+      },
+      {
+        "date": "2025-07-21",
+        "reaction_pct": -0.79,
+        "drift_pct": -0.78
+      },
+      {
+        "date": "2025-04-21",
+        "reaction_pct": 1.27,
+        "drift_pct": 4.36
+      }
+    ]
+  },
+  "NX": {
+    "timestamp": "2026-06-02T14:26:01.735108",
+    "data": [
+      {
+        "date": "2026-02-21",
+        "reaction_pct": -2.84,
+        "drift_pct": 2.31
+      },
+      {
+        "date": "2025-11-21",
+        "reaction_pct": 8.0,
+        "drift_pct": -13.13
+      },
+      {
+        "date": "2025-08-21",
+        "reaction_pct": 7.2,
+        "drift_pct": -2.15
+      },
+      {
+        "date": "2025-05-21",
+        "reaction_pct": -4.36,
+        "drift_pct": -0.05
+      }
+    ]
+  },
+  "CGNT": {
+    "timestamp": "2026-06-02T14:26:01.741733",
+    "data": [
+      {
+        "date": "2026-02-21",
+        "reaction_pct": -6.76,
+        "drift_pct": -3.68
+      },
+      {
+        "date": "2025-11-21",
+        "reaction_pct": 1.38,
+        "drift_pct": -5.79
+      },
+      {
+        "date": "2025-08-21",
+        "reaction_pct": 4.35,
+        "drift_pct": -2.52
+      },
+      {
+        "date": "2025-05-21",
+        "reaction_pct": -2.37,
+        "drift_pct": 12.54
+      }
+    ]
+  },
+  "AVO": {
+    "timestamp": "2026-06-02T14:26:01.910259",
+    "data": [
+      {
+        "date": "2026-02-21",
+        "reaction_pct": -1.93,
+        "drift_pct": 1.04
+      },
+      {
+        "date": "2025-11-21",
+        "reaction_pct": 0.0,
+        "drift_pct": -7.1
+      },
+      {
+        "date": "2025-08-21",
+        "reaction_pct": 2.56,
+        "drift_pct": 2.29
+      },
+      {
+        "date": "2025-05-21",
+        "reaction_pct": -5.11,
+        "drift_pct": 2.87
+      }
+    ]
+  },
+  "EH": {
+    "timestamp": "2026-06-02T14:26:02.090697",
+    "data": [
+      {
+        "date": "2026-01-21",
+        "reaction_pct": 3.91,
+        "drift_pct": -7.12
+      },
+      {
+        "date": "2025-10-21",
+        "reaction_pct": -1.83,
+        "drift_pct": -1.32
+      },
+      {
+        "date": "2025-07-21",
+        "reaction_pct": 5.64,
+        "drift_pct": 6.22
+      },
+      {
+        "date": "2025-04-21",
+        "reaction_pct": 4.59,
+        "drift_pct": 2.7
+      }
+    ]
+  },
+  "CBRL": {
+    "timestamp": "2026-06-02T14:26:02.110815",
+    "data": [
+      {
+        "date": "2026-02-21",
+        "reaction_pct": -5.07,
+        "drift_pct": 7.48
+      },
+      {
+        "date": "2025-11-21",
+        "reaction_pct": 0.77,
+        "drift_pct": -10.11
+      },
+      {
+        "date": "2025-08-21",
+        "reaction_pct": -7.83,
+        "drift_pct": -5.64
+      },
+      {
+        "date": "2025-05-21",
+        "reaction_pct": -0.21,
+        "drift_pct": 1.25
+      }
+    ]
+  },
+  "RR": {
+    "timestamp": "2026-06-02T14:26:02.300535",
+    "data": [
+      {
+        "date": "2026-01-21",
+        "reaction_pct": 13.21,
+        "drift_pct": -1.28
+      },
+      {
+        "date": "2025-10-21",
+        "reaction_pct": -8.99,
+        "drift_pct": -17.38
+      },
+      {
+        "date": "2025-07-21",
+        "reaction_pct": 2.51,
+        "drift_pct": 8.74
+      },
+      {
+        "date": "2025-04-21",
+        "reaction_pct": -5.73,
+        "drift_pct": -2.04
+      }
+    ]
+  },
+  "SB": {
+    "timestamp": "2026-06-02T14:26:03.267761",
+    "data": [
+      {
+        "date": "2026-01-21",
+        "reaction_pct": 3.49,
+        "drift_pct": 1.38
+      },
+      {
+        "date": "2025-10-21",
+        "reaction_pct": 1.63,
+        "drift_pct": 1.42
+      },
+      {
+        "date": "2025-07-21",
+        "reaction_pct": 0.49,
+        "drift_pct": 0.98
+      },
+      {
+        "date": "2025-04-21",
+        "reaction_pct": -2.73,
+        "drift_pct": -5.17
+      }
+    ]
+  },
+  "ODD": {
+    "timestamp": "2026-06-02T14:26:03.362971",
+    "data": [
+      {
+        "date": "2026-01-21",
+        "reaction_pct": -1.04,
+        "drift_pct": 4.73
+      },
+      {
+        "date": "2025-10-21",
+        "reaction_pct": -4.99,
+        "drift_pct": 1.61
+      },
+      {
+        "date": "2025-07-21",
+        "reaction_pct": -0.04,
+        "drift_pct": -2.3
+      },
+      {
+        "date": "2025-04-21",
+        "reaction_pct": -1.0,
+        "drift_pct": 0.89
+      }
+    ]
+  },
+  "SWBI": {
+    "timestamp": "2026-06-02T14:26:03.524022",
+    "data": [
+      {
+        "date": "2026-02-21",
+        "reaction_pct": -3.08,
+        "drift_pct": 2.21
+      },
+      {
+        "date": "2025-11-21",
+        "reaction_pct": 4.88,
+        "drift_pct": -3.31
+      },
+      {
+        "date": "2025-08-21",
+        "reaction_pct": 3.78,
+        "drift_pct": -2.7
+      },
+      {
+        "date": "2025-05-21",
+        "reaction_pct": -3.07,
+        "drift_pct": 0.93
+      }
+    ]
+  },
+  "OXM": {
+    "timestamp": "2026-06-02T14:26:03.996184",
+    "data": [
+      {
+        "date": "2026-02-21",
+        "reaction_pct": -2.3,
+        "drift_pct": 8.16
+      },
+      {
+        "date": "2025-11-21",
+        "reaction_pct": 5.69,
+        "drift_pct": -8.6
+      },
+      {
+        "date": "2025-08-21",
+        "reaction_pct": 4.61,
+        "drift_pct": 0.51
+      },
+      {
+        "date": "2025-05-21",
+        "reaction_pct": -3.65,
+        "drift_pct": -1.59
+      }
+    ]
+  },
+  "VLGEA": {
+    "timestamp": "2026-06-02T14:26:04.134952",
+    "data": [
+      {
+        "date": "2026-02-21",
+        "reaction_pct": 0.74,
+        "drift_pct": -1.26
+      },
+      {
+        "date": "2025-11-21",
+        "reaction_pct": 0.12,
+        "drift_pct": -1.7
+      },
+      {
+        "date": "2025-05-21",
+        "reaction_pct": -2.32,
+        "drift_pct": 2.18
+      },
+      {
+        "date": "2025-02-21",
+        "reaction_pct": -1.27,
+        "drift_pct": -5.79
+      }
+    ]
+  },
+  "YB": {
+    "timestamp": "2026-06-02T14:26:04.145802",
+    "data": [
+      {
+        "date": "2026-01-21",
+        "reaction_pct": -3.51,
+        "drift_pct": 5.32
+      },
+      {
+        "date": "2025-10-21",
+        "reaction_pct": -4.38,
+        "drift_pct": 12.95
+      },
+      {
+        "date": "2025-07-21",
+        "reaction_pct": -1.82,
+        "drift_pct": -8.92
+      }
+    ]
+  },
+  "MAMA": {
+    "timestamp": "2026-06-02T14:26:04.358303",
+    "data": [
+      {
+        "date": "2026-02-21",
+        "reaction_pct": 1.01,
+        "drift_pct": 2.32
+      },
+      {
+        "date": "2025-11-21",
+        "reaction_pct": 3.44,
+        "drift_pct": -0.97
+      },
+      {
+        "date": "2025-08-21",
+        "reaction_pct": 6.17,
+        "drift_pct": -0.37
+      },
+      {
+        "date": "2025-05-21",
+        "reaction_pct": -2.24,
+        "drift_pct": 9.02
+      }
+    ]
+  },
+  "VBNK": {
+    "timestamp": "2026-06-02T14:26:04.358326",
+    "data": [
+      {
+        "date": "2026-02-21",
+        "reaction_pct": -2.33,
+        "drift_pct": 3.59
+      },
+      {
+        "date": "2025-11-21",
+        "reaction_pct": 1.4,
+        "drift_pct": -2.39
+      },
+      {
+        "date": "2025-08-21",
+        "reaction_pct": 1.67,
+        "drift_pct": 1.99
+      },
+      {
+        "date": "2025-05-21",
+        "reaction_pct": 0.52,
+        "drift_pct": 1.67
+      }
+    ]
+  },
+  "WDH": {
+    "timestamp": "2026-06-02T14:26:04.536316",
+    "data": [
+      {
+        "date": "2026-01-21",
+        "reaction_pct": -2.78,
+        "drift_pct": -1.1
+      },
+      {
+        "date": "2025-10-21",
+        "reaction_pct": -2.21,
+        "drift_pct": 1.12
+      },
+      {
+        "date": "2025-07-21",
+        "reaction_pct": -0.6,
+        "drift_pct": 15.07
+      },
+      {
+        "date": "2025-04-21",
+        "reaction_pct": 1.63,
+        "drift_pct": 1.65
+      }
+    ]
+  },
+  "AIOT": {
+    "timestamp": "2026-06-02T14:26:05.543111",
+    "data": [
+      {
+        "date": "2026-01-21",
+        "reaction_pct": 5.95,
+        "drift_pct": -5.79
+      },
+      {
+        "date": "2025-10-21",
+        "reaction_pct": -2.65,
+        "drift_pct": -3.12
+      },
+      {
+        "date": "2025-07-21",
+        "reaction_pct": 3.39,
+        "drift_pct": 3.27
+      },
+      {
+        "date": "2025-04-21",
+        "reaction_pct": -3.98,
+        "drift_pct": -1.45
+      }
+    ]
+  },
+  "UXIN": {
+    "timestamp": "2026-06-02T14:26:05.775845",
+    "data": [
+      {
+        "date": "2026-01-21",
+        "reaction_pct": 2.79,
+        "drift_pct": -6.02
+      },
+      {
+        "date": "2025-10-21",
+        "reaction_pct": -7.31,
+        "drift_pct": -3.83
+      },
+      {
+        "date": "2025-07-21",
+        "reaction_pct": 4.39,
+        "drift_pct": -10.59
+      },
+      {
+        "date": "2025-04-21",
+        "reaction_pct": 5.32,
+        "drift_pct": 20.33
+      }
+    ]
+  },
+  "CAL": {
+    "timestamp": "2026-06-02T14:26:05.968588",
+    "data": [
+      {
+        "date": "2026-02-21",
+        "reaction_pct": -4.89,
+        "drift_pct": 10.75
+      },
+      {
+        "date": "2025-11-21",
+        "reaction_pct": 10.07,
+        "drift_pct": -6.6
+      },
+      {
+        "date": "2025-08-21",
+        "reaction_pct": 5.73,
+        "drift_pct": 0.55
+      },
+      {
+        "date": "2025-05-21",
+        "reaction_pct": -4.46,
+        "drift_pct": -1.14
+      }
+    ]
+  },
+  "HTT": {
+    "timestamp": "2026-06-02T14:26:06.174254",
+    "data": [
+      {
+        "date": "2026-01-21",
+        "reaction_pct": 1.31,
+        "drift_pct": -2.24
+      },
+      {
+        "date": "2025-10-21",
+        "reaction_pct": 0.0,
+        "drift_pct": -2.21
+      },
+      {
+        "date": "2025-07-21",
+        "reaction_pct": 4.08,
+        "drift_pct": -7.8
+      },
+      {
+        "date": "2025-04-21",
+        "reaction_pct": 1.59,
+        "drift_pct": 6.33
+      }
+    ]
+  },
+  "SFIX": {
+    "timestamp": "2026-06-02T14:26:06.418141",
+    "data": [
+      {
+        "date": "2026-02-21",
+        "reaction_pct": -7.76,
+        "drift_pct": -4.66
+      },
+      {
+        "date": "2025-11-21",
+        "reaction_pct": -2.23,
+        "drift_pct": -4.94
+      },
+      {
+        "date": "2025-08-21",
+        "reaction_pct": 0.1,
+        "drift_pct": 4.72
+      },
+      {
+        "date": "2025-05-21",
+        "reaction_pct": 1.42,
+        "drift_pct": -4.51
+      }
+    ]
+  },
+  "CMCO": {
+    "timestamp": "2026-06-02T14:26:06.468507",
+    "data": [
+      {
+        "date": "2026-01-21",
+        "reaction_pct": 6.25,
+        "drift_pct": -0.1
+      },
+      {
+        "date": "2025-10-21",
+        "reaction_pct": -2.24,
+        "drift_pct": -0.72
+      },
+      {
+        "date": "2025-07-21",
+        "reaction_pct": 2.23,
+        "drift_pct": -3.3
+      },
+      {
+        "date": "2025-04-21",
+        "reaction_pct": 3.2,
+        "drift_pct": 1.31
+      }
+    ]
+  },
+  "CVGW": {
+    "timestamp": "2026-06-02T14:26:06.500656",
+    "data": [
+      {
+        "date": "2026-02-21",
+        "reaction_pct": -1.13,
+        "drift_pct": 1.46
+      },
+      {
+        "date": "2025-11-21",
+        "reaction_pct": -2.22,
+        "drift_pct": -9.15
+      },
+      {
+        "date": "2025-08-21",
+        "reaction_pct": 0.29,
+        "drift_pct": 1.17
+      },
+      {
+        "date": "2025-05-21",
+        "reaction_pct": -5.1,
+        "drift_pct": 4.92
+      }
+    ]
+  },
+  "TITN": {
+    "timestamp": "2026-06-02T14:26:06.853819",
+    "data": [
+      {
+        "date": "2026-02-21",
+        "reaction_pct": -5.39,
+        "drift_pct": 7.59
+      },
+      {
+        "date": "2025-11-21",
+        "reaction_pct": 10.11,
+        "drift_pct": -5.44
+      },
+      {
+        "date": "2025-08-21",
+        "reaction_pct": 5.7,
+        "drift_pct": -1.17
+      },
+      {
+        "date": "2025-05-21",
+        "reaction_pct": -2.42,
+        "drift_pct": 0.44
+      }
+    ]
+  },
+  "CGC": {
+    "timestamp": "2026-06-02T14:26:06.998791",
+    "data": [
+      {
+        "date": "2026-01-21",
+        "reaction_pct": 1.74,
+        "drift_pct": -8.0
+      },
+      {
+        "date": "2025-10-21",
+        "reaction_pct": -5.04,
+        "drift_pct": 2.21
+      },
+      {
+        "date": "2025-07-21",
+        "reaction_pct": 14.68,
+        "drift_pct": -6.84
+      },
+      {
+        "date": "2025-04-21",
+        "reaction_pct": -0.84,
+        "drift_pct": 26.6
+      }
+    ]
+  },
+  "PLAY": {
+    "timestamp": "2026-06-02T14:26:07.768108",
+    "data": [
+      {
+        "date": "2026-02-21",
+        "reaction_pct": -1.95,
+        "drift_pct": 3.77
+      },
+      {
+        "date": "2025-11-21",
+        "reaction_pct": 5.64,
+        "drift_pct": -7.28
+      },
+      {
+        "date": "2025-08-21",
+        "reaction_pct": 5.1,
+        "drift_pct": -7.23
+      },
+      {
+        "date": "2025-05-21",
+        "reaction_pct": -2.92,
+        "drift_pct": -3.23
+      }
+    ]
+  },
+  "ZUMZ": {
+    "timestamp": "2026-06-02T14:26:08.054818",
+    "data": [
+      {
+        "date": "2026-02-21",
+        "reaction_pct": -6.09,
+        "drift_pct": 7.73
+      },
+      {
+        "date": "2025-11-21",
+        "reaction_pct": 9.66,
+        "drift_pct": -1.61
+      },
+      {
+        "date": "2025-08-21",
+        "reaction_pct": 2.17,
+        "drift_pct": -0.13
+      },
+      {
+        "date": "2025-05-21",
+        "reaction_pct": -5.22,
+        "drift_pct": -0.69
+      }
+    ]
+  },
+  "YEXT": {
+    "timestamp": "2026-06-02T14:26:08.472040",
+    "data": [
+      {
+        "date": "2026-02-21",
+        "reaction_pct": -1.63,
+        "drift_pct": -0.72
+      },
+      {
+        "date": "2025-11-21",
+        "reaction_pct": 2.54,
+        "drift_pct": -2.13
+      },
+      {
+        "date": "2025-08-21",
+        "reaction_pct": 4.42,
+        "drift_pct": 7.11
+      },
+      {
+        "date": "2025-05-21",
+        "reaction_pct": -2.48,
+        "drift_pct": -0.15
+      }
+    ]
+  },
+  "GOTU": {
+    "timestamp": "2026-06-02T14:26:08.497011",
+    "data": [
+      {
+        "date": "2026-01-21",
+        "reaction_pct": -3.02,
+        "drift_pct": -7.57
+      },
+      {
+        "date": "2025-10-21",
+        "reaction_pct": -0.31,
+        "drift_pct": 4.95
+      },
+      {
+        "date": "2025-07-21",
+        "reaction_pct": -3.14,
+        "drift_pct": 6.41
+      },
+      {
+        "date": "2025-04-21",
+        "reaction_pct": 0.0,
+        "drift_pct": 0.75
+      }
+    ]
+  },
+  "BBCP": {
+    "timestamp": "2026-06-02T14:26:08.635938",
+    "data": [
+      {
+        "date": "2026-02-21",
+        "reaction_pct": -1.33,
+        "drift_pct": 3.82
+      },
+      {
+        "date": "2025-11-21",
+        "reaction_pct": 3.37,
+        "drift_pct": -4.82
+      },
+      {
+        "date": "2025-08-21",
+        "reaction_pct": 5.7,
+        "drift_pct": -0.29
+      },
+      {
+        "date": "2025-05-21",
+        "reaction_pct": 0.98,
+        "drift_pct": 1.42
+      }
+    ]
+  },
+  "NATH": {
+    "timestamp": "2026-06-02T14:26:08.676590",
+    "data": [
+      {
+        "date": "2026-01-21",
+        "reaction_pct": 8.67,
+        "drift_pct": 0.45
+      },
+      {
+        "date": "2025-10-21",
+        "reaction_pct": -0.89,
+        "drift_pct": 1.87
+      },
+      {
+        "date": "2025-07-21",
+        "reaction_pct": -0.71,
+        "drift_pct": -15.01
+      },
+      {
+        "date": "2025-04-21",
+        "reaction_pct": 3.3,
+        "drift_pct": 1.23
+      }
+    ]
+  },
+  "REPL": {
+    "timestamp": "2026-06-02T14:26:08.837913",
+    "data": [
+      {
+        "date": "2026-01-21",
+        "reaction_pct": 12.7,
+        "drift_pct": -12.81
+      },
+      {
+        "date": "2025-10-21",
+        "reaction_pct": -7.21,
+        "drift_pct": 105.63
+      },
+      {
+        "date": "2025-07-21",
+        "reaction_pct": -76.8,
+        "drift_pct": 7.18
+      },
+      {
+        "date": "2025-04-21",
+        "reaction_pct": 8.94,
+        "drift_pct": 8.78
+      }
+    ]
+  },
+  "GLSI": {
+    "timestamp": "2026-06-02T14:26:08.876900",
+    "data": [
+      {
+        "date": "2025-10-21",
+        "reaction_pct": -2.37,
+        "drift_pct": -11.79
+      },
+      {
+        "date": "2025-07-21",
+        "reaction_pct": -3.88,
+        "drift_pct": 7.22
+      },
+      {
+        "date": "2025-04-21",
+        "reaction_pct": 7.6,
+        "drift_pct": -9.23
+      },
+      {
+        "date": "2025-01-21",
+        "reaction_pct": -1.24,
+        "drift_pct": 4.98
+      }
+    ]
+  },
+  "DBI": {
+    "timestamp": "2026-06-02T14:26:09.264065",
+    "data": [
+      {
+        "date": "2026-02-21",
+        "reaction_pct": -1.32,
+        "drift_pct": 5.15
+      },
+      {
+        "date": "2025-11-21",
+        "reaction_pct": 8.93,
+        "drift_pct": -9.92
+      },
+      {
+        "date": "2025-08-21",
+        "reaction_pct": 12.93,
+        "drift_pct": -7.58
+      },
+      {
+        "date": "2025-05-21",
+        "reaction_pct": -3.47,
+        "drift_pct": -6.23
+      }
+    ]
+  },
+  "LE": {
+    "timestamp": "2026-06-02T14:26:09.789877",
+    "data": [
+      {
+        "date": "2026-02-21",
+        "reaction_pct": -9.51,
+        "drift_pct": 3.44
+      },
+      {
+        "date": "2025-11-21",
+        "reaction_pct": 10.82,
+        "drift_pct": -16.14
+      },
+      {
+        "date": "2025-08-21",
+        "reaction_pct": 7.04,
+        "drift_pct": 0.31
+      },
+      {
+        "date": "2025-05-21",
+        "reaction_pct": 0.11,
+        "drift_pct": -4.39
+      }
+    ]
+  },
+  "GASS": {
+    "timestamp": "2026-06-02T14:26:09.849319",
+    "data": [
+      {
+        "date": "2026-01-21",
+        "reaction_pct": -0.51,
+        "drift_pct": -0.51
+      },
+      {
+        "date": "2025-10-21",
+        "reaction_pct": -0.31,
+        "drift_pct": 0.93
+      },
+      {
+        "date": "2025-07-21",
+        "reaction_pct": 2.76,
+        "drift_pct": -1.36
+      },
+      {
+        "date": "2025-04-21",
+        "reaction_pct": -1.17,
+        "drift_pct": -0.58
+      }
+    ]
+  },
+  "CURR": {
+    "timestamp": "2026-06-02T14:26:10.172480",
+    "data": [
+      {
+        "date": "2026-01-21",
+        "reaction_pct": 8.0,
+        "drift_pct": -6.83
+      },
+      {
+        "date": "2025-10-21",
+        "reaction_pct": -12.97,
+        "drift_pct": 8.19
+      },
+      {
+        "date": "2025-07-21",
+        "reaction_pct": 28.97,
+        "drift_pct": -2.68
+      },
+      {
+        "date": "2025-04-21",
+        "reaction_pct": -5.19,
+        "drift_pct": -3.14
+      }
+    ]
+  },
+  "CTRN": {
+    "timestamp": "2026-06-02T14:26:10.686954",
+    "data": [
+      {
+        "date": "2026-02-21",
+        "reaction_pct": -3.9,
+        "drift_pct": -1.67
+      },
+      {
+        "date": "2025-11-21",
+        "reaction_pct": 8.62,
+        "drift_pct": 0.7
+      },
+      {
+        "date": "2025-08-21",
+        "reaction_pct": 4.05,
+        "drift_pct": -4.19
+      },
+      {
+        "date": "2025-05-21",
+        "reaction_pct": -2.35,
+        "drift_pct": 9.76
+      }
+    ]
+  },
+  "PPIH": {
+    "timestamp": "2026-06-02T14:26:10.695010",
+    "data": [
+      {
+        "date": "2026-02-21",
+        "reaction_pct": -0.83,
+        "drift_pct": 4.93
+      },
+      {
+        "date": "2025-11-21",
+        "reaction_pct": 6.34,
+        "drift_pct": -5.03
+      },
+      {
+        "date": "2025-08-21",
+        "reaction_pct": 12.1,
+        "drift_pct": 0.22
+      },
+      {
+        "date": "2025-05-21",
+        "reaction_pct": 5.26,
+        "drift_pct": -7.77
+      }
+    ]
+  },
+  "ZH": {
+    "timestamp": "2026-06-02T14:26:10.913591",
+    "data": [
+      {
+        "date": "2026-01-21",
+        "reaction_pct": 3.23,
+        "drift_pct": -6.08
+      },
+      {
+        "date": "2025-10-21",
+        "reaction_pct": -2.75,
+        "drift_pct": -1.58
+      },
+      {
+        "date": "2025-07-21",
+        "reaction_pct": 1.91,
+        "drift_pct": 2.62
+      },
+      {
+        "date": "2025-04-21",
+        "reaction_pct": 7.93,
+        "drift_pct": -3.55
+      }
+    ]
+  },
+  "AVXL": {
+    "timestamp": "2026-06-02T14:26:10.921159",
+    "data": [
+      {
+        "date": "2026-01-21",
+        "reaction_pct": 5.37,
+        "drift_pct": 8.41
+      },
+      {
+        "date": "2025-10-21",
+        "reaction_pct": -0.11,
+        "drift_pct": 6.42
+      },
+      {
+        "date": "2025-07-21",
+        "reaction_pct": 1.73,
+        "drift_pct": -4.36
+      },
+      {
+        "date": "2025-04-21",
+        "reaction_pct": 2.91,
+        "drift_pct": 1.02
+      }
+    ]
+  },
+  "POWW": {
+    "timestamp": "2026-06-02T14:26:10.927846",
+    "data": [
+      {
+        "date": "2026-01-21",
+        "reaction_pct": 0.0,
+        "drift_pct": -9.9
+      },
+      {
+        "date": "2025-10-21",
+        "reaction_pct": 0.0,
+        "drift_pct": 0.0
+      },
+      {
+        "date": "2025-07-21",
+        "reaction_pct": 1.61,
+        "drift_pct": 6.9
+      },
+      {
+        "date": "2025-04-21",
+        "reaction_pct": 25.87,
+        "drift_pct": 7.52
+      }
+    ]
+  },
+  "LOVE": {
+    "timestamp": "2026-06-02T14:26:11.683858",
+    "data": [
+      {
+        "date": "2026-02-21",
+        "reaction_pct": -5.61,
+        "drift_pct": 0.23
+      },
+      {
+        "date": "2025-11-21",
+        "reaction_pct": 4.46,
+        "drift_pct": -4.03
+      },
+      {
+        "date": "2025-08-21",
+        "reaction_pct": 4.6,
+        "drift_pct": -5.09
+      },
+      {
+        "date": "2025-05-21",
+        "reaction_pct": -4.39,
+        "drift_pct": -2.65
+      }
+    ]
+  },
+  "JFIN": {
+    "timestamp": "2026-06-02T14:26:12.274330",
+    "data": [
+      {
+        "date": "2026-01-21",
+        "reaction_pct": 5.21,
+        "drift_pct": -4.0
+      },
+      {
+        "date": "2025-10-21",
+        "reaction_pct": 1.12,
+        "drift_pct": -4.31
+      },
+      {
+        "date": "2025-07-21",
+        "reaction_pct": -3.93,
+        "drift_pct": -2.33
+      },
+      {
+        "date": "2025-04-21",
+        "reaction_pct": 2.4,
+        "drift_pct": 3.27
+      }
+    ]
+  },
+  "NBP": {
+    "timestamp": "2026-06-02T14:26:12.385896",
+    "data": [
+      {
+        "date": "2026-01-21",
+        "reaction_pct": -0.77,
+        "drift_pct": 7.4
+      },
+      {
+        "date": "2025-10-21",
+        "reaction_pct": -7.66,
+        "drift_pct": -13.86
+      },
+      {
+        "date": "2025-07-21",
+        "reaction_pct": -0.95,
+        "drift_pct": -1.87
+      },
+      {
+        "date": "2025-04-21",
+        "reaction_pct": -1.78,
+        "drift_pct": 26.31
+      }
+    ]
+  },
+  "LMNR": {
+    "timestamp": "2026-06-02T14:26:12.564615",
+    "data": [
+      {
+        "date": "2026-02-21",
+        "reaction_pct": -0.78,
+        "drift_pct": -1.4
+      },
+      {
+        "date": "2025-11-21",
+        "reaction_pct": 2.67,
+        "drift_pct": -4.92
+      },
+      {
+        "date": "2025-08-21",
+        "reaction_pct": 5.29,
+        "drift_pct": -0.82
+      },
+      {
+        "date": "2025-05-21",
+        "reaction_pct": -3.38,
+        "drift_pct": 1.27
+      }
+    ]
+  },
+  "AREC": {
+    "timestamp": "2026-06-02T14:26:12.607301",
+    "data": [
+      {
+        "date": "2026-01-21",
+        "reaction_pct": 19.71,
+        "drift_pct": 5.42
+      },
+      {
+        "date": "2025-10-21",
+        "reaction_pct": -21.35,
+        "drift_pct": -30.54
+      },
+      {
+        "date": "2025-07-21",
+        "reaction_pct": 6.67,
+        "drift_pct": 19.47
+      },
+      {
+        "date": "2025-04-21",
+        "reaction_pct": -11.63,
+        "drift_pct": 168.19
+      }
+    ]
+  },
+  "MPAA": {
+    "timestamp": "2026-06-02T14:26:12.749058",
+    "data": [
+      {
+        "date": "2026-01-21",
+        "reaction_pct": 2.67,
+        "drift_pct": -3.42
+      },
+      {
+        "date": "2025-10-21",
+        "reaction_pct": 2.93,
+        "drift_pct": -0.82
+      },
+      {
+        "date": "2025-07-21",
+        "reaction_pct": 6.33,
+        "drift_pct": -3.91
+      },
+      {
+        "date": "2025-04-21",
+        "reaction_pct": 1.9,
+        "drift_pct": 2.06
+      }
+    ]
+  },
+  "HITI": {
+    "timestamp": "2026-06-02T14:26:12.848353",
+    "data": [
+      {
+        "date": "2026-02-21",
+        "reaction_pct": -1.2,
+        "drift_pct": 7.79
+      },
+      {
+        "date": "2025-11-21",
+        "reaction_pct": -4.2,
+        "drift_pct": -2.96
+      },
+      {
+        "date": "2025-08-21",
+        "reaction_pct": 15.91,
+        "drift_pct": 20.78
+      },
+      {
+        "date": "2025-05-21",
+        "reaction_pct": -0.85,
+        "drift_pct": 0.0
+      }
+    ]
+  },
+  "RFIL": {
+    "timestamp": "2026-06-02T14:26:12.980477",
+    "data": [
+      {
+        "date": "2026-02-21",
+        "reaction_pct": 0.86,
+        "drift_pct": -14.69
+      },
+      {
+        "date": "2025-11-21",
+        "reaction_pct": 1.71,
+        "drift_pct": -8.45
+      },
+      {
+        "date": "2025-08-21",
+        "reaction_pct": 7.94,
+        "drift_pct": -10.34
+      },
+      {
+        "date": "2025-05-21",
+        "reaction_pct": 7.64,
+        "drift_pct": 2.53
+      }
+    ]
+  },
+  "ACB": {
+    "timestamp": "2026-06-02T14:26:13.374371",
+    "data": [
+      {
+        "date": "2026-01-21",
+        "reaction_pct": 4.59,
+        "drift_pct": -2.36
+      },
+      {
+        "date": "2025-10-21",
+        "reaction_pct": -5.25,
+        "drift_pct": -2.91
+      },
+      {
+        "date": "2025-07-21",
+        "reaction_pct": 11.48,
+        "drift_pct": -1.09
+      },
+      {
+        "date": "2025-04-21",
+        "reaction_pct": -4.05,
+        "drift_pct": 3.74
+      }
+    ]
+  },
+  "JILL": {
+    "timestamp": "2026-06-02T14:26:13.382471",
+    "data": [
+      {
+        "date": "2026-02-21",
+        "reaction_pct": -3.5,
+        "drift_pct": 6.6
+      },
+      {
+        "date": "2025-11-21",
+        "reaction_pct": 4.26,
+        "drift_pct": -4.36
+      },
+      {
+        "date": "2025-08-21",
+        "reaction_pct": 6.25,
+        "drift_pct": 3.29
+      },
+      {
+        "date": "2025-05-21",
+        "reaction_pct": -2.42,
+        "drift_pct": -2.08
+      }
+    ]
+  },
+  "CHPT": {
+    "timestamp": "2026-06-02T14:26:14.026645",
+    "data": [
+      {
+        "date": "2026-02-21",
+        "reaction_pct": -2.44,
+        "drift_pct": 4.41
+      },
+      {
+        "date": "2025-11-21",
+        "reaction_pct": -4.3,
+        "drift_pct": -8.45
+      },
+      {
+        "date": "2025-08-21",
+        "reaction_pct": 3.6,
+        "drift_pct": -3.39
+      },
+      {
+        "date": "2025-05-21",
+        "reaction_pct": 5.16,
+        "drift_pct": -0.29
+      }
+    ]
+  },
+  "SMID": {
+    "timestamp": "2026-06-02T14:26:14.440133",
+    "data": [
+      {
+        "date": "2026-01-21",
+        "reaction_pct": 3.13,
+        "drift_pct": 1.73
+      },
+      {
+        "date": "2025-10-21",
+        "reaction_pct": 4.59,
+        "drift_pct": 1.66
+      },
+      {
+        "date": "2025-07-21",
+        "reaction_pct": -0.86,
+        "drift_pct": -1.92
+      },
+      {
+        "date": "2025-04-21",
+        "reaction_pct": 6.65,
+        "drift_pct": -4.42
+      }
+    ]
+  },
+  "DOMO": {
+    "timestamp": "2026-06-02T14:26:14.709915",
+    "data": [
+      {
+        "date": "2026-02-21",
+        "reaction_pct": -10.0,
+        "drift_pct": -4.88
+      },
+      {
+        "date": "2025-11-21",
+        "reaction_pct": 1.37,
+        "drift_pct": -11.4
+      },
+      {
+        "date": "2025-08-21",
+        "reaction_pct": 3.82,
+        "drift_pct": -3.61
+      },
+      {
+        "date": "2025-05-21",
+        "reaction_pct": 26.9,
+        "drift_pct": -0.35
+      }
+    ]
+  },
+  "CMTL": {
+    "timestamp": "2026-06-02T14:26:14.724626",
+    "data": [
+      {
+        "date": "2026-02-21",
+        "reaction_pct": -2.87,
+        "drift_pct": -4.95
+      },
+      {
+        "date": "2025-11-21",
+        "reaction_pct": 3.79,
+        "drift_pct": -9.37
+      },
+      {
+        "date": "2025-08-21",
+        "reaction_pct": 5.67,
+        "drift_pct": -8.92
+      },
+      {
+        "date": "2025-05-21",
+        "reaction_pct": 8.42,
+        "drift_pct": 28.66
+      }
+    ]
+  },
+  "FRD": {
+    "timestamp": "2026-06-02T14:26:14.986655",
+    "data": [
+      {
+        "date": "2026-01-21",
+        "reaction_pct": 3.42,
+        "drift_pct": -2.42
+      },
+      {
+        "date": "2025-10-21",
+        "reaction_pct": -0.4,
+        "drift_pct": -1.92
+      },
+      {
+        "date": "2025-07-21",
+        "reaction_pct": 5.22,
+        "drift_pct": -5.77
+      },
+      {
+        "date": "2025-04-21",
+        "reaction_pct": -0.41,
+        "drift_pct": 10.13
+      }
+    ]
+  },
+  "CURV": {
+    "timestamp": "2026-06-02T14:26:15.039143",
+    "data": [
+      {
+        "date": "2026-02-21",
+        "reaction_pct": -7.27,
+        "drift_pct": 1.85
+      },
+      {
+        "date": "2025-11-21",
+        "reaction_pct": 3.48,
+        "drift_pct": -8.73
+      },
+      {
+        "date": "2025-08-21",
+        "reaction_pct": 2.7,
+        "drift_pct": 2.3
+      },
+      {
+        "date": "2025-05-21",
+        "reaction_pct": -6.69,
+        "drift_pct": -2.07
+      }
+    ]
+  },
+  "HOFT": {
+    "timestamp": "2026-06-02T14:26:15.254939",
+    "data": [
+      {
+        "date": "2026-02-21",
+        "reaction_pct": -1.57,
+        "drift_pct": -2.92
+      },
+      {
+        "date": "2025-11-21",
+        "reaction_pct": -1.12,
+        "drift_pct": 3.57
+      },
+      {
+        "date": "2025-08-21",
+        "reaction_pct": 5.18,
+        "drift_pct": -0.1
+      },
+      {
+        "date": "2025-05-21",
+        "reaction_pct": -2.51,
+        "drift_pct": -2.25
+      }
+    ]
+  },
+  "CODA": {
+    "timestamp": "2026-06-02T14:26:15.348510",
+    "data": [
+      {
+        "date": "2026-02-21",
+        "reaction_pct": 2.79,
+        "drift_pct": 0.41
+      },
+      {
+        "date": "2025-11-21",
+        "reaction_pct": 6.63,
+        "drift_pct": 0.0
+      },
+      {
+        "date": "2025-08-21",
+        "reaction_pct": 7.52,
+        "drift_pct": -7.11
+      },
+      {
+        "date": "2025-05-21",
+        "reaction_pct": 0.81,
+        "drift_pct": 6.05
+      }
+    ]
+  },
+  "NNOX": {
+    "timestamp": "2026-06-02T14:26:15.472483",
+    "data": [
+      {
+        "date": "2026-01-21",
+        "reaction_pct": 4.01,
+        "drift_pct": -1.64
+      },
+      {
+        "date": "2025-10-21",
+        "reaction_pct": -4.98,
+        "drift_pct": 2.43
+      },
+      {
+        "date": "2025-07-21",
+        "reaction_pct": 6.42,
+        "drift_pct": -0.19
+      },
+      {
+        "date": "2025-04-21",
+        "reaction_pct": -4.23,
+        "drift_pct": 12.8
+      }
+    ]
+  },
+  "DLTH": {
+    "timestamp": "2026-06-02T14:26:15.556623",
+    "data": [
+      {
+        "date": "2026-02-21",
+        "reaction_pct": -8.68,
+        "drift_pct": 6.14
+      },
+      {
+        "date": "2025-11-21",
+        "reaction_pct": 3.99,
+        "drift_pct": 5.99
+      },
+      {
+        "date": "2025-08-21",
+        "reaction_pct": 4.61,
+        "drift_pct": -1.81
+      },
+      {
+        "date": "2025-05-21",
+        "reaction_pct": 4.21,
+        "drift_pct": 10.47
+      }
+    ]
+  },
+  "TLYS": {
+    "timestamp": "2026-06-02T14:26:16.102118",
+    "data": [
+      {
+        "date": "2026-02-21",
+        "reaction_pct": 0.72,
+        "drift_pct": 0.0
+      },
+      {
+        "date": "2025-11-21",
+        "reaction_pct": -7.09,
+        "drift_pct": -3.05
+      },
+      {
+        "date": "2025-08-21",
+        "reaction_pct": 16.99,
+        "drift_pct": 4.79
+      },
+      {
+        "date": "2025-05-21",
+        "reaction_pct": -5.43,
+        "drift_pct": 33.33
+      }
+    ]
+  },
+  "RENT": {
+    "timestamp": "2026-06-02T14:26:16.640956",
+    "data": [
+      {
+        "date": "2026-02-21",
+        "reaction_pct": -1.26,
+        "drift_pct": 6.37
+      },
+      {
+        "date": "2025-11-21",
+        "reaction_pct": 8.06,
+        "drift_pct": -2.03
+      },
+      {
+        "date": "2025-08-21",
+        "reaction_pct": 25.08,
+        "drift_pct": -5.38
+      },
+      {
+        "date": "2025-05-21",
+        "reaction_pct": -5.78,
+        "drift_pct": 17.53
+      }
+    ]
+  },
+  "ZEPP": {
+    "timestamp": "2026-06-02T14:26:16.880721",
+    "data": [
+      {
+        "date": "2026-01-21",
+        "reaction_pct": -2.6,
+        "drift_pct": 1.23
+      },
+      {
+        "date": "2025-10-21",
+        "reaction_pct": -1.91,
+        "drift_pct": -3.24
+      },
+      {
+        "date": "2025-07-21",
+        "reaction_pct": -9.33,
+        "drift_pct": 37.83
+      },
+      {
+        "date": "2025-04-21",
+        "reaction_pct": 2.34,
+        "drift_pct": 10.34
+      }
+    ]
+  },
+  "PODC": {
+    "timestamp": "2026-06-02T14:26:16.966575",
+    "data": [
+      {
+        "date": "2026-01-21",
+        "reaction_pct": 12.1,
+        "drift_pct": -1.98
+      },
+      {
+        "date": "2025-10-21",
+        "reaction_pct": 15.1,
+        "drift_pct": 4.46
+      },
+      {
+        "date": "2025-07-21",
+        "reaction_pct": -6.4,
+        "drift_pct": -4.25
+      },
+      {
+        "date": "2025-04-21",
+        "reaction_pct": -3.31,
+        "drift_pct": -8.12
+      }
+    ]
+  },
+  "QMCO": {
+    "timestamp": "2026-06-02T14:26:17.171566",
+    "data": [
+      {
+        "date": "2026-01-21",
+        "reaction_pct": -1.49,
+        "drift_pct": 0.82
+      },
+      {
+        "date": "2025-10-21",
+        "reaction_pct": -9.95,
+        "drift_pct": -18.44
+      },
+      {
+        "date": "2025-07-21",
+        "reaction_pct": 0.11,
+        "drift_pct": 5.05
+      },
+      {
+        "date": "2025-04-21",
+        "reaction_pct": -3.88,
+        "drift_pct": -8.02
+      }
+    ]
+  },
+  "YRD": {
+    "timestamp": "2026-06-02T14:26:17.217576",
+    "data": [
+      {
+        "date": "2026-01-21",
+        "reaction_pct": -1.02,
+        "drift_pct": -1.01
+      },
+      {
+        "date": "2025-10-21",
+        "reaction_pct": -1.67,
+        "drift_pct": -0.5
+      },
+      {
+        "date": "2025-07-21",
+        "reaction_pct": 1.65,
+        "drift_pct": 1.34
+      },
+      {
+        "date": "2025-04-21",
+        "reaction_pct": 4.91,
+        "drift_pct": 6.94
+      }
+    ]
+  },
+  "ZENA": {
+    "timestamp": "2026-06-02T14:26:17.232338",
+    "data": [
+      {
+        "date": "2026-01-21",
+        "reaction_pct": 22.98,
+        "drift_pct": 4.6
+      },
+      {
+        "date": "2025-10-21",
+        "reaction_pct": -11.13,
+        "drift_pct": -19.43
+      },
+      {
+        "date": "2025-07-21",
+        "reaction_pct": -5.83,
+        "drift_pct": -5.82
+      },
+      {
+        "date": "2025-04-21",
+        "reaction_pct": 0.0,
+        "drift_pct": -6.78
+      }
+    ]
+  },
+  "OCC": {
+    "timestamp": "2026-06-02T14:26:17.462675",
+    "data": [
+      {
+        "date": "2026-02-21",
+        "reaction_pct": -5.62,
+        "drift_pct": -1.84
+      },
+      {
+        "date": "2025-11-21",
+        "reaction_pct": 11.89,
+        "drift_pct": -6.79
+      },
+      {
+        "date": "2025-08-21",
+        "reaction_pct": 7.41,
+        "drift_pct": 3.14
+      },
+      {
+        "date": "2025-05-21",
+        "reaction_pct": -3.68,
+        "drift_pct": -8.84
+      }
+    ]
+  },
+  "HERE": {
+    "timestamp": "2026-06-02T14:26:17.528351",
+    "data": [
+      {
+        "date": "2026-01-21",
+        "reaction_pct": -0.63,
+        "drift_pct": -2.65
+      },
+      {
+        "date": "2025-10-21",
+        "reaction_pct": -1.12,
+        "drift_pct": 1.85
+      },
+      {
+        "date": "2025-07-21",
+        "reaction_pct": -5.36,
+        "drift_pct": 12.77
+      },
+      {
+        "date": "2025-04-21",
+        "reaction_pct": 8.88,
+        "drift_pct": -3.39
+      }
+    ]
+  },
+  "HURC": {
+    "timestamp": "2026-06-02T14:26:17.771311",
+    "data": [
+      {
+        "date": "2026-02-21",
+        "reaction_pct": 0.58,
+        "drift_pct": -2.75
+      },
+      {
+        "date": "2025-11-21",
+        "reaction_pct": -1.03,
+        "drift_pct": -0.6
+      },
+      {
+        "date": "2025-08-21",
+        "reaction_pct": 1.04,
+        "drift_pct": -0.16
+      },
+      {
+        "date": "2025-05-21",
+        "reaction_pct": -0.46,
+        "drift_pct": 1.48
+      }
+    ]
+  },
+  "ALOT": {
+    "timestamp": "2026-06-02T14:26:18.571516",
+    "data": [
+      {
+        "date": "2026-02-21",
+        "reaction_pct": -3.15,
+        "drift_pct": 2.15
+      },
+      {
+        "date": "2025-11-21",
+        "reaction_pct": 0.12,
+        "drift_pct": -8.67
+      },
+      {
+        "date": "2025-08-21",
+        "reaction_pct": -1.09,
+        "drift_pct": -3.24
+      },
+      {
+        "date": "2025-05-21",
+        "reaction_pct": -0.11,
+        "drift_pct": 3.4
+      }
+    ]
+  },
+  "LAKE": {
+    "timestamp": "2026-06-02T14:26:18.697563",
+    "data": [
+      {
+        "date": "2026-02-21",
+        "reaction_pct": -1.36,
+        "drift_pct": -3.14
+      },
+      {
+        "date": "2025-11-21",
+        "reaction_pct": 3.15,
+        "drift_pct": -13.15
+      },
+      {
+        "date": "2025-08-21",
+        "reaction_pct": 1.91,
+        "drift_pct": 1.74
+      },
+      {
+        "date": "2025-05-21",
+        "reaction_pct": -5.44,
+        "drift_pct": 8.83
+      }
+    ]
+  },
+  "CRMT": {
+    "timestamp": "2026-06-02T14:26:18.857250",
+    "data": [
+      {
+        "date": "2026-02-21",
+        "reaction_pct": -9.25,
+        "drift_pct": 5.93
+      },
+      {
+        "date": "2025-11-21",
+        "reaction_pct": 15.07,
+        "drift_pct": 0.82
+      },
+      {
+        "date": "2025-08-21",
+        "reaction_pct": 6.89,
+        "drift_pct": -1.88
+      },
+      {
+        "date": "2025-05-21",
+        "reaction_pct": -6.47,
+        "drift_pct": -2.43
+      }
+    ]
+  },
+  "VRA": {
+    "timestamp": "2026-06-02T14:26:19.384689",
+    "data": [
+      {
+        "date": "2026-02-21",
+        "reaction_pct": 0.0,
+        "drift_pct": 5.97
+      },
+      {
+        "date": "2025-11-21",
+        "reaction_pct": 4.86,
+        "drift_pct": -5.36
+      },
+      {
+        "date": "2025-08-21",
+        "reaction_pct": 4.55,
+        "drift_pct": -1.98
+      },
+      {
+        "date": "2025-05-21",
+        "reaction_pct": 0.94,
+        "drift_pct": 1.44
+      }
+    ]
+  },
+  "LVO": {
+    "timestamp": "2026-06-02T14:26:19.605653",
+    "data": [
+      {
+        "date": "2026-01-21",
+        "reaction_pct": 11.19,
+        "drift_pct": 3.79
+      },
+      {
+        "date": "2025-10-21",
+        "reaction_pct": 10.97,
+        "drift_pct": 4.26
+      },
+      {
+        "date": "2025-07-21",
+        "reaction_pct": -0.87,
+        "drift_pct": -11.25
+      },
+      {
+        "date": "2025-04-21",
+        "reaction_pct": -0.62,
+        "drift_pct": -11.45
+      }
+    ]
+  },
+  "VIRC": {
+    "timestamp": "2026-06-02T14:26:19.828720",
+    "data": [
+      {
+        "date": "2026-02-21",
+        "reaction_pct": -2.1,
+        "drift_pct": -1.75
+      },
+      {
+        "date": "2025-11-21",
+        "reaction_pct": 6.32,
+        "drift_pct": -6.48
+      },
+      {
+        "date": "2025-08-21",
+        "reaction_pct": 4.83,
+        "drift_pct": -2.06
+      },
+      {
+        "date": "2025-05-21",
+        "reaction_pct": -1.31,
+        "drift_pct": -3.67
+      }
+    ]
+  },
+  "BARK": {
+    "timestamp": "2026-06-02T14:26:20.031335",
+    "data": [
+      {
+        "date": "2026-01-21",
+        "reaction_pct": 1.64,
+        "drift_pct": 15.95
+      },
+      {
+        "date": "2025-10-21",
+        "reaction_pct": -2.27,
+        "drift_pct": 18.92
+      },
+      {
+        "date": "2025-07-21",
+        "reaction_pct": 9.59,
+        "drift_pct": 6.51
+      },
+      {
+        "date": "2025-04-21",
+        "reaction_pct": -1.63,
+        "drift_pct": -11.51
+      }
+    ]
+  },
+  "ANIX": {
+    "timestamp": "2026-06-02T14:26:20.092579",
+    "data": [
+      {
+        "date": "2026-02-21",
+        "reaction_pct": 1.74,
+        "drift_pct": 2.13
+      },
+      {
+        "date": "2025-11-21",
+        "reaction_pct": -1.14,
+        "drift_pct": 7.06
+      },
+      {
+        "date": "2025-08-21",
+        "reaction_pct": 4.79,
+        "drift_pct": -1.68
+      },
+      {
+        "date": "2025-05-21",
+        "reaction_pct": -0.38,
+        "drift_pct": 2.35
+      }
+    ]
+  },
+  "PLCE": {
+    "timestamp": "2026-06-02T14:26:21.020697",
+    "data": [
+      {
+        "date": "2026-02-21",
+        "reaction_pct": -4.78,
+        "drift_pct": 9.48
+      },
+      {
+        "date": "2025-11-21",
+        "reaction_pct": 11.34,
+        "drift_pct": -19.34
+      },
+      {
+        "date": "2025-08-21",
+        "reaction_pct": 6.38,
+        "drift_pct": -11.32
+      },
+      {
+        "date": "2025-05-21",
+        "reaction_pct": -5.14,
+        "drift_pct": -5.03
+      }
+    ]
+  },
+  "RFL": {
+    "timestamp": "2026-06-02T14:26:21.379186",
+    "data": [
+      {
+        "date": "2026-02-21",
+        "reaction_pct": -0.81,
+        "drift_pct": 2.5
+      },
+      {
+        "date": "2025-11-21",
+        "reaction_pct": 0.0,
+        "drift_pct": 1.64
+      },
+      {
+        "date": "2025-05-21",
+        "reaction_pct": -0.74,
+        "drift_pct": -2.16
+      },
+      {
+        "date": "2025-02-21",
+        "reaction_pct": -2.97,
+        "drift_pct": -1.46
+      }
+    ]
+  },
+  "TOUR": {
+    "timestamp": "2026-06-02T14:26:21.735802",
+    "data": [
+      {
+        "date": "2026-01-21",
+        "reaction_pct": 1.64,
+        "drift_pct": 0.0
+      },
+      {
+        "date": "2025-10-21",
+        "reaction_pct": -0.24,
+        "drift_pct": 1.32
+      },
+      {
+        "date": "2025-07-21",
+        "reaction_pct": 4.83,
+        "drift_pct": -2.53
+      },
+      {
+        "date": "2025-04-21",
+        "reaction_pct": -0.68,
+        "drift_pct": 2.82
+      }
+    ]
+  },
+  "MIND": {
+    "timestamp": "2026-06-02T14:26:21.865424",
+    "data": [
+      {
+        "date": "2026-02-21",
+        "reaction_pct": -2.64,
+        "drift_pct": -6.35
+      },
+      {
+        "date": "2025-11-21",
+        "reaction_pct": 2.36,
+        "drift_pct": -25.23
+      },
+      {
+        "date": "2025-08-21",
+        "reaction_pct": 6.69,
+        "drift_pct": 8.05
+      },
+      {
+        "date": "2025-05-21",
+        "reaction_pct": -3.51,
+        "drift_pct": -5.35
+      }
+    ]
+  },
+  "ELBM": {
+    "timestamp": "2026-06-02T14:26:21.866859",
+    "data": [
+      {
+        "date": "2026-04-21",
+        "reaction_pct": -9.57,
+        "drift_pct": 7.27
+      },
+      {
+        "date": "2026-01-21",
+        "reaction_pct": 25.26,
+        "drift_pct": 4.97
+      },
+      {
+        "date": "2025-10-21",
+        "reaction_pct": -20.19,
+        "drift_pct": -55.84
+      },
+      {
+        "date": "2025-07-21",
+        "reaction_pct": -1.57,
+        "drift_pct": 4.1
+      }
+    ]
+  },
+  "SKIL": {
+    "timestamp": "2026-06-02T14:26:21.873352",
+    "data": [
+      {
+        "date": "2026-02-21",
+        "reaction_pct": -15.73,
+        "drift_pct": -9.65
+      },
+      {
+        "date": "2025-11-21",
+        "reaction_pct": 25.38,
+        "drift_pct": -13.15
+      },
+      {
+        "date": "2025-08-21",
+        "reaction_pct": 2.76,
+        "drift_pct": 3.41
+      },
+      {
+        "date": "2025-05-21",
+        "reaction_pct": -12.02,
+        "drift_pct": 6.05
+      }
+    ]
+  },
+  "PYYX": {
+    "timestamp": "2026-06-02T14:26:22.093187",
+    "data": [
+      {
+        "date": "2026-01-21",
+        "reaction_pct": -9.64,
+        "drift_pct": -2.06
+      },
+      {
+        "date": "2025-10-21",
+        "reaction_pct": -2.48,
+        "drift_pct": -14.29
+      },
+      {
+        "date": "2025-07-21",
+        "reaction_pct": -4.37,
+        "drift_pct": -1.96
+      },
+      {
+        "date": "2025-04-21",
+        "reaction_pct": -5.12,
+        "drift_pct": 2.5
+      }
+    ]
+  },
+  "THCH": {
+    "timestamp": "2026-06-02T14:26:22.334171",
+    "data": [
+      {
+        "date": "2026-01-21",
+        "reaction_pct": -3.9,
+        "drift_pct": 3.12
+      },
+      {
+        "date": "2025-10-21",
+        "reaction_pct": -4.02,
+        "drift_pct": -1.39
+      },
+      {
+        "date": "2025-07-21",
+        "reaction_pct": 1.04,
+        "drift_pct": -2.36
+      },
+      {
+        "date": "2025-04-21",
+        "reaction_pct": -3.86,
+        "drift_pct": 18.26
+      }
+    ]
+  },
+  "MNY": {
+    "timestamp": "2026-06-02T14:26:22.340811",
+    "data": [
+      {
+        "date": "2026-01-21",
+        "reaction_pct": -0.79,
+        "drift_pct": 0.8
+      },
+      {
+        "date": "2025-10-21",
+        "reaction_pct": -0.85,
+        "drift_pct": -4.1
+      },
+      {
+        "date": "2025-07-21",
+        "reaction_pct": 2.99,
+        "drift_pct": 56.07
+      },
+      {
+        "date": "2025-04-21",
+        "reaction_pct": 4.05,
+        "drift_pct": 0.0
+      }
+    ]
+  },
+  "ICG": {
+    "timestamp": "2026-06-02T14:26:22.554172",
+    "data": [
+      {
+        "date": "2026-01-21",
+        "reaction_pct": 1.9,
+        "drift_pct": 5.0
+      },
+      {
+        "date": "2025-10-21",
+        "reaction_pct": -6.33,
+        "drift_pct": -3.07
+      },
+      {
+        "date": "2025-07-21",
+        "reaction_pct": 11.28,
+        "drift_pct": -14.47
+      },
+      {
+        "date": "2025-04-21",
+        "reaction_pct": -12.57,
+        "drift_pct": -0.3
+      }
+    ]
+  },
+  "VNCE": {
+    "timestamp": "2026-06-02T14:26:23.248634",
+    "data": [
+      {
+        "date": "2026-02-21",
+        "reaction_pct": -7.77,
+        "drift_pct": 14.73
+      },
+      {
+        "date": "2025-11-21",
+        "reaction_pct": -5.26,
+        "drift_pct": 0.0
+      },
+      {
+        "date": "2025-08-21",
+        "reaction_pct": 4.83,
+        "drift_pct": -5.23
+      },
+      {
+        "date": "2025-05-21",
+        "reaction_pct": -5.36,
+        "drift_pct": 1.82
+      }
+    ]
+  },
+  "SPWH": {
+    "timestamp": "2026-06-02T14:26:23.423787",
+    "data": [
+      {
+        "date": "2026-02-21",
+        "reaction_pct": -5.04,
+        "drift_pct": -4.8
+      },
+      {
+        "date": "2025-11-21",
+        "reaction_pct": 10.73,
+        "drift_pct": -11.5
+      },
+      {
+        "date": "2025-08-21",
+        "reaction_pct": 4.68,
+        "drift_pct": -4.14
+      },
+      {
+        "date": "2025-05-21",
+        "reaction_pct": 4.43,
+        "drift_pct": 1.0
+      }
+    ]
+  },
+  "PETS": {
+    "timestamp": "2026-06-02T14:26:23.695197",
+    "data": [
+      {
+        "date": "2026-01-21",
+        "reaction_pct": 4.26,
+        "drift_pct": -4.08
+      },
+      {
+        "date": "2025-10-21",
+        "reaction_pct": 15.54,
+        "drift_pct": -1.95
+      },
+      {
+        "date": "2025-07-21",
+        "reaction_pct": 6.04,
+        "drift_pct": 3.76
+      },
+      {
+        "date": "2025-01-21",
+        "reaction_pct": -2.15,
+        "drift_pct": 5.36
+      }
+    ]
+  },
+  "DXLG": {
+    "timestamp": "2026-06-02T14:26:24.224800",
+    "data": [
+      {
+        "date": "2026-02-21",
+        "reaction_pct": -10.61,
+        "drift_pct": 17.86
+      },
+      {
+        "date": "2025-11-21",
+        "reaction_pct": 2.22,
+        "drift_pct": -2.17
+      },
+      {
+        "date": "2025-08-21",
+        "reaction_pct": 1.52,
+        "drift_pct": 0.76
+      },
+      {
+        "date": "2025-05-21",
+        "reaction_pct": -4.55,
+        "drift_pct": 3.77
+      }
+    ]
+  },
+  "GLBS": {
+    "timestamp": "2026-06-02T14:26:24.231984",
+    "data": [
+      {
+        "date": "2026-01-21",
+        "reaction_pct": 3.66,
+        "drift_pct": 0.0
+      },
+      {
+        "date": "2025-10-21",
+        "reaction_pct": -11.29,
+        "drift_pct": 3.33
+      },
+      {
+        "date": "2025-07-21",
+        "reaction_pct": -0.88,
+        "drift_pct": 0.0
+      },
+      {
+        "date": "2025-04-21",
+        "reaction_pct": 1.79,
+        "drift_pct": 0.0
+      }
+    ]
+  },
+  "OESX": {
+    "timestamp": "2026-06-02T14:26:24.362274",
+    "data": [
+      {
+        "date": "2026-01-21",
+        "reaction_pct": -4.91,
+        "drift_pct": 8.88
+      },
+      {
+        "date": "2025-10-21",
+        "reaction_pct": -5.78,
+        "drift_pct": -0.82
+      },
+      {
+        "date": "2025-07-21",
+        "reaction_pct": 8.93,
+        "drift_pct": -3.45
+      },
+      {
+        "date": "2025-04-21",
+        "reaction_pct": 11.27,
+        "drift_pct": -1.39
+      }
+    ]
+  },
+  "ZDGE": {
+    "timestamp": "2026-06-02T14:26:24.512810",
+    "data": [
+      {
+        "date": "2026-02-21",
+        "reaction_pct": -5.25,
+        "drift_pct": 4.85
+      },
+      {
+        "date": "2025-11-21",
+        "reaction_pct": -2.33,
+        "drift_pct": -12.92
+      },
+      {
+        "date": "2025-05-21",
+        "reaction_pct": 4.37,
+        "drift_pct": -1.29
+      },
+      {
+        "date": "2025-02-21",
+        "reaction_pct": -7.3,
+        "drift_pct": -3.18
+      }
+    ]
+  },
+  "JROOF": {
+    "timestamp": "2026-06-02T14:26:24.519008",
+    "data": [
+      {
+        "date": "2026-01-21",
+        "reaction_pct": 11.67,
+        "drift_pct": -7.69
+      },
+      {
+        "date": "2025-10-21",
+        "reaction_pct": 7.47,
+        "drift_pct": -13.0
+      },
+      {
+        "date": "2025-07-21",
+        "reaction_pct": 9.07,
+        "drift_pct": -6.97
+      },
+      {
+        "date": "2025-04-21",
+        "reaction_pct": 6.61,
+        "drift_pct": -8.7
+      }
+    ]
+  },
+  "VTGN": {
+    "timestamp": "2026-06-02T14:26:24.804656",
+    "data": [
+      {
+        "date": "2026-01-21",
+        "reaction_pct": 1.54,
+        "drift_pct": -5.8
+      },
+      {
+        "date": "2025-10-21",
+        "reaction_pct": -8.48,
+        "drift_pct": 11.72
+      },
+      {
+        "date": "2025-07-21",
+        "reaction_pct": -0.39,
+        "drift_pct": 7.14
+      },
+      {
+        "date": "2025-04-21",
+        "reaction_pct": -2.84,
+        "drift_pct": -0.47
+      }
+    ]
+  },
+  "FTHM": {
+    "timestamp": "2026-06-02T14:26:25.831841",
+    "data": [
+      {
+        "date": "2026-01-21",
+        "reaction_pct": 7.69,
+        "drift_pct": -6.47
+      },
+      {
+        "date": "2025-10-21",
+        "reaction_pct": -8.19,
+        "drift_pct": -3.93
+      },
+      {
+        "date": "2025-07-21",
+        "reaction_pct": 19.55,
+        "drift_pct": 5.56
+      },
+      {
+        "date": "2025-04-21",
+        "reaction_pct": 2.63,
+        "drift_pct": -1.17
+      }
+    ]
+  },
+  "JVA": {
+    "timestamp": "2026-06-02T14:26:25.848412",
+    "data": [
+      {
+        "date": "2026-02-21",
+        "reaction_pct": -2.81,
+        "drift_pct": 2.24
+      },
+      {
+        "date": "2025-11-21",
+        "reaction_pct": 5.06,
+        "drift_pct": -12.95
+      },
+      {
+        "date": "2025-08-21",
+        "reaction_pct": 0.0,
+        "drift_pct": -0.95
+      },
+      {
+        "date": "2025-05-21",
+        "reaction_pct": 0.0,
+        "drift_pct": 0.59
+      }
+    ]
+  },
+  "ECLMF": {
+    "timestamp": "2026-06-02T14:26:26.495910",
+    "data": [
+      {
+        "date": "2025-10-21",
+        "reaction_pct": -4.87,
+        "drift_pct": 0.0
+      },
+      {
+        "date": "2025-07-21",
+        "reaction_pct": 0.0,
+        "drift_pct": 0.0
+      },
+      {
+        "date": "2025-04-21",
+        "reaction_pct": 0.0,
+        "drift_pct": 0.0
+      },
+      {
+        "date": "2025-01-21",
+        "reaction_pct": 0.0,
+        "drift_pct": 0.0
+      }
+    ]
+  },
+  "REE": {
+    "timestamp": "2026-06-02T14:26:26.763882",
+    "data": [
+      {
+        "date": "2025-01-21",
+        "reaction_pct": 6.7,
+        "drift_pct": 8.51
+      },
+      {
+        "date": "2024-10-21",
+        "reaction_pct": 4.86,
+        "drift_pct": 9.97
+      }
+    ]
+  },
+  "ALP": {
+    "timestamp": "2026-06-02T14:26:26.850919",
+    "data": [
+      {
+        "date": "2025-10-21",
+        "reaction_pct": -12.33,
+        "drift_pct": -18.09
+      },
+      {
+        "date": "2024-10-21",
+        "reaction_pct": -3.1,
+        "drift_pct": -17.05
+      }
+    ]
+  },
+  "MAXN": {
+    "timestamp": "2026-06-02T14:26:26.896382",
+    "data": [
+      {
+        "date": "2025-01-21",
+        "reaction_pct": -2.54,
+        "drift_pct": 7.74
+      },
+      {
+        "date": "2024-10-21",
+        "reaction_pct": -1.71,
+        "drift_pct": 3.54
+      }
+    ]
+  },
+  "BTM": {
+    "timestamp": "2026-06-02T14:26:26.896402",
+    "data": [
+      {
+        "date": "2026-01-21",
+        "reaction_pct": -7.81,
+        "drift_pct": -6.57
+      },
+      {
+        "date": "2025-10-21",
+        "reaction_pct": -0.36,
+        "drift_pct": -9.27
+      },
+      {
+        "date": "2025-07-21",
+        "reaction_pct": -5.31,
+        "drift_pct": 5.42
+      },
+      {
+        "date": "2025-04-21",
+        "reaction_pct": -7.09,
+        "drift_pct": 18.49
+      }
+    ]
+  },
+  "SVTNF": {
+    "timestamp": "2026-06-02T14:26:27.027151",
+    "data": [
+      {
+        "date": "2026-01-21",
+        "reaction_pct": -25.71,
+        "drift_pct": 26.54
+      },
+      {
+        "date": "2025-10-21",
+        "reaction_pct": 0.0,
+        "drift_pct": -80.0
+      },
+      {
+        "date": "2025-07-21",
+        "reaction_pct": -8.55,
+        "drift_pct": 10.0
+      },
+      {
+        "date": "2025-04-21",
+        "reaction_pct": 0.0,
+        "drift_pct": 0.93
+      }
+    ]
+  },
+  "ATON": {
+    "timestamp": "2026-06-02T14:26:27.155637",
+    "data": [
+      {
+        "date": "2025-10-21",
+        "reaction_pct": -12.33,
+        "drift_pct": -18.09
+      },
+      {
+        "date": "2024-10-21",
+        "reaction_pct": -3.1,
+        "drift_pct": -17.05
+      }
+    ]
+  },
+  "NVVE": {
+    "timestamp": "2026-06-02T14:26:28.068971",
+    "data": [
+      {
+        "date": "2026-01-21",
+        "reaction_pct": -13.4,
+        "drift_pct": -21.77
+      },
+      {
+        "date": "2025-10-21",
+        "reaction_pct": -6.17,
+        "drift_pct": -8.1
+      },
+      {
+        "date": "2025-07-21",
+        "reaction_pct": 2.66,
+        "drift_pct": -8.09
+      },
+      {
+        "date": "2025-04-21",
+        "reaction_pct": -4.17,
+        "drift_pct": 4.8
+      }
+    ]
+  },
+  "SNNAF": {
+    "timestamp": "2026-06-02T14:26:28.158111",
+    "data": [
+      {
+        "date": "2026-01-21",
+        "reaction_pct": -13.96,
+        "drift_pct": 5.18
+      },
+      {
+        "date": "2025-10-21",
+        "reaction_pct": -15.97,
+        "drift_pct": 3.51
+      },
+      {
+        "date": "2025-07-21",
+        "reaction_pct": 0.0,
+        "drift_pct": -15.49
+      },
+      {
+        "date": "2025-04-21",
+        "reaction_pct": -3.98,
+        "drift_pct": -23.56
+      }
+    ]
+  },
+  "SLMLF": {
+    "timestamp": "2026-06-02T14:26:28.622370",
+    "data": [
+      {
+        "date": "2026-01-21",
+        "reaction_pct": 0.0,
+        "drift_pct": 0.0
+      },
+      {
+        "date": "2025-10-21",
+        "reaction_pct": 34.29,
+        "drift_pct": -25.69
+      },
+      {
+        "date": "2025-07-21",
+        "reaction_pct": 0.0,
+        "drift_pct": 0.0
+      },
+      {
+        "date": "2025-04-21",
+        "reaction_pct": 0.0,
+        "drift_pct": 0.0
+      }
+    ]
+  },
+  "ISGIF": {
+    "timestamp": "2026-06-02T14:26:28.926049",
+    "data": [
+      {
+        "date": "2026-01-21",
+        "reaction_pct": 0.0,
+        "drift_pct": 116.08
+      },
+      {
+        "date": "2025-10-21",
+        "reaction_pct": -41.44,
+        "drift_pct": 0.0
+      },
+      {
+        "date": "2025-07-21",
+        "reaction_pct": 664.38,
+        "drift_pct": 0.0
+      },
+      {
+        "date": "2025-04-21",
+        "reaction_pct": -36.47,
+        "drift_pct": 0.0
+      }
+    ]
+  },
+  "GXI.DE": {
+    "timestamp": "2026-06-02T14:55:08.537634",
+    "data": [
+      {
+        "date": "2025-06-21",
+        "reaction_pct": -1.51,
+        "drift_pct": 0.17
+      },
+      {
+        "date": "2025-03-21",
+        "reaction_pct": -0.46,
+        "drift_pct": -0.71
+      },
+      {
+        "date": "2024-12-21",
+        "reaction_pct": 3.47,
+        "drift_pct": -13.88
+      }
+    ]
+  },
+  "AEMD": {
+    "timestamp": "2026-06-02T15:26:16.477840",
+    "data": [
+      {
+        "date": "2026-01-21",
+        "reaction_pct": 12.96,
+        "drift_pct": 5.06
+      },
+      {
+        "date": "2025-10-21",
+        "reaction_pct": -11.98,
+        "drift_pct": -21.29
+      },
+      {
+        "date": "2025-07-21",
+        "reaction_pct": 3.88,
+        "drift_pct": 12.17
+      },
+      {
+        "date": "2025-04-21",
+        "reaction_pct": 0.0,
+        "drift_pct": 5.88
+      }
+    ]
+  },
+  "CUK": {
+    "timestamp": "2026-06-08T11:35:59.907541",
+    "data": [
+      {
+        "date": "2026-03-21",
+        "reaction_pct": 5.36,
+        "drift_pct": -2.23
+      },
+      {
+        "date": "2025-12-21",
+        "reaction_pct": 2.68,
+        "drift_pct": 17.41
+      },
+      {
+        "date": "2025-09-21",
+        "reaction_pct": 0.79,
+        "drift_pct": -2.05
+      },
+      {
+        "date": "2025-06-21",
+        "reaction_pct": 0.65,
+        "drift_pct": 5.67
+      }
+    ]
+  },
+  "FDX": {
+    "timestamp": "2026-06-08T11:35:59.921278",
+    "data": [
+      {
+        "date": "2026-03-21",
+        "reaction_pct": -0.86,
+        "drift_pct": 1.84
+      },
+      {
+        "date": "2025-12-21",
+        "reaction_pct": 1.39,
+        "drift_pct": 2.68
+      },
+      {
+        "date": "2025-09-21",
+        "reaction_pct": -0.7,
+        "drift_pct": 2.69
+      },
+      {
+        "date": "2025-06-21",
+        "reaction_pct": 2.07,
+        "drift_pct": 0.74
+      }
+    ]
+  },
+  "MKC": {
+    "timestamp": "2026-06-08T11:35:59.952143",
+    "data": [
+      {
+        "date": "2026-03-21",
+        "reaction_pct": 0.04,
+        "drift_pct": -7.73
+      },
+      {
+        "date": "2025-12-21",
+        "reaction_pct": 0.5,
+        "drift_pct": 0.19
+      },
+      {
+        "date": "2025-09-21",
+        "reaction_pct": -1.3,
+        "drift_pct": -0.71
+      },
+      {
+        "date": "2025-06-21",
+        "reaction_pct": 2.5,
+        "drift_pct": -1.28
+      }
+    ]
+  },
+  "MU": {
+    "timestamp": "2026-06-08T11:36:00.062703",
+    "data": [
+      {
+        "date": "2026-03-21",
+        "reaction_pct": -4.39,
+        "drift_pct": -4.28
+      },
+      {
+        "date": "2025-12-21",
+        "reaction_pct": 4.01,
+        "drift_pct": 11.97
+      },
+      {
+        "date": "2025-09-21",
+        "reaction_pct": 1.16,
+        "drift_pct": 3.14
+      },
+      {
+        "date": "2025-06-21",
+        "reaction_pct": -1.23,
+        "drift_pct": 6.92
+      }
+    ]
+  },
+  "SNX": {
+    "timestamp": "2026-06-08T11:36:00.091453",
+    "data": [
+      {
+        "date": "2026-03-21",
+        "reaction_pct": 2.36,
+        "drift_pct": -0.51
+      },
+      {
+        "date": "2025-12-21",
+        "reaction_pct": -0.36,
+        "drift_pct": 2.6
+      },
+      {
+        "date": "2025-09-21",
+        "reaction_pct": 1.01,
+        "drift_pct": -1.48
+      },
+      {
+        "date": "2025-06-21",
+        "reaction_pct": 2.58,
+        "drift_pct": 0.85
+      }
+    ]
+  },
+  "CCL": {
+    "timestamp": "2026-06-08T11:36:00.103761",
+    "data": [
+      {
+        "date": "2026-03-21",
+        "reaction_pct": 5.51,
+        "drift_pct": -2.43
+      },
+      {
+        "date": "2025-12-21",
+        "reaction_pct": 3.47,
+        "drift_pct": 8.81
+      },
+      {
+        "date": "2025-09-21",
+        "reaction_pct": 0.62,
+        "drift_pct": -2.3
+      },
+      {
+        "date": "2025-06-21",
+        "reaction_pct": 1.14,
+        "drift_pct": 6.07
+      }
+    ]
+  },
+  "DRI": {
+    "timestamp": "2026-06-08T11:36:00.159121",
+    "data": [
+      {
+        "date": "2026-03-21",
+        "reaction_pct": -3.49,
+        "drift_pct": -1.76
+      },
+      {
+        "date": "2025-12-21",
+        "reaction_pct": -0.32,
+        "drift_pct": 1.85
+      },
+      {
+        "date": "2025-09-21",
+        "reaction_pct": 0.26,
+        "drift_pct": -12.93
+      },
+      {
+        "date": "2025-06-21",
+        "reaction_pct": -1.97,
+        "drift_pct": 3.81
+      }
+    ]
+  },
+  "PAYX": {
+    "timestamp": "2026-06-08T11:36:00.327868",
+    "data": [
+      {
+        "date": "2026-03-21",
+        "reaction_pct": 1.03,
+        "drift_pct": -0.59
+      },
+      {
+        "date": "2025-12-21",
+        "reaction_pct": 2.32,
+        "drift_pct": -2.69
+      },
+      {
+        "date": "2025-09-21",
+        "reaction_pct": 0.31,
+        "drift_pct": -1.49
+      },
+      {
+        "date": "2025-06-21",
+        "reaction_pct": 1.43,
+        "drift_pct": -2.68
+      }
+    ]
+  },
+  "JEF": {
+    "timestamp": "2026-06-08T11:36:01.867553",
+    "data": [
+      {
+        "date": "2026-03-21",
+        "reaction_pct": 3.72,
+        "drift_pct": 3.67
+      },
+      {
+        "date": "2025-12-21",
+        "reaction_pct": 2.18,
+        "drift_pct": 0.65
+      },
+      {
+        "date": "2025-09-21",
+        "reaction_pct": 0.24,
+        "drift_pct": 3.86
+      },
+      {
+        "date": "2025-06-21",
+        "reaction_pct": 1.99,
+        "drift_pct": 1.26
+      }
+    ]
+  },
+  "AYI": {
+    "timestamp": "2026-06-08T11:36:02.160218",
+    "data": [
+      {
+        "date": "2026-03-21",
+        "reaction_pct": 4.24,
+        "drift_pct": 1.27
+      },
+      {
+        "date": "2025-12-21",
+        "reaction_pct": 1.38,
+        "drift_pct": 0.49
+      },
+      {
+        "date": "2025-09-21",
+        "reaction_pct": 0.71,
+        "drift_pct": -1.18
+      },
+      {
+        "date": "2025-06-21",
+        "reaction_pct": 2.84,
+        "drift_pct": 2.82
+      }
+    ]
+  },
+  "BB": {
+    "timestamp": "2026-06-08T11:36:02.879689",
+    "data": [
+      {
+        "date": "2026-03-21",
+        "reaction_pct": 3.11,
+        "drift_pct": -2.42
+      },
+      {
+        "date": "2025-12-21",
+        "reaction_pct": 4.77,
+        "drift_pct": -11.29
+      },
+      {
+        "date": "2025-09-21",
+        "reaction_pct": 4.51,
+        "drift_pct": 6.05
+      },
+      {
+        "date": "2025-06-21",
+        "reaction_pct": 2.13,
+        "drift_pct": 3.68
+      }
+    ]
+  },
+  "FUL": {
+    "timestamp": "2026-06-08T11:36:02.891895",
+    "data": [
+      {
+        "date": "2026-03-21",
+        "reaction_pct": 5.56,
+        "drift_pct": -9.94
+      },
+      {
+        "date": "2025-12-21",
+        "reaction_pct": 0.82,
+        "drift_pct": -1.04
+      },
+      {
+        "date": "2025-09-21",
+        "reaction_pct": -0.25,
+        "drift_pct": -1.57
+      },
+      {
+        "date": "2025-06-21",
+        "reaction_pct": 2.95,
+        "drift_pct": 0.76
+      }
+    ]
+  },
+  "WOR": {
+    "timestamp": "2026-06-08T11:36:03.003691",
+    "data": [
+      {
+        "date": "2026-03-21",
+        "reaction_pct": 3.19,
+        "drift_pct": -1.18
+      },
+      {
+        "date": "2025-12-21",
+        "reaction_pct": 0.78,
+        "drift_pct": -9.28
+      },
+      {
+        "date": "2025-09-21",
+        "reaction_pct": -0.05,
+        "drift_pct": -4.29
+      },
+      {
+        "date": "2025-06-21",
+        "reaction_pct": 1.4,
+        "drift_pct": -2.19
+      }
+    ]
+  },
+  "CMC": {
+    "timestamp": "2026-06-08T11:36:03.066479",
+    "data": [
+      {
+        "date": "2026-03-21",
+        "reaction_pct": 2.82,
+        "drift_pct": -2.35
+      },
+      {
+        "date": "2025-12-21",
+        "reaction_pct": 1.41,
+        "drift_pct": -2.5
+      },
+      {
+        "date": "2025-09-21",
+        "reaction_pct": -1.12,
+        "drift_pct": -0.48
+      },
+      {
+        "date": "2025-06-21",
+        "reaction_pct": 1.21,
+        "drift_pct": 0.62
+      }
+    ]
+  },
+  "WS": {
+    "timestamp": "2026-06-08T11:36:03.068822",
+    "data": [
+      {
+        "date": "2026-03-21",
+        "reaction_pct": 3.42,
+        "drift_pct": -2.26
+      },
+      {
+        "date": "2025-12-21",
+        "reaction_pct": -0.03,
+        "drift_pct": 2.48
+      },
+      {
+        "date": "2025-09-21",
+        "reaction_pct": 0.33,
+        "drift_pct": 0.57
+      },
+      {
+        "date": "2025-06-21",
+        "reaction_pct": 2.49,
+        "drift_pct": -0.45
+      }
+    ]
+  },
+  "KBH": {
+    "timestamp": "2026-06-08T11:36:03.201746",
+    "data": [
+      {
+        "date": "2026-03-21",
+        "reaction_pct": 3.99,
+        "drift_pct": -5.8
+      },
+      {
+        "date": "2025-12-21",
+        "reaction_pct": -1.64,
+        "drift_pct": -11.71
+      },
+      {
+        "date": "2025-09-21",
+        "reaction_pct": -2.41,
+        "drift_pct": -1.92
+      },
+      {
+        "date": "2025-06-21",
+        "reaction_pct": 3.03,
+        "drift_pct": -1.32
+      }
+    ]
+  },
+  "LEVI": {
+    "timestamp": "2026-06-08T11:36:03.374111",
+    "data": [
+      {
+        "date": "2026-03-21",
+        "reaction_pct": 3.85,
+        "drift_pct": -3.19
+      },
+      {
+        "date": "2025-12-21",
+        "reaction_pct": -2.21,
+        "drift_pct": -1.05
+      },
+      {
+        "date": "2025-09-21",
+        "reaction_pct": 1.06,
+        "drift_pct": 0.31
+      },
+      {
+        "date": "2025-06-21",
+        "reaction_pct": 2.39,
+        "drift_pct": 5.2
+      }
+    ]
+  },
+  "NG": {
+    "timestamp": "2026-06-08T11:36:03.775217",
+    "data": [
+      {
+        "date": "2026-03-21",
+        "reaction_pct": 4.9,
+        "drift_pct": -23.65
+      },
+      {
+        "date": "2025-12-21",
+        "reaction_pct": 1.41,
+        "drift_pct": 1.02
+      },
+      {
+        "date": "2025-09-21",
+        "reaction_pct": 1.46,
+        "drift_pct": 3.15
+      },
+      {
+        "date": "2025-06-21",
+        "reaction_pct": -1.45,
+        "drift_pct": -6.55
+      }
+    ]
+  },
+  "EPAC": {
+    "timestamp": "2026-06-08T11:36:04.612288",
+    "data": [
+      {
+        "date": "2026-03-21",
+        "reaction_pct": 2.17,
+        "drift_pct": -0.72
+      },
+      {
+        "date": "2025-12-21",
+        "reaction_pct": 3.65,
+        "drift_pct": -6.88
+      },
+      {
+        "date": "2025-09-21",
+        "reaction_pct": -0.34,
+        "drift_pct": -3.46
+      },
+      {
+        "date": "2025-06-21",
+        "reaction_pct": 2.08,
+        "drift_pct": 0.12
+      }
+    ]
+  },
+  "CNXC": {
+    "timestamp": "2026-06-08T11:36:04.839154",
+    "data": [
+      {
+        "date": "2026-03-21",
+        "reaction_pct": 4.82,
+        "drift_pct": -1.38
+      },
+      {
+        "date": "2025-12-21",
+        "reaction_pct": -1.92,
+        "drift_pct": 7.3
+      },
+      {
+        "date": "2025-09-21",
+        "reaction_pct": -2.53,
+        "drift_pct": 6.21
+      },
+      {
+        "date": "2025-06-21",
+        "reaction_pct": 3.23,
+        "drift_pct": -9.35
+      }
+    ]
+  },
+  "SMPL": {
+    "timestamp": "2026-06-08T11:36:06.067692",
+    "data": [
+      {
+        "date": "2026-03-21",
+        "reaction_pct": -0.57,
+        "drift_pct": -7.16
+      },
+      {
+        "date": "2025-12-21",
+        "reaction_pct": 0.1,
+        "drift_pct": 1.76
+      },
+      {
+        "date": "2025-09-21",
+        "reaction_pct": -0.61,
+        "drift_pct": 0.84
+      },
+      {
+        "date": "2025-06-21",
+        "reaction_pct": 0.96,
+        "drift_pct": -0.09
+      }
+    ]
+  },
+  "WGO": {
+    "timestamp": "2026-06-08T11:36:06.076553",
+    "data": [
+      {
+        "date": "2026-03-21",
+        "reaction_pct": 2.78,
+        "drift_pct": -1.82
+      },
+      {
+        "date": "2025-12-21",
+        "reaction_pct": -2.97,
+        "drift_pct": 10.71
+      },
+      {
+        "date": "2025-09-21",
+        "reaction_pct": 0.48,
+        "drift_pct": -1.16
+      },
+      {
+        "date": "2025-06-21",
+        "reaction_pct": 0.48,
+        "drift_pct": -1.05
+      }
+    ]
+  },
+  "LNN": {
+    "timestamp": "2026-06-08T11:36:06.144927",
+    "data": [
+      {
+        "date": "2026-03-21",
+        "reaction_pct": 3.2,
+        "drift_pct": -2.95
+      },
+      {
+        "date": "2025-12-21",
+        "reaction_pct": -0.51,
+        "drift_pct": 1.6
+      },
+      {
+        "date": "2025-09-21",
+        "reaction_pct": 1.06,
+        "drift_pct": -0.63
+      },
+      {
+        "date": "2025-06-21",
+        "reaction_pct": 0.72,
+        "drift_pct": 1.16
+      }
+    ]
+  },
+  "LOT": {
+    "timestamp": "2026-06-08T11:36:06.148046",
+    "data": [
+      {
+        "date": "2026-01-21",
+        "reaction_pct": 4.14,
+        "drift_pct": 2.11
+      },
+      {
+        "date": "2025-10-21",
+        "reaction_pct": -7.89,
+        "drift_pct": -1.75
+      },
+      {
+        "date": "2025-07-21",
+        "reaction_pct": -3.39,
+        "drift_pct": 7.27
+      },
+      {
+        "date": "2025-04-21",
+        "reaction_pct": -1.53,
+        "drift_pct": 11.02
+      }
+    ]
+  },
+  "MLKN": {
+    "timestamp": "2026-06-08T11:36:06.328772",
+    "data": [
+      {
+        "date": "2026-03-21",
+        "reaction_pct": 5.79,
+        "drift_pct": -6.56
+      },
+      {
+        "date": "2025-12-21",
+        "reaction_pct": 0.39,
+        "drift_pct": 9.19
+      },
+      {
+        "date": "2025-09-21",
+        "reaction_pct": -0.65,
+        "drift_pct": -2.15
+      },
+      {
+        "date": "2025-06-21",
+        "reaction_pct": 2.42,
+        "drift_pct": 0.0
+      }
+    ]
+  },
+  "APOG": {
+    "timestamp": "2026-06-08T11:36:06.501447",
+    "data": [
+      {
+        "date": "2026-03-21",
+        "reaction_pct": 3.31,
+        "drift_pct": -4.05
+      },
+      {
+        "date": "2025-12-21",
+        "reaction_pct": -2.47,
+        "drift_pct": -2.88
+      },
+      {
+        "date": "2025-09-21",
+        "reaction_pct": 3.03,
+        "drift_pct": 2.67
+      },
+      {
+        "date": "2025-06-21",
+        "reaction_pct": 3.04,
+        "drift_pct": -1.06
+      }
+    ]
+  },
+  "EBF": {
+    "timestamp": "2026-06-08T11:36:06.698325",
+    "data": [
+      {
+        "date": "2026-03-21",
+        "reaction_pct": 3.33,
+        "drift_pct": -3.31
+      },
+      {
+        "date": "2025-12-21",
+        "reaction_pct": 0.83,
+        "drift_pct": -1.47
+      },
+      {
+        "date": "2025-09-21",
+        "reaction_pct": 2.48,
+        "drift_pct": 0.44
+      },
+      {
+        "date": "2025-06-21",
+        "reaction_pct": 4.22,
+        "drift_pct": -1.08
+      }
+    ]
+  },
+  "HELP": {
+    "timestamp": "2026-06-08T11:36:09.042092",
+    "data": [
+      {
+        "date": "2026-01-21",
+        "reaction_pct": 0.39,
+        "drift_pct": -0.65
+      },
+      {
+        "date": "2025-10-21",
+        "reaction_pct": -7.19,
+        "drift_pct": 1.95
+      },
+      {
+        "date": "2025-07-21",
+        "reaction_pct": -7.09,
+        "drift_pct": 11.38
+      },
+      {
+        "date": "2025-04-21",
+        "reaction_pct": -4.08,
+        "drift_pct": 8.09
+      }
+    ]
+  },
+  "AOUT": {
+    "timestamp": "2026-06-08T11:36:09.055741",
+    "data": [
+      {
+        "date": "2026-02-21",
+        "reaction_pct": -4.69,
+        "drift_pct": 8.18
+      },
+      {
+        "date": "2025-11-21",
+        "reaction_pct": 4.64,
+        "drift_pct": 0.31
+      },
+      {
+        "date": "2025-08-21",
+        "reaction_pct": 7.87,
+        "drift_pct": -2.46
+      },
+      {
+        "date": "2025-05-21",
+        "reaction_pct": 1.53,
+        "drift_pct": -7.62
+      }
+    ]
+  },
+  "ZTEK": {
+    "timestamp": "2026-06-08T11:36:09.337441",
+    "data": [
+      {
+        "date": "2026-01-21",
+        "reaction_pct": 1.2,
+        "drift_pct": -13.54
+      },
+      {
+        "date": "2025-10-21",
+        "reaction_pct": -5.81,
+        "drift_pct": 17.81
+      },
+      {
+        "date": "2025-07-21",
+        "reaction_pct": 6.98,
+        "drift_pct": -10.42
+      },
+      {
+        "date": "2025-04-21",
+        "reaction_pct": 2.7,
+        "drift_pct": 12.12
+      }
+    ]
+  },
+  "CNVS": {
+    "timestamp": "2026-06-08T11:36:10.077136",
+    "data": [
+      {
+        "date": "2026-01-21",
+        "reaction_pct": 7.73,
+        "drift_pct": 3.5
+      },
+      {
+        "date": "2025-10-21",
+        "reaction_pct": -1.86,
+        "drift_pct": -2.42
+      },
+      {
+        "date": "2025-07-21",
+        "reaction_pct": -6.0,
+        "drift_pct": -1.4
+      },
+      {
+        "date": "2025-04-21",
+        "reaction_pct": -3.01,
+        "drift_pct": 15.89
+      }
+    ]
+  },
+  "JRSH": {
+    "timestamp": "2026-06-08T11:36:10.085463",
+    "data": [
+      {
+        "date": "2026-01-21",
+        "reaction_pct": 1.65,
+        "drift_pct": -2.26
+      },
+      {
+        "date": "2025-10-21",
+        "reaction_pct": 0.0,
+        "drift_pct": 0.92
+      },
+      {
+        "date": "2025-07-21",
+        "reaction_pct": 1.8,
+        "drift_pct": 0.0
+      },
+      {
+        "date": "2025-04-21",
+        "reaction_pct": 0.69,
+        "drift_pct": -1.36
+      }
+    ]
+  },
+  "CAMZF": {
+    "timestamp": "2026-06-08T11:36:10.359819",
+    "data": [
+      {
+        "date": "2026-02-21",
+        "reaction_pct": 7.76,
+        "drift_pct": -12.18
+      },
+      {
+        "date": "2025-11-21",
+        "reaction_pct": 0.63,
+        "drift_pct": -12.33
+      },
+      {
+        "date": "2025-08-21",
+        "reaction_pct": -1.96,
+        "drift_pct": -4.67
+      },
+      {
+        "date": "2025-05-21",
+        "reaction_pct": 0.0,
+        "drift_pct": 0.0
+      }
+    ]
+  },
+  "CRWS": {
+    "timestamp": "2026-06-08T11:36:11.413008",
+    "data": [
+      {
+        "date": "2026-01-21",
+        "reaction_pct": 1.4,
+        "drift_pct": 0.0
+      },
+      {
+        "date": "2025-10-21",
+        "reaction_pct": 0.35,
+        "drift_pct": -0.69
+      },
+      {
+        "date": "2025-07-21",
+        "reaction_pct": 0.69,
+        "drift_pct": -0.69
+      },
+      {
+        "date": "2025-04-21",
+        "reaction_pct": 1.4,
+        "drift_pct": -2.05
+      }
+    ]
+  },
+  "CANOF": {
+    "timestamp": "2026-06-08T11:36:11.419669",
+    "data": [
+      {
+        "date": "2025-12-21",
+        "reaction_pct": 4.15,
+        "drift_pct": -5.3
+      },
+      {
+        "date": "2025-06-21",
+        "reaction_pct": 1.7,
+        "drift_pct": -3.91
+      },
+      {
+        "date": "2025-03-21",
+        "reaction_pct": 7.98,
+        "drift_pct": 13.85
+      },
+      {
+        "date": "2024-12-21",
+        "reaction_pct": 0.6,
+        "drift_pct": -6.24
+      }
+    ]
+  },
+  "XAIR": {
+    "timestamp": "2026-06-08T11:36:11.927341",
+    "data": [
+      {
+        "date": "2026-01-21",
+        "reaction_pct": -9.23,
+        "drift_pct": -10.96
+      },
+      {
+        "date": "2025-10-21",
+        "reaction_pct": -18.03,
+        "drift_pct": -9.63
+      },
+      {
+        "date": "2025-07-21",
+        "reaction_pct": 4.29,
+        "drift_pct": 6.89
+      },
+      {
+        "date": "2025-04-21",
+        "reaction_pct": -4.17,
+        "drift_pct": 1.69
+      }
+    ]
+  },
+  "CAXPF": {
+    "timestamp": "2026-06-08T11:36:12.150125",
+    "data": [
+      {
+        "date": "2026-02-21",
+        "reaction_pct": 0.0,
+        "drift_pct": 15.59
+      },
+      {
+        "date": "2025-11-21",
+        "reaction_pct": -9.38,
+        "drift_pct": -15.8
+      },
+      {
+        "date": "2025-05-21",
+        "reaction_pct": 0.0,
+        "drift_pct": 0.0
+      },
+      {
+        "date": "2025-02-21",
+        "reaction_pct": 0.0,
+        "drift_pct": 0.0
+      }
+    ]
+  }
+}
