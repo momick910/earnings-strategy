@@ -22,6 +22,7 @@ from concurrent.futures import ThreadPoolExecutor, as_completed
 from datetime import datetime, timedelta
 from email.mime.multipart import MIMEMultipart
 from email.mime.text import MIMEText
+from email.utils import formataddr
 import pandas as pd
 import yfinance as yf
 from dotenv import load_dotenv
@@ -2078,45 +2079,50 @@ def _build_email_html(results: list) -> str:
     n_short = total - n_long
     sorted_results = sorted(results, key=lambda r: r["score"], reverse=True)
 
-    td  = 'style="padding:6px 10px;border-bottom:1px solid #e2e8f0;font-size:13px;color:#1e293b"'
-    th  = 'style="padding:6px 10px;font-size:11px;color:#64748b;text-align:left;border-bottom:2px solid #e2e8f0"'
+    top_pick = sorted_results[0] if sorted_results else None
+    preheader = (
+        f'{total} signal{"s" if total != 1 else ""} this week: {n_long} long, {n_short} short. '
+        f'Top pick: {_html.escape(top_pick["ticker"])} (Score {top_pick["score"]}, {_fmt(top_pick["avg_reaction_pct"])} avg reaction). View full report →'
+        if top_pick else "No signals found this week."
+    )
+
     rows = ""
     for r in sorted_results:
         sig = r["signal"]
-        sc  = "#059669" if sig == "LONG" else "#dc2626"
+        cls = "l" if sig == "LONG" else "s"
         rows += (
             f'<tr>'
-            f'<td {td}><b>{_html.escape(r["ticker"])}</b></td>'
-            f'<td style="padding:6px 10px;border-bottom:1px solid #e2e8f0;font-size:13px;color:{sc};font-weight:700">{sig}</td>'
-            f'<td {td}>{r["score"]}</td>'
-            f'<td {td}>{_fmt(r["avg_reaction_pct"])}</td>'
-            f'<td {td}>{_fmt_date(r["earnings_date"])}</td>'
+            f'<td><b>{_html.escape(r["ticker"])}</b></td>'
+            f'<td class="{cls}">{sig}</td>'
+            f'<td>{r["score"]}</td>'
+            f'<td>{_fmt(r["avg_reaction_pct"])}</td>'
+            f'<td>{_fmt_date(r["earnings_date"])}</td>'
             f'</tr>'
         )
 
     return (
-        '<!DOCTYPE html><html><head><meta charset="UTF-8"></head>'
-        '<body style="margin:0;padding:24px;background:#fff;font-family:Arial,sans-serif">'
-        '<div style="max-width:560px;margin:0 auto">'
-        '<div style="border-bottom:2px solid #2563eb;padding-bottom:12px;margin-bottom:16px">'
-        '<div style="font-size:20px;font-weight:700;color:#0f172a">Earnings Strategy Signals</div>'
-        f'<div style="font-size:13px;color:#64748b;margin-top:4px">{today}</div>'
-        '</div>'
-        f'<p style="margin:0 0 16px;font-size:14px;color:#1e293b">'
-        f'<b>{total}</b> signal{"s" if total != 1 else ""} found this week — '
-        f'<span style="color:#059669;font-weight:700">{n_long} long</span>, '
-        f'<span style="color:#dc2626;font-weight:700">{n_short} short</span>'
-        f'</p>'
-        '<table width="100%" cellpadding="0" cellspacing="0" style="border-collapse:collapse">'
-        f'<tr><th {th}>Ticker</th><th {th}>Signal</th><th {th}>Score</th>'
-        f'<th {th}>Avg Reaction</th><th {th}>Earnings Date</th></tr>'
-        f'{rows}'
-        '</table>'
-        '<div style="text-align:center;margin-top:24px">'
-        f'<a href="{_REPORT_URL}" style="display:inline-block;background:#2563eb;color:#fff;'
-        'padding:12px 28px;border-radius:6px;font-size:14px;font-weight:700;text-decoration:none">'
-        'View Full Report</a>'
-        '</div>'
+        '<!DOCTYPE html><html><head><meta charset="UTF-8">'
+        '<style>'
+        'body{font-family:Arial,sans-serif;font-size:13px;color:#1e293b;background:#fff;margin:0;padding:20px}'
+        'h2{margin:0 0 2px;font-size:18px;color:#0f172a;border-bottom:2px solid #2563eb;padding-bottom:10px}'
+        'p{margin:12px 0 16px;font-size:13px}'
+        'table{border-collapse:collapse;width:100%;max-width:560px}'
+        'th{font-size:11px;color:#64748b;text-align:left;padding:5px 8px;border-bottom:2px solid #e2e8f0}'
+        'td{padding:5px 8px;border-bottom:1px solid #f1f5f9}'
+        '.l{color:#059669;font-weight:700}'
+        '.s{color:#dc2626;font-weight:700}'
+        '.btn{display:inline-block;background:#2563eb;color:#fff;padding:10px 24px;border-radius:6px;text-decoration:none;font-weight:700;font-size:13px;margin-top:20px}'
+        '.pre{display:none;max-height:0;overflow:hidden;mso-hide:all}'
+        '</style></head>'
+        '<body>'
+        f'<div class="pre">{preheader}</div>'
+        '<div style="max-width:560px">'
+        '<h2>Earnings Strategy Signals</h2>'
+        f'<p>{today} &nbsp;·&nbsp; <b>{total}</b> signal{"s" if total != 1 else ""} — '
+        f'<span class="l">{n_long} long</span> &nbsp;·&nbsp; <span class="s">{n_short} short</span></p>'
+        '<table><tr><th>Ticker</th><th>Signal</th><th>Score</th><th>Avg Reaction</th><th>Earnings Date</th></tr>'
+        f'{rows}</table>'
+        f'<div style="text-align:center"><a href="{_REPORT_URL}" class="btn">View Full Report</a></div>'
         '</div>'
         '</body></html>'
     )
@@ -2142,12 +2148,14 @@ def send_report_email(results: list) -> None:
         print("  ⚠  Email skipped — EMAIL_RECIPIENTS is empty after parsing")
         return
 
-    subject  = f"Earnings Signals — {datetime.now().strftime('%d-%m-%Y')}"
+    n_trades = len(results)
+    now      = datetime.now()
+    subject  = f"Earnings Signals — {n_trades} Trade{'s' if n_trades != 1 else ''} This Week · {now.strftime('%a %-d %b %Y')}"
     html_body = _build_email_html(results)
 
     msg = MIMEMultipart("alternative")
     msg["Subject"] = subject
-    msg["From"]    = sender
+    msg["From"]    = formataddr(("Earnings Scanner", sender))
     msg["To"]      = ", ".join(recipients)
     msg.attach(MIMEText(html_body, "html", "utf-8"))
 
