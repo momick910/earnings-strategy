@@ -8,6 +8,8 @@ on:
 jobs:
   scan:
     runs-on: ubuntu-latest
+    permissions:
+      contents: write
     steps:
       - uses: actions/checkout@v3
 
@@ -25,3 +27,13 @@ jobs:
           GMAIL_APP_PASSWORD: ${{ secrets.GMAIL_APP_PASSWORD }}
           EMAIL_RECIPIENTS: ${{ secrets.EMAIL_RECIPIENTS }}
         run: python scanner.py
+
+      - name: Publish report to docs/
+        run: |
+          mkdir -p docs
+          cp report.html docs/report.html
+          git config user.email "actions@github.com"
+          git config user.name "GitHub Actions"
+          git add docs/report.html
+          git commit -m "update weekly report"
+          git push

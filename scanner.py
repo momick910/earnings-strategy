@@ -1987,13 +1987,114 @@ def generate_html_report(results, meta):
 # EMAIL
 # ─────────────────────────────────────────────
 
-def send_report_email(report_path: str) -> None:
-    sender    = os.environ.get("GMAIL_ADDRESS")
-    password  = os.environ.get("GMAIL_APP_PASSWORD")
+_REPORT_URL = "https://momick910.github.io/earnings-strategy/report.html"
+
+
+def _build_email_html(results: list) -> str:
+    today      = datetime.now().strftime("%Y-%m-%d")
+    total      = len(results)
+    n_long     = sum(1 for r in results if r["signal"] == "LONG")
+    n_short    = total - n_long
+    top5       = sorted(results, key=lambda r: r["score"], reverse=True)[:5]
+
+    signal_color = {"LONG": "#10b981", "SHORT": "#ef4444"}
+
+    rows = ""
+    for r in top5:
+        sc    = _score_color(r["score"])
+        sig   = r["signal"]
+        color = signal_color.get(sig, "#94a3b8")
+        rows += (
+            f'<tr>'
+            f'<td style="padding:10px 14px;font-weight:700;font-size:15px;color:#f1f5f9">'
+            f'{_html.escape(r["ticker"])}</td>'
+            f'<td style="padding:10px 14px">'
+            f'<span style="background:{color}22;color:{color};border:1px solid {color}55;'
+            f'padding:2px 9px;border-radius:5px;font-size:12px;font-weight:700">{sig}</span></td>'
+            f'<td style="padding:10px 14px;font-weight:800;font-size:15px;color:{sc}">'
+            f'{r["score"]}<span style="font-size:11px;color:#64748b;font-weight:400"> /100</span></td>'
+            f'<td style="padding:10px 14px;color:#94a3b8;font-size:13px;'
+            f'font-family:ui-monospace,monospace">{r["earnings_date"]}</td>'
+            f'</tr>'
+            f'<tr><td colspan="4" style="padding:0 14px">'
+            f'<div style="height:1px;background:#1e2740"></div></td></tr>'
+        )
+
+    return f"""<!DOCTYPE html>
+<html lang="en">
+<head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1"></head>
+<body style="margin:0;padding:0;background:#08090f;font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif">
+<table width="100%" cellpadding="0" cellspacing="0" style="background:#08090f;padding:32px 0">
+  <tr><td align="center">
+    <table width="560" cellpadding="0" cellspacing="0" style="max-width:560px;width:100%">
+
+      <!-- Header -->
+      <tr><td style="background:linear-gradient(135deg,#0d1525 0%,#111827 100%);
+        border:1px solid #1e2740;border-radius:12px 12px 0 0;padding:28px 32px 24px">
+        <div style="font-size:11px;text-transform:uppercase;letter-spacing:.1em;
+          color:#475569;font-weight:600;margin-bottom:8px">Earnings Strategy Scanner</div>
+        <div style="font-size:22px;font-weight:800;color:#f1f5f9;line-height:1.2;margin-bottom:4px">
+          This week's scan found
+          <span style="color:#60a5fa">{total} signal{'s' if total != 1 else ''}</span>
+        </div>
+        <div style="font-size:13px;color:#64748b;margin-top:6px">
+          <span style="color:#10b981;font-weight:700">{n_long} LONG</span>
+          &nbsp;·&nbsp;
+          <span style="color:#ef4444;font-weight:700">{n_short} SHORT</span>
+          &nbsp;·&nbsp; {today}
+        </div>
+      </td></tr>
+
+      <!-- Top 5 table -->
+      <tr><td style="background:#0f1629;border-left:1px solid #1e2740;
+        border-right:1px solid #1e2740;padding:0">
+        <div style="padding:16px 14px 8px;font-size:10px;text-transform:uppercase;
+          letter-spacing:.09em;color:#475569;font-weight:600">Top signals by score</div>
+        <table width="100%" cellpadding="0" cellspacing="0">
+          <tr style="background:#0a0e1a">
+            <th style="padding:7px 14px;text-align:left;font-size:10px;text-transform:uppercase;
+              letter-spacing:.07em;color:#475569;font-weight:600">Ticker</th>
+            <th style="padding:7px 14px;text-align:left;font-size:10px;text-transform:uppercase;
+              letter-spacing:.07em;color:#475569;font-weight:600">Signal</th>
+            <th style="padding:7px 14px;text-align:left;font-size:10px;text-transform:uppercase;
+              letter-spacing:.07em;color:#475569;font-weight:600">Score</th>
+            <th style="padding:7px 14px;text-align:left;font-size:10px;text-transform:uppercase;
+              letter-spacing:.07em;color:#475569;font-weight:600">Earnings</th>
+          </tr>
+          <tr><td colspan="4" style="padding:0 14px">
+            <div style="height:1px;background:#1e2740"></div></td></tr>
+          {rows}
+        </table>
+      </td></tr>
+
+      <!-- CTA button -->
+      <tr><td style="background:#0f1629;border:1px solid #1e2740;border-top:none;
+        border-radius:0 0 12px 12px;padding:24px 32px 28px;text-align:center">
+        <a href="{_REPORT_URL}"
+          style="display:inline-block;background:#1e3a5f;color:#60a5fa;
+          border:1px solid #3b82f6;border-radius:8px;padding:12px 28px;
+          font-size:14px;font-weight:700;text-decoration:none;letter-spacing:.01em">
+          View Full Report →
+        </a>
+        <div style="margin-top:14px;font-size:11px;color:#334155">
+          Charts, price data, broker availability and full score breakdowns in the report.
+        </div>
+      </td></tr>
+
+    </table>
+  </td></tr>
+</table>
+</body>
+</html>"""
+
+
+def send_report_email(results: list) -> None:
+    sender         = os.environ.get("GMAIL_ADDRESS")
+    password       = os.environ.get("GMAIL_APP_PASSWORD")
     recipients_raw = os.environ.get("EMAIL_RECIPIENTS")
 
     missing = [name for name, val in [
-        ("GMAIL_ADDRESS",    sender),
+        ("GMAIL_ADDRESS",      sender),
         ("GMAIL_APP_PASSWORD", password),
         ("EMAIL_RECIPIENTS",   recipients_raw),
     ] if not val]
@@ -2007,14 +2108,8 @@ def send_report_email(report_path: str) -> None:
         print("  ⚠  Email skipped — EMAIL_RECIPIENTS is empty after parsing")
         return
 
-    try:
-        with open(report_path, "r", encoding="utf-8") as fh:
-            html_body = fh.read()
-    except OSError as exc:
-        print(f"  ⚠  Email skipped — could not read report: {exc}")
-        return
-
-    subject = f"Earnings Strategy Signals — {datetime.now().strftime('%Y-%m-%d')}"
+    subject  = f"Earnings Signals — {datetime.now().strftime('%Y-%m-%d')}"
+    html_body = _build_email_html(results)
 
     msg = MIMEMultipart("alternative")
     msg["Subject"] = subject
@@ -2201,8 +2296,8 @@ def main():
     )
     print(f"Report saved → {report_path}  (opening in browser…)")
 
-    # 9. Send the HTML report by email
-    send_report_email(report_path)
+    # 9. Send the summary email
+    send_report_email(results)
 
 
 if __name__ == "__main__":
