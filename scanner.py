@@ -1038,6 +1038,14 @@ def _fmt(val):
     return f"{sign}{val:.2f}%"
 
 
+def _fmt_date(iso: str) -> str:
+    """Convert YYYY-MM-DD to DD-MM-YYYY for display; return original on failure."""
+    try:
+        return datetime.strptime(iso, "%Y-%m-%d").strftime("%d-%m-%Y")
+    except (ValueError, TypeError):
+        return iso
+
+
 def print_results_table(results):
     """
     Print a wide summary table sorted by score descending.
@@ -1101,7 +1109,7 @@ def print_results_table(results):
             f"{col(_fmt(r['avg_reaction_pct']), AV)} "
             f"{col(_fmt(r['avg_drift_pct']), DR)} "
             f"{col(str(r['score']), SC)} "
-            f"{col(r['earnings_date'], DT)}"
+            f"{col(_fmt_date(r['earnings_date']), DT)}"
         )
 
         # Score breakdown sub-line
@@ -1423,7 +1431,7 @@ def _reaction_bars_svg(individual_reactions):
             # Earnings month+year label below Q label
             raw_date = rxn.get("date", "")
             try:
-                month_yr = datetime.strptime(raw_date, "%Y-%m-%d").strftime("%b %Y")
+                month_yr = datetime.strptime(raw_date, "%Y-%m-%d").strftime("%d-%m-%Y")
             except (ValueError, TypeError):
                 month_yr = ""
             if month_yr:
@@ -1498,7 +1506,7 @@ def generate_html_report(results, meta):
         ticker  = _html.escape(r["ticker"])
         signal  = r["signal"]
         company = _html.escape(r.get("company_name", r["ticker"]))
-        date    = _html.escape(r["earnings_date"])
+        date    = _html.escape(_fmt_date(r["earnings_date"]))
         score   = r["score"]
         sc      = _score_color(score)
         avg_rxn = r["avg_reaction_pct"]
@@ -1653,9 +1661,9 @@ def generate_html_report(results, meta):
             today = datetime.now().date()
             if ndate == today:                  next_lbl = "Today"
             elif ndate == today + timedelta(1): next_lbl = "Tomorrow"
-            else:                               next_lbl = ndate.strftime("%b %d")
+            else:                               next_lbl = ndate.strftime("%d-%m-%Y")
         except Exception:
-            next_lbl = next_r["earnings_date"]
+            next_lbl = _fmt_date(next_r["earnings_date"])
 
     # ── JavaScript (plain string — no f-string, so {} are safe) ───────────
     _JS = """
@@ -2064,101 +2072,54 @@ _REPORT_URL = "https://momick910.github.io/earnings-strategy/report.html"
 
 
 def _build_email_html(results: list) -> str:
-    today      = datetime.now().strftime("%Y-%m-%d")
-    total      = len(results)
-    n_long     = sum(1 for r in results if r["signal"] == "LONG")
-    n_short    = total - n_long
-    top5       = sorted(results, key=lambda r: r["score"], reverse=True)[:5]
+    today   = datetime.now().strftime("%d-%m-%Y")
+    total   = len(results)
+    n_long  = sum(1 for r in results if r["signal"] == "LONG")
+    n_short = total - n_long
+    sorted_results = sorted(results, key=lambda r: r["score"], reverse=True)
 
-    signal_color = {"LONG": "#059669", "SHORT": "#dc2626"}
-
+    td  = 'style="padding:6px 10px;border-bottom:1px solid #e2e8f0;font-size:13px;color:#1e293b"'
+    th  = 'style="padding:6px 10px;font-size:11px;color:#64748b;text-align:left;border-bottom:2px solid #e2e8f0"'
     rows = ""
-    for r in top5:
-        sc    = _score_color(r["score"])
-        sig   = r["signal"]
-        color = signal_color.get(sig, "#64748b")
+    for r in sorted_results:
+        sig = r["signal"]
+        sc  = "#059669" if sig == "LONG" else "#dc2626"
         rows += (
             f'<tr>'
-            f'<td style="padding:10px 14px;font-weight:700;font-size:15px;color:#1e293b">'
-            f'{_html.escape(r["ticker"])}</td>'
-            f'<td style="padding:10px 14px">'
-            f'<span style="background:{color}18;color:{color};border:1px solid {color}44;'
-            f'padding:2px 9px;border-radius:5px;font-size:12px;font-weight:700">{sig}</span></td>'
-            f'<td style="padding:10px 14px;font-weight:800;font-size:15px;color:{sc}">'
-            f'{r["score"]}<span style="font-size:11px;color:#94a3b8;font-weight:400"> /100</span></td>'
-            f'<td style="padding:10px 14px;color:#64748b;font-size:13px;'
-            f'font-family:ui-monospace,monospace">{r["earnings_date"]}</td>'
+            f'<td {td}><b>{_html.escape(r["ticker"])}</b></td>'
+            f'<td style="padding:6px 10px;border-bottom:1px solid #e2e8f0;font-size:13px;color:{sc};font-weight:700">{sig}</td>'
+            f'<td {td}>{r["score"]}</td>'
+            f'<td {td}>{_fmt(r["avg_reaction_pct"])}</td>'
+            f'<td {td}>{_fmt_date(r["earnings_date"])}</td>'
             f'</tr>'
-            f'<tr><td colspan="4" style="padding:0 14px">'
-            f'<div style="height:1px;background:#e2e8f0"></div></td></tr>'
         )
 
-    return f"""<!DOCTYPE html>
-<html lang="en">
-<head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1"></head>
-<body style="margin:0;padding:0;background:#f8fafc;font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif">
-<table width="100%" cellpadding="0" cellspacing="0" style="background:#f8fafc;padding:32px 0">
-  <tr><td align="center">
-    <table width="560" cellpadding="0" cellspacing="0" style="max-width:560px;width:100%">
-
-      <!-- Header -->
-      <tr><td style="background:#ffffff;
-        border:1px solid #e2e8f0;border-radius:12px 12px 0 0;padding:28px 32px 24px">
-        <div style="font-size:11px;text-transform:uppercase;letter-spacing:.1em;
-          color:#94a3b8;font-weight:600;margin-bottom:8px">Earnings Strategy Scanner</div>
-        <div style="font-size:22px;font-weight:800;color:#0f172a;line-height:1.2;margin-bottom:4px">
-          This week's scan found
-          <span style="color:#2563eb">{total} signal{'s' if total != 1 else ''}</span>
-        </div>
-        <div style="font-size:13px;color:#64748b;margin-top:6px">
-          <span style="color:#059669;font-weight:700">{n_long} LONG</span>
-          &nbsp;·&nbsp;
-          <span style="color:#dc2626;font-weight:700">{n_short} SHORT</span>
-          &nbsp;·&nbsp; {today}
-        </div>
-      </td></tr>
-
-      <!-- Top 5 table -->
-      <tr><td style="background:#ffffff;border-left:1px solid #e2e8f0;
-        border-right:1px solid #e2e8f0;padding:0">
-        <div style="padding:16px 14px 8px;font-size:10px;text-transform:uppercase;
-          letter-spacing:.09em;color:#94a3b8;font-weight:600">Top signals by score</div>
-        <table width="100%" cellpadding="0" cellspacing="0">
-          <tr style="background:#f8fafc">
-            <th style="padding:7px 14px;text-align:left;font-size:10px;text-transform:uppercase;
-              letter-spacing:.07em;color:#94a3b8;font-weight:600">Ticker</th>
-            <th style="padding:7px 14px;text-align:left;font-size:10px;text-transform:uppercase;
-              letter-spacing:.07em;color:#94a3b8;font-weight:600">Signal</th>
-            <th style="padding:7px 14px;text-align:left;font-size:10px;text-transform:uppercase;
-              letter-spacing:.07em;color:#94a3b8;font-weight:600">Score</th>
-            <th style="padding:7px 14px;text-align:left;font-size:10px;text-transform:uppercase;
-              letter-spacing:.07em;color:#94a3b8;font-weight:600">Earnings</th>
-          </tr>
-          <tr><td colspan="4" style="padding:0 14px">
-            <div style="height:1px;background:#e2e8f0"></div></td></tr>
-          {rows}
-        </table>
-      </td></tr>
-
-      <!-- CTA button -->
-      <tr><td style="background:#ffffff;border:1px solid #e2e8f0;border-top:none;
-        border-radius:0 0 12px 12px;padding:24px 32px 28px;text-align:center">
-        <a href="{_REPORT_URL}"
-          style="display:inline-block;background:#2563eb;color:#ffffff;
-          border:1px solid #1d4ed8;border-radius:8px;padding:12px 28px;
-          font-size:14px;font-weight:700;text-decoration:none;letter-spacing:.01em">
-          View Full Report →
-        </a>
-        <div style="margin-top:14px;font-size:11px;color:#94a3b8">
-          Charts, price data, broker availability and full score breakdowns in the report.
-        </div>
-      </td></tr>
-
-    </table>
-  </td></tr>
-</table>
-</body>
-</html>"""
+    return (
+        '<!DOCTYPE html><html><head><meta charset="UTF-8"></head>'
+        '<body style="margin:0;padding:24px;background:#fff;font-family:Arial,sans-serif">'
+        '<div style="max-width:560px;margin:0 auto">'
+        '<div style="border-bottom:2px solid #2563eb;padding-bottom:12px;margin-bottom:16px">'
+        '<div style="font-size:20px;font-weight:700;color:#0f172a">Earnings Strategy Signals</div>'
+        f'<div style="font-size:13px;color:#64748b;margin-top:4px">{today}</div>'
+        '</div>'
+        f'<p style="margin:0 0 16px;font-size:14px;color:#1e293b">'
+        f'<b>{total}</b> signal{"s" if total != 1 else ""} found this week — '
+        f'<span style="color:#059669;font-weight:700">{n_long} long</span>, '
+        f'<span style="color:#dc2626;font-weight:700">{n_short} short</span>'
+        f'</p>'
+        '<table width="100%" cellpadding="0" cellspacing="0" style="border-collapse:collapse">'
+        f'<tr><th {th}>Ticker</th><th {th}>Signal</th><th {th}>Score</th>'
+        f'<th {th}>Avg Reaction</th><th {th}>Earnings Date</th></tr>'
+        f'{rows}'
+        '</table>'
+        '<div style="text-align:center;margin-top:24px">'
+        f'<a href="{_REPORT_URL}" style="display:inline-block;background:#2563eb;color:#fff;'
+        'padding:12px 28px;border-radius:6px;font-size:14px;font-weight:700;text-decoration:none">'
+        'View Full Report</a>'
+        '</div>'
+        '</div>'
+        '</body></html>'
+    )
 
 
 def send_report_email(results: list) -> None:
@@ -2181,7 +2142,7 @@ def send_report_email(results: list) -> None:
         print("  ⚠  Email skipped — EMAIL_RECIPIENTS is empty after parsing")
         return
 
-    subject  = f"Earnings Signals — {datetime.now().strftime('%Y-%m-%d')}"
+    subject  = f"Earnings Signals — {datetime.now().strftime('%d-%m-%Y')}"
     html_body = _build_email_html(results)
 
     msg = MIMEMultipart("alternative")
@@ -2209,7 +2170,7 @@ def send_report_email(results: list) -> None:
 def main():
     print("=" * 62)
     print("  EARNINGS TRADING STRATEGY SCANNER")
-    print(f"  Run date : {datetime.now().strftime('%Y-%m-%d %H:%M')}")
+    print(f"  Run date : {datetime.now().strftime('%d-%m-%Y %H:%M')}")
     print(f"  Window   : next 20 calendar days")
     print(f"  History  : last 4 earnings reports per stock")
     print(f"  Filter   : score >= 60 and signal != NO TRADE")
@@ -2343,7 +2304,7 @@ def main():
     print_results_table(results)
 
     # 7. Save full results to signals.json
-    run_date_str = datetime.now().strftime("%Y-%m-%d %H:%M")
+    run_date_str = datetime.now().strftime("%d-%m-%Y %H:%M")
     output = {
         "generated_at":        datetime.now().isoformat(),
         "scan_window_days":    20,
