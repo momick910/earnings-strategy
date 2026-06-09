@@ -1131,123 +1131,154 @@ def print_results_table(results):
 
 # CSS lives as a plain string so its { } don't need escaping inside f-strings.
 _REPORT_CSS = """
+:root{
+  --bg:#f8fafc;--surface:#ffffff;--surface2:#f8fafc;
+  --border:#e2e8f0;--border2:#cbd5e1;
+  --text1:#0f172a;--text2:#475569;--text3:#94a3b8;--text4:#cbd5e1;
+  --hero-grad:linear-gradient(160deg,#f0f6ff 0%,#ffffff 55%,#f0f6ff 100%);
+  --chart-bg:#f8fafc;--filter-bg:rgba(248,250,252,.97);
+  --pill-bg:rgba(0,0,0,.04);--broker-bg:rgba(0,0,0,.03);
+  --meta-bg:rgba(0,0,0,.03);--mc-bg:rgba(0,0,0,.03);
+  --modal-bg:#ffffff;--input-bg:#ffffff;
+  --hover-shadow:rgba(0,0,0,.10);--score-blue:#2563eb;
+  --chart-grid:#e2e8f0;--chart-label:#94a3b8;
+  --chart-cross:#cbd5e1;--chart-dot-stroke:#ffffff;
+  --btn-active-bg:#eff6ff;--btn-active-border:#3b82f6;--btn-active-color:#2563eb;
+}
+body.dark{
+  --bg:#08090f;--surface:#0f1629;--surface2:#0a0e1a;
+  --border:#1e2740;--border2:#334155;
+  --text1:#e2e8f0;--text2:#64748b;--text3:#475569;--text4:#334155;
+  --hero-grad:linear-gradient(160deg,#0d1525 0%,#111827 55%,#0d1525 100%);
+  --chart-bg:#09101f;--filter-bg:rgba(8,9,15,.95);
+  --pill-bg:rgba(30,39,64,.4);--broker-bg:rgba(30,39,64,.3);
+  --meta-bg:rgba(0,0,0,.18);--mc-bg:rgba(255,255,255,.03);
+  --modal-bg:#0f1629;--input-bg:#0a0e1a;
+  --hover-shadow:rgba(0,0,0,.45);--score-blue:#60a5fa;
+  --chart-grid:#1a2638;--chart-label:#4b5a6e;
+  --chart-cross:#3d5068;--chart-dot-stroke:#0a0e1a;
+  --btn-active-bg:#1e3a5f;--btn-active-border:#3b82f6;--btn-active-color:#60a5fa;
+}
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
-body{background:#08090f;color:#e2e8f0;font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;min-height:100vh}
+body{background:var(--bg);color:var(--text1);font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;min-height:100vh;transition:background .2s,color .2s}
 .page{max-width:1440px;margin:0 auto;padding:0 0 56px}
 
 /* ── Hero ── */
-.hero{background:linear-gradient(160deg,#0d1525 0%,#111827 55%,#0d1525 100%);
-  border-bottom:1px solid #1e2740;padding:22px 32px 18px}
+.hero{background:var(--hero-grad);border-bottom:1px solid var(--border);padding:22px 32px 18px}
 .hero-top{margin-bottom:14px}
 .hero-title{font-size:1.45rem;font-weight:800;letter-spacing:-.025em;margin-bottom:5px;
   background:linear-gradient(90deg,#60a5fa,#a78bfa);
   -webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
-.hero-sub{display:flex;align-items:center;gap:10px;font-size:.78rem;color:#64748b;flex-wrap:wrap}
-.hero-sep{color:#1e2740}
+.hero-sub{display:flex;align-items:center;gap:10px;font-size:.78rem;color:var(--text2);flex-wrap:wrap}
+.hero-sep{color:var(--border2)}
 .hero-lc{color:#10b981;font-weight:700}.hero-sc{color:#ef4444;font-weight:700}
 .mc-row{display:grid;grid-template-columns:repeat(4,1fr);gap:10px}
 @media(max-width:640px){.mc-row{grid-template-columns:1fr 1fr}}
-.mc{background:rgba(255,255,255,.03);border:1px solid #1e2740;border-radius:10px;padding:14px 18px}
-.mc-val{font-size:1.5rem;font-weight:800;line-height:1;margin-bottom:4px;color:#f1f5f9;font-variant-numeric:tabular-nums}
-.mc-val.is-ticker{font-size:1.1rem;color:#60a5fa}
-.mc-lbl{font-size:.65rem;text-transform:uppercase;letter-spacing:.1em;color:#475569;font-weight:600}
+.mc{background:var(--mc-bg);border:1px solid var(--border);border-radius:10px;padding:14px 18px}
+.mc-val{font-size:1.5rem;font-weight:800;line-height:1;margin-bottom:4px;color:var(--text1);font-variant-numeric:tabular-nums}
+.mc-val.is-ticker{font-size:1.1rem;color:var(--score-blue)}
+.mc-lbl{font-size:.65rem;text-transform:uppercase;letter-spacing:.1em;color:var(--text2);font-weight:600}
 
 /* ── Filter bar ── */
 .filter-bar{position:sticky;top:0;z-index:200;
-  background:rgba(8,9,15,.95);backdrop-filter:blur(16px);-webkit-backdrop-filter:blur(16px);
-  border-bottom:1px solid #1e2740;padding:9px 32px}
+  background:var(--filter-bg);backdrop-filter:blur(16px);-webkit-backdrop-filter:blur(16px);
+  border-bottom:1px solid var(--border);padding:9px 32px}
 .filter-inner{display:flex;align-items:center;gap:16px;flex-wrap:wrap;max-width:1440px;margin:0 auto}
 .fg{display:flex;align-items:center;gap:6px}
-.fl{font-size:.65rem;text-transform:uppercase;letter-spacing:.07em;color:#475569;font-weight:600;white-space:nowrap}
+.fl{font-size:.65rem;text-transform:uppercase;letter-spacing:.07em;color:var(--text2);font-weight:600;white-space:nowrap}
 .btn-grp{display:flex;gap:3px}
 .fb{padding:4px 10px;border-radius:6px;font-size:.7rem;font-weight:600;cursor:pointer;
-  border:1px solid #1e2740;background:transparent;color:#64748b;transition:all .12s;line-height:1.6}
-.fb:hover{border-color:#334155;color:#94a3b8}
-.fb.active{background:#1e3a5f;border-color:#3b82f6;color:#60a5fa}
+  border:1px solid var(--border);background:transparent;color:var(--text2);transition:all .12s;line-height:1.6}
+.fb:hover{border-color:var(--border2);color:var(--text2)}
+.fb.active{background:var(--btn-active-bg);border-color:var(--btn-active-border);color:var(--btn-active-color)}
 .fb.long-on{background:rgba(16,185,129,.12);border-color:#10b981;color:#10b981}
 .fb.short-on{background:rgba(239,68,68,.12);border-color:#ef4444;color:#ef4444}
 input[type=range]{-webkit-appearance:none;appearance:none;height:4px;
-  background:#1e2740;border-radius:2px;outline:none;width:100px;cursor:pointer}
+  background:var(--border);border-radius:2px;outline:none;width:100px;cursor:pointer}
 input[type=range]::-webkit-slider-thumb{-webkit-appearance:none;width:14px;height:14px;
   background:#3b82f6;border-radius:50%;cursor:pointer}
 input[type=range]::-moz-range-thumb{width:14px;height:14px;background:#3b82f6;
   border-radius:50%;border:none;cursor:pointer}
-#scoreDisplay{color:#60a5fa;font-weight:700}
+#scoreDisplay{color:var(--score-blue);font-weight:700}
 .sort-sel{-webkit-appearance:none;appearance:none;
-  background:#0a0e1a url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='10' height='6'%3E%3Cpath d='M0 0l5 6 5-6z' fill='%2364748b'/%3E%3C/svg%3E") no-repeat right 9px center;
-  border:1px solid #1e2740;border-radius:8px;padding:5px 26px 5px 10px;
-  color:#94a3b8;font-size:.73rem;outline:none;cursor:pointer}
+  background:var(--input-bg) url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='10' height='6'%3E%3Cpath d='M0 0l5 6 5-6z' fill='%2364748b'/%3E%3C/svg%3E") no-repeat right 9px center;
+  border:1px solid var(--border);border-radius:8px;padding:5px 26px 5px 10px;
+  color:var(--text2);font-size:.73rem;outline:none;cursor:pointer}
 .sort-sel:focus{border-color:#3b82f6}
-.search-box{background:#0a0e1a;border:1px solid #1e2740;border-radius:8px;
-  padding:5px 10px;color:#e2e8f0;font-size:.73rem;outline:none;width:140px}
+.search-box{background:var(--input-bg);border:1px solid var(--border);border-radius:8px;
+  padding:5px 10px;color:var(--text1);font-size:.73rem;outline:none;width:140px}
 .search-box:focus{border-color:#3b82f6}
-.search-box::placeholder{color:#334155}
-.res-count{margin-left:auto;font-size:.7rem;color:#475569;
-  background:#0f1629;border:1px solid #1e2740;border-radius:20px;padding:3px 12px;white-space:nowrap}
+.search-box::placeholder{color:var(--text4)}
+.res-count{margin-left:auto;font-size:.7rem;color:var(--text2);
+  background:var(--surface);border:1px solid var(--border);border-radius:20px;padding:3px 12px;white-space:nowrap}
+.theme-btn{padding:4px 11px;border-radius:6px;font-size:.7rem;font-weight:600;cursor:pointer;
+  border:1px solid var(--border);background:transparent;color:var(--text2);
+  transition:all .12s;line-height:1.6;white-space:nowrap}
+.theme-btn:hover{border-color:var(--border2);color:var(--text1)}
 
 /* ── Grid ── */
 main{padding:16px 32px 0}
 .grid{display:grid;grid-template-columns:1fr;gap:10px}
-.empty-state{text-align:center;padding:72px 0;color:#334155;font-size:.9rem}
+.empty-state{text-align:center;padding:72px 0;color:var(--text3);font-size:.9rem}
 
 /* ── Card shell ── */
 .card{
-  background:#0f1629;border:1px solid #1e2740;border-left:4px solid #1e2740;
+  background:var(--surface);border:1px solid var(--border);border-left:4px solid var(--border);
   border-radius:10px;overflow:hidden;transition:border-color .18s,box-shadow .18s
 }
 .card[data-signal="LONG"]  {border-left-color:#10b981}
 .card[data-signal="SHORT"] {border-left-color:#ef4444}
-.card:hover{border-color:#334155;box-shadow:0 4px 28px rgba(0,0,0,.45)}
+.card:hover{border-color:var(--border2);box-shadow:0 4px 28px var(--hover-shadow)}
 
-/* ── Card header: identity + score + date ── */
+/* ── Card header ── */
 .card-header{
   padding:12px 20px 10px;
   display:flex;align-items:center;gap:14px;flex-wrap:wrap;
-  border-bottom:1px solid #1e2740
+  border-bottom:1px solid var(--border)
 }
 .ch-id{display:flex;align-items:center;gap:8px;flex-shrink:0}
-.ticker-sym{font-size:1.3rem;font-weight:800;letter-spacing:-.01em;color:#f1f5f9}
+.ticker-sym{font-size:1.3rem;font-weight:800;letter-spacing:-.01em;color:var(--text1)}
 .badge{padding:2px 8px;border-radius:5px;font-size:.65rem;font-weight:700;
   letter-spacing:.06em;text-transform:uppercase}
 .badge-long{background:rgba(16,185,129,.12);color:#10b981;border:1px solid rgba(16,185,129,.25)}
 .badge-short{background:rgba(239,68,68,.12);color:#ef4444;border:1px solid rgba(239,68,68,.25)}
 .ch-name{flex:1;min-width:140px;overflow:hidden}
-.company-nm{font-size:.84rem;color:#94a3b8;font-weight:500;
+.company-nm{font-size:.84rem;color:var(--text3);font-weight:500;
   white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
-.description{font-size:.67rem;color:#64748b;line-height:1.3;margin-top:2px;
+.description{font-size:.67rem;color:var(--text2);line-height:1.3;margin-top:2px;
   white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
 .ch-score{flex-shrink:0;display:flex;flex-direction:column;align-items:flex-end;gap:5px;
-  padding-left:16px;border-left:1px solid #1e2740}
-.chs-lbl{font-size:.55rem;text-transform:uppercase;letter-spacing:.09em;color:#475569;font-weight:600}
+  padding-left:16px;border-left:1px solid var(--border)}
+.chs-lbl{font-size:.55rem;text-transform:uppercase;letter-spacing:.09em;color:var(--text2);font-weight:600}
 .chs-total{font-size:1.85rem;font-weight:800;font-variant-numeric:tabular-nums;line-height:1}
-.chs-max{font-size:.7rem;color:#475569;font-weight:400;margin-left:2px}
+.chs-max{font-size:.7rem;color:var(--text2);font-weight:400;margin-left:2px}
 .chs-dims{display:flex;gap:10px}
-.chs-dim{font-size:.62rem;color:#64748b;white-space:nowrap}
+.chs-dim{font-size:.62rem;color:var(--text2);white-space:nowrap}
 .chs-dim strong{font-weight:700;margin-left:2px}
 .ch-date{flex-shrink:0;display:flex;flex-direction:column;align-items:flex-end;gap:2px;
-  padding-left:16px;border-left:1px solid #1e2740}
-.rxn-sep{border-top:1px solid #1e2740;margin:2px 0}
-.earns-lbl{font-size:.56rem;text-transform:uppercase;letter-spacing:.09em;color:#475569}
-.earns-val{font-size:.82rem;font-weight:700;color:#e2e8f0;font-family:ui-monospace,monospace}
+  padding-left:16px;border-left:1px solid var(--border)}
+.rxn-sep{border-top:1px solid var(--border);margin:2px 0}
+.earns-lbl{font-size:.56rem;text-transform:uppercase;letter-spacing:.09em;color:var(--text2)}
+.earns-val{font-size:.82rem;font-weight:700;color:var(--text1);font-family:ui-monospace,monospace}
 
-/* ── Card meta: fundamentals pills + broker badges ── */
+/* ── Card meta ── */
 .card-meta{
   padding:6px 20px;display:flex;align-items:center;gap:5px;flex-wrap:wrap;
-  border-bottom:1px solid #1e2740;background:rgba(0,0,0,.18)
+  border-bottom:1px solid var(--border);background:var(--meta-bg)
 }
 .meta-pill{display:flex;align-items:center;gap:4px;padding:3px 8px;border-radius:5px;
-  background:rgba(30,39,64,.4);border:1px solid #1e2740}
-.mp-key{font-size:.55rem;text-transform:uppercase;letter-spacing:.06em;color:#475569;white-space:nowrap}
-.mp-val{font-size:.7rem;font-weight:600;color:#cbd5e1;font-family:ui-monospace,monospace}
-.mp-na{color:#334155!important;font-style:italic;font-weight:400!important}
-.meta-sep{width:1px;height:16px;background:#1e2740;flex-shrink:0;margin:0 3px}
+  background:var(--pill-bg);border:1px solid var(--border)}
+.mp-key{font-size:.55rem;text-transform:uppercase;letter-spacing:.06em;color:var(--text2);white-space:nowrap}
+.mp-val{font-size:.7rem;font-weight:600;color:var(--text1);font-family:ui-monospace,monospace}
+.mp-na{color:var(--text4)!important;font-style:italic;font-weight:400!important}
+.meta-sep{width:1px;height:16px;background:var(--border);flex-shrink:0;margin:0 3px}
 .broker-pill{display:flex;align-items:center;gap:3px;padding:3px 8px;
-  border-radius:5px;border:1px solid #1e2740;background:rgba(30,39,64,.3)}
+  border-radius:5px;border:1px solid var(--border);background:var(--broker-bg)}
 .bp-name{font-size:.55rem;font-weight:700;text-transform:uppercase;letter-spacing:.06em;
-  color:#64748b;margin-right:3px;white-space:nowrap}
+  color:var(--text2);margin-right:3px;white-space:nowrap}
 .av{padding:1px 5px;border-radius:3px;font-size:.57rem;font-weight:700;white-space:nowrap}
 .av-y{background:rgba(16,185,129,.12);color:#10b981;border:1px solid rgba(16,185,129,.3)}
-.av-n{background:rgba(30,39,64,.4);color:#475569;border:1px solid #1e2740}
+.av-n{background:var(--pill-bg);color:var(--text2);border:1px solid var(--border)}
 
 /* ── Card body: 3-column grid ── */
 .card-body{display:grid;grid-template-columns:280px 280px 1fr}
@@ -1255,75 +1286,75 @@ main{padding:16px 32px 0}
 @media(max-width:680px){.card-body{grid-template-columns:1fr}}
 
 .col-reactions{
-  padding:14px 20px;border-right:1px solid #1e2740;
-  display:flex;flex-direction:column;gap:10px
+  padding:16px 20px;border-right:1px solid var(--border);
+  background:var(--surface);display:flex;flex-direction:column;gap:10px
 }
-.section-label{font-size:.58rem;text-transform:uppercase;letter-spacing:.09em;color:#475569;font-weight:600}
+.section-label{font-size:.58rem;text-transform:uppercase;letter-spacing:.09em;color:var(--text2);font-weight:600}
 .mid-stats{display:flex;gap:28px;align-items:flex-start;flex-wrap:wrap}
 .stat-item{display:flex;flex-direction:column;gap:2px}
-.stat-lbl{font-size:.6rem;text-transform:uppercase;letter-spacing:.07em;color:#475569;font-weight:600}
+.stat-lbl{font-size:.6rem;text-transform:uppercase;letter-spacing:.07em;color:var(--text2);font-weight:600}
 .stat-val{font-size:1.1rem;font-weight:700;font-family:ui-monospace,monospace}
 .pos{color:#10b981}.neg{color:#ef4444}
-.rxn-sep{border-top:1px solid #1e2740;margin:2px 0}
+.rxn-sep{border-top:1px solid var(--border);margin:2px 0}
 .breakdown{display:flex;flex-direction:column;gap:8px}
 .bk-row{display:flex;align-items:center;gap:9px;font-size:.63rem}
-.bk-lbl{width:76px;color:#64748b;flex-shrink:0}
-.bk-track{flex:1;height:4px;background:#1e2740;border-radius:2px;overflow:hidden}
+.bk-lbl{width:76px;color:var(--text2);flex-shrink:0}
+.bk-track{flex:1;height:4px;background:var(--border);border-radius:2px;overflow:hidden}
 .bk-fill{height:100%;border-radius:2px}
-.bk-val{width:34px;text-align:right;color:#94a3b8;font-family:ui-monospace,monospace;font-weight:600}
+.bk-val{width:34px;text-align:right;color:var(--text3);font-family:ui-monospace,monospace;font-weight:600}
 
 /* ── Chart column ── */
-.col-chart{display:flex;flex-direction:column;background:#09101f}
+.col-chart{display:flex;flex-direction:column;background:var(--chart-bg)}
 
 /* ── Score column ── */
-.col-score{padding:16px 18px;display:flex;flex-direction:column;gap:14px;border-right:1px solid #1e2740}
+.col-score{padding:16px 20px;background:var(--surface);display:flex;flex-direction:column;gap:14px;border-right:1px solid var(--border)}
 .score-top{display:flex;align-items:flex-start;gap:14px}
 .sc-num-block{display:flex;flex-direction:column;align-items:flex-start;flex-shrink:0}
 .sc-num{font-size:3.75rem;font-weight:900;line-height:1;font-variant-numeric:tabular-nums}
-.sc-max-lbl{font-size:.65rem;color:#475569;margin-top:4px;font-weight:500;letter-spacing:.04em}
+.sc-max-lbl{font-size:.65rem;color:var(--text2);margin-top:4px;font-weight:500;letter-spacing:.04em}
 .sc-badges{display:flex;flex-direction:column;gap:5px;padding-top:5px}
 .sc-badge{padding:3px 8px;border-radius:5px;font-size:.63rem;font-weight:700;white-space:nowrap;font-family:ui-monospace,monospace}
 .chart-controls{
   display:flex;justify-content:space-between;align-items:center;
-  padding:8px 14px 7px;flex-shrink:0;border-bottom:1px solid #1e2740
+  padding:8px 14px 7px;flex-shrink:0;border-bottom:1px solid var(--border)
 }
 .horizon-btns{display:flex;gap:3px}
 .hb{padding:3px 10px;border-radius:5px;font-size:.67rem;font-weight:600;cursor:pointer;
-  border:1px solid #1e2740;background:transparent;color:#64748b;transition:all .12s}
-.hb:hover{border-color:#334155;color:#94a3b8}
-.hb.active{background:#1e3a5f;border-color:#3b82f6;color:#60a5fa}
+  border:1px solid var(--border);background:transparent;color:var(--text2);transition:all .12s}
+.hb:hover{border-color:var(--border2);color:var(--text2)}
+.hb.active{background:var(--btn-active-bg);border-color:var(--btn-active-border);color:var(--btn-active-color)}
 .tip-display{font-size:.75rem;font-family:ui-monospace,monospace;min-height:18px;display:flex;gap:10px}
-.tip-price{font-weight:700;color:#e2e8f0}
-.tip-date{color:#475569}
+.tip-price{font-weight:700;color:var(--text1)}
+.tip-date{color:var(--text2)}
 .price-canvas{width:100%;flex:1;height:0;min-height:190px;display:block;cursor:crosshair}
 
 /* footer */
-footer{text-align:center;padding:28px 0 8px;color:#334155;font-size:.75rem}
+footer{text-align:center;padding:28px 0 8px;color:var(--text3);font-size:.75rem}
 
 /* ── Score info button + modal ── */
-.info-btn{background:none;border:none;cursor:pointer;color:#334155;font-size:.85rem;
+.info-btn{background:none;border:none;cursor:pointer;color:var(--text3);font-size:.85rem;
   line-height:1;padding:2px 6px;border-radius:4px;transition:color .12s;flex-shrink:0}
-.info-btn:hover{color:#60a5fa}
+.info-btn:hover{color:var(--score-blue)}
 .sc-col-header{display:flex;align-items:center;justify-content:space-between;margin-bottom:2px}
-.sc-col-lbl{font-size:.58rem;text-transform:uppercase;letter-spacing:.09em;color:#475569;font-weight:600}
+.sc-col-lbl{font-size:.58rem;text-transform:uppercase;letter-spacing:.09em;color:var(--text2);font-weight:600}
 .modal-backdrop{position:fixed;inset:0;background:rgba(0,0,0,.72);
   backdrop-filter:blur(5px);-webkit-backdrop-filter:blur(5px);
   z-index:600;display:flex;align-items:center;justify-content:center;
   opacity:0;pointer-events:none;transition:opacity .18s}
 .modal-backdrop.open{opacity:1;pointer-events:all}
-.modal-box{background:#0f1629;border:1px solid #1e2740;border-radius:14px;
+.modal-box{background:var(--modal-bg);border:1px solid var(--border);border-radius:14px;
   padding:28px 32px 24px;max-width:500px;width:90%;position:relative;
-  transform:translateY(10px);transition:transform .18s}
+  transform:translateY(10px);transition:transform .18s,background .2s}
 .modal-backdrop.open .modal-box{transform:translateY(0)}
-.modal-title{font-size:1rem;font-weight:800;color:#f1f5f9;margin-bottom:20px}
+.modal-title{font-size:1rem;font-weight:800;color:var(--text1);margin-bottom:20px}
 .modal-close{position:absolute;top:14px;right:16px;background:none;border:none;
-  color:#475569;font-size:1rem;cursor:pointer;padding:4px 8px;border-radius:5px}
-.modal-close:hover{background:#1e2740;color:#94a3b8}
+  color:var(--text2);font-size:1rem;cursor:pointer;padding:4px 8px;border-radius:5px}
+.modal-close:hover{background:var(--border);color:var(--text1)}
 .modal-dim{margin-bottom:16px}
 .modal-dim-title{font-size:.7rem;font-weight:700;text-transform:uppercase;
   letter-spacing:.08em;margin-bottom:5px}
-.modal-dim-body{font-size:.8rem;color:#94a3b8;line-height:1.55}
-.modal-footer{font-size:.72rem;color:#64748b;border-top:1px solid #1e2740;
+.modal-dim-body{font-size:.8rem;color:var(--text2);line-height:1.55}
+.modal-footer{font-size:.72rem;color:var(--text2);border-top:1px solid var(--border);
   padding-top:14px;margin-top:4px;line-height:1.6}
 """
 
@@ -1332,36 +1363,45 @@ def _reaction_bars_svg(individual_reactions):
     """
     Build an inline SVG bar chart for up to 4 quarterly reactions.
     Positive bars are green, negative are red, both grow from a centre zero-line.
+    Each bar shows the % label above/below and the earnings month+year underneath.
     """
-    W, H      = 280, 270
-    mid_y     = 126         # y-coordinate of the zero line
-    max_bar_h = 108         # max bar height above/below the zero line
+    W         = 280
+    mid_y     = 138         # y-coordinate of the zero line
+    max_bar_h = 120         # max bar height above/below the zero line
     bar_w     = 50
     slot_w    = W / 4
 
+    # Only reserve space below mid_y if there are actually negative bars.
+    # This eliminates the large gap on all-positive charts.
     vals    = [r["reaction_pct"] for r in individual_reactions]
     max_abs = max((abs(v) for v in vals), default=0) or 1
+    has_neg = any(v < 0 for v in vals)
+    below   = (max_bar_h + 4) if has_neg else 4   # px below zero line for bars
+    H       = mid_y + below + 36                  # 36 = Q label + date label + margin
+    q_lbl_y = H - 22
+    dt_lbl_y = H - 7
 
     parts = []
 
     # Zero line
     parts.append(
         f'<line x1="4" y1="{mid_y}" x2="{W - 4}" y2="{mid_y}" '
-        f'stroke="#1e2740" stroke-width="1.5"/>'
+        f'stroke="#94a3b8" stroke-width="1.5" stroke-dasharray="3 3"/>'
     )
 
     for i in range(4):
         cx = slot_w * i + slot_w / 2
         bx = cx - bar_w / 2
 
-        # Q label at the bottom
+        # Q label
         parts.append(
-            f'<text x="{cx:.1f}" y="{H - 2}" text-anchor="middle" '
-            f'fill="#475569" font-size="13" font-family="system-ui,sans-serif">Q{i + 1}</text>'
+            f'<text x="{cx:.1f}" y="{q_lbl_y}" text-anchor="middle" '
+            f'fill="#475569" font-size="12" font-family="system-ui,sans-serif">Q{i + 1}</text>'
         )
 
         if i < len(individual_reactions):
-            v      = individual_reactions[i]["reaction_pct"]
+            rxn    = individual_reactions[i]
+            v      = rxn["reaction_pct"]
             h      = max(4.0, abs(v) / max_abs * max_bar_h)
             color  = "#10b981" if v >= 0 else "#ef4444"
             rect_y = (mid_y - h) if v >= 0 else mid_y
@@ -1373,17 +1413,29 @@ def _reaction_bars_svg(individual_reactions):
 
             sign    = "+" if v >= 0 else ""
             val_str = _html.escape(f"{sign}{v:.1f}%")
-            txt_y   = max(16.0, rect_y - 7) if v >= 0 else min(H - 18.0, rect_y + h + 16)
+            txt_y   = max(16.0, rect_y - 7) if v >= 0 else min(float(q_lbl_y - 8), rect_y + h + 16)
             parts.append(
                 f'<text x="{cx:.1f}" y="{txt_y:.1f}" text-anchor="middle" '
                 f'fill="{color}" font-size="13" font-weight="700" '
                 f'font-family="ui-monospace,monospace">{val_str}</text>'
             )
+
+            # Earnings month+year label below Q label
+            raw_date = rxn.get("date", "")
+            try:
+                month_yr = datetime.strptime(raw_date, "%Y-%m-%d").strftime("%b %Y")
+            except (ValueError, TypeError):
+                month_yr = ""
+            if month_yr:
+                parts.append(
+                    f'<text x="{cx:.1f}" y="{dt_lbl_y}" text-anchor="middle" '
+                    f'fill="#94a3b8" font-size="10" font-family="system-ui,sans-serif">{month_yr}</text>'
+                )
         else:
             # Greyed-out placeholder for a missing quarter
             parts.append(
                 f'<rect x="{bx:.1f}" y="{mid_y - 2:.1f}" width="{bar_w}" '
-                f'height="4" fill="#1e2740" rx="2"/>'
+                f'height="4" fill="#94a3b8" opacity=".4" rx="2"/>'
             )
 
     return (
@@ -1717,23 +1769,28 @@ def generate_html_report(results, meta):
     for (var k=0;k<n;k++){if(prices[k]<lo)lo=prices[k];if(prices[k]>hi)hi=prices[k];}
     var rng=hi-lo||hi*0.002, yLo=lo-rng*.06, yHi=hi+rng*.06, yR=yHi-yLo;
     var isUp=prices[n-1]>=prices[0], col=isUp?'#10b981':'#ef4444';
+    var isDark=document.body.classList.contains('dark');
+    var gridCol=isDark?'#1a2638':'#e2e8f0';
+    var labelCol=isDark?'#4b5a6e':'#94a3b8';
+    var crossCol=isDark?'#3d5068':'#cbd5e1';
+    var dotStroke=isDark?'#0a0e1a':'#ffffff';
     function sx(i){return pL+(i/(n-1))*cW;}
     function sy(p){return pT+(1-(p-yLo)/yR)*cH;}
 
     /* grid */
-    ctx.strokeStyle='#1a2638'; ctx.lineWidth=1; ctx.setLineDash([2,5]);
+    ctx.strokeStyle=gridCol; ctx.lineWidth=1; ctx.setLineDash([2,5]);
     for(var gi=0;gi<=5;gi++){var gy=pT+(gi/5)*cH;ctx.beginPath();ctx.moveTo(pL,gy);ctx.lineTo(pL+cW,gy);ctx.stroke();}
     ctx.setLineDash([]);
 
     /* Y labels */
-    ctx.fillStyle='#4b5a6e'; ctx.font='10px ui-monospace,monospace'; ctx.textAlign='right';
+    ctx.fillStyle=labelCol; ctx.font='10px ui-monospace,monospace'; ctx.textAlign='right';
     for(var yi=0;yi<=5;yi++){
       var lp=yHi-(yi/5)*yR, ly=pT+(yi/5)*cH;
       ctx.fillText('$'+lp.toFixed(2),pL-5,ly+3.5);
     }
 
     /* X labels */
-    var nX=Math.min(6,n); ctx.textAlign='center'; ctx.fillStyle='#4b5a6e';
+    var nX=Math.min(6,n); ctx.textAlign='center'; ctx.fillStyle=labelCol;
     ctx.font='10px system-ui,sans-serif';
     for(var xi=0;xi<nX;xi++){
       var di=Math.round(xi/(nX-1)*(n-1)), dx=sx(di);
@@ -1763,12 +1820,12 @@ def generate_html_report(results, meta):
     /* crosshair + hover dot */
     if (hoverIdx !== null && hoverIdx >= 0 && hoverIdx < n) {
       var hx=sx(hoverIdx), hy=sy(prices[hoverIdx]);
-      ctx.strokeStyle='#3d5068'; ctx.lineWidth=1; ctx.setLineDash([3,4]);
+      ctx.strokeStyle=crossCol; ctx.lineWidth=1; ctx.setLineDash([3,4]);
       ctx.beginPath(); ctx.moveTo(hx,pT); ctx.lineTo(hx,pT+cH); ctx.stroke();
       ctx.setLineDash([]);
       ctx.beginPath(); ctx.arc(hx,hy,5,0,Math.PI*2);
       ctx.fillStyle=col; ctx.fill();
-      ctx.strokeStyle='#0a0e1a'; ctx.lineWidth=1.5; ctx.stroke();
+      ctx.strokeStyle=dotStroke; ctx.lineWidth=1.5; ctx.stroke();
     }
     ctx.restore();
   }
@@ -1823,6 +1880,21 @@ def generate_html_report(results, meta):
   }
 
   document.querySelectorAll('.chart-full').forEach(initChart);
+
+  // Theme toggle
+  var themeBtn = document.getElementById('themeToggle');
+  function applyTheme(dark) {
+    document.body.classList.toggle('dark', dark);
+    themeBtn.textContent = dark ? 'Light mode' : 'Dark mode';
+    // Redraw charts with new palette
+    document.querySelectorAll('.chart-full').forEach(initChart);
+  }
+  if (localStorage.getItem('theme') === 'dark') applyTheme(true);
+  themeBtn.addEventListener('click', function() {
+    var isDark = !document.body.classList.contains('dark');
+    localStorage.setItem('theme', isDark ? 'dark' : 'light');
+    applyTheme(isDark);
+  });
 
   // Score info modal
   var modal = document.getElementById('scoreModal');
@@ -1920,6 +1992,7 @@ def generate_html_report(results, meta):
         'placeholder="Search ticker…" autocomplete="off">'
         '</div>\n'
 
+        '<button class="theme-btn" id="themeToggle">Dark mode</button>\n'
         '<div class="res-count" id="resCount">—</div>\n'
         '</div>\n</div>\n'
 
@@ -1997,86 +2070,86 @@ def _build_email_html(results: list) -> str:
     n_short    = total - n_long
     top5       = sorted(results, key=lambda r: r["score"], reverse=True)[:5]
 
-    signal_color = {"LONG": "#10b981", "SHORT": "#ef4444"}
+    signal_color = {"LONG": "#059669", "SHORT": "#dc2626"}
 
     rows = ""
     for r in top5:
         sc    = _score_color(r["score"])
         sig   = r["signal"]
-        color = signal_color.get(sig, "#94a3b8")
+        color = signal_color.get(sig, "#64748b")
         rows += (
             f'<tr>'
-            f'<td style="padding:10px 14px;font-weight:700;font-size:15px;color:#f1f5f9">'
+            f'<td style="padding:10px 14px;font-weight:700;font-size:15px;color:#1e293b">'
             f'{_html.escape(r["ticker"])}</td>'
             f'<td style="padding:10px 14px">'
-            f'<span style="background:{color}22;color:{color};border:1px solid {color}55;'
+            f'<span style="background:{color}18;color:{color};border:1px solid {color}44;'
             f'padding:2px 9px;border-radius:5px;font-size:12px;font-weight:700">{sig}</span></td>'
             f'<td style="padding:10px 14px;font-weight:800;font-size:15px;color:{sc}">'
-            f'{r["score"]}<span style="font-size:11px;color:#64748b;font-weight:400"> /100</span></td>'
-            f'<td style="padding:10px 14px;color:#94a3b8;font-size:13px;'
+            f'{r["score"]}<span style="font-size:11px;color:#94a3b8;font-weight:400"> /100</span></td>'
+            f'<td style="padding:10px 14px;color:#64748b;font-size:13px;'
             f'font-family:ui-monospace,monospace">{r["earnings_date"]}</td>'
             f'</tr>'
             f'<tr><td colspan="4" style="padding:0 14px">'
-            f'<div style="height:1px;background:#1e2740"></div></td></tr>'
+            f'<div style="height:1px;background:#e2e8f0"></div></td></tr>'
         )
 
     return f"""<!DOCTYPE html>
 <html lang="en">
 <head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1"></head>
-<body style="margin:0;padding:0;background:#08090f;font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif">
-<table width="100%" cellpadding="0" cellspacing="0" style="background:#08090f;padding:32px 0">
+<body style="margin:0;padding:0;background:#f8fafc;font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif">
+<table width="100%" cellpadding="0" cellspacing="0" style="background:#f8fafc;padding:32px 0">
   <tr><td align="center">
     <table width="560" cellpadding="0" cellspacing="0" style="max-width:560px;width:100%">
 
       <!-- Header -->
-      <tr><td style="background:linear-gradient(135deg,#0d1525 0%,#111827 100%);
-        border:1px solid #1e2740;border-radius:12px 12px 0 0;padding:28px 32px 24px">
+      <tr><td style="background:#ffffff;
+        border:1px solid #e2e8f0;border-radius:12px 12px 0 0;padding:28px 32px 24px">
         <div style="font-size:11px;text-transform:uppercase;letter-spacing:.1em;
-          color:#475569;font-weight:600;margin-bottom:8px">Earnings Strategy Scanner</div>
-        <div style="font-size:22px;font-weight:800;color:#f1f5f9;line-height:1.2;margin-bottom:4px">
+          color:#94a3b8;font-weight:600;margin-bottom:8px">Earnings Strategy Scanner</div>
+        <div style="font-size:22px;font-weight:800;color:#0f172a;line-height:1.2;margin-bottom:4px">
           This week's scan found
-          <span style="color:#60a5fa">{total} signal{'s' if total != 1 else ''}</span>
+          <span style="color:#2563eb">{total} signal{'s' if total != 1 else ''}</span>
         </div>
         <div style="font-size:13px;color:#64748b;margin-top:6px">
-          <span style="color:#10b981;font-weight:700">{n_long} LONG</span>
+          <span style="color:#059669;font-weight:700">{n_long} LONG</span>
           &nbsp;·&nbsp;
-          <span style="color:#ef4444;font-weight:700">{n_short} SHORT</span>
+          <span style="color:#dc2626;font-weight:700">{n_short} SHORT</span>
           &nbsp;·&nbsp; {today}
         </div>
       </td></tr>
 
       <!-- Top 5 table -->
-      <tr><td style="background:#0f1629;border-left:1px solid #1e2740;
-        border-right:1px solid #1e2740;padding:0">
+      <tr><td style="background:#ffffff;border-left:1px solid #e2e8f0;
+        border-right:1px solid #e2e8f0;padding:0">
         <div style="padding:16px 14px 8px;font-size:10px;text-transform:uppercase;
-          letter-spacing:.09em;color:#475569;font-weight:600">Top signals by score</div>
+          letter-spacing:.09em;color:#94a3b8;font-weight:600">Top signals by score</div>
         <table width="100%" cellpadding="0" cellspacing="0">
-          <tr style="background:#0a0e1a">
+          <tr style="background:#f8fafc">
             <th style="padding:7px 14px;text-align:left;font-size:10px;text-transform:uppercase;
-              letter-spacing:.07em;color:#475569;font-weight:600">Ticker</th>
+              letter-spacing:.07em;color:#94a3b8;font-weight:600">Ticker</th>
             <th style="padding:7px 14px;text-align:left;font-size:10px;text-transform:uppercase;
-              letter-spacing:.07em;color:#475569;font-weight:600">Signal</th>
+              letter-spacing:.07em;color:#94a3b8;font-weight:600">Signal</th>
             <th style="padding:7px 14px;text-align:left;font-size:10px;text-transform:uppercase;
-              letter-spacing:.07em;color:#475569;font-weight:600">Score</th>
+              letter-spacing:.07em;color:#94a3b8;font-weight:600">Score</th>
             <th style="padding:7px 14px;text-align:left;font-size:10px;text-transform:uppercase;
-              letter-spacing:.07em;color:#475569;font-weight:600">Earnings</th>
+              letter-spacing:.07em;color:#94a3b8;font-weight:600">Earnings</th>
           </tr>
           <tr><td colspan="4" style="padding:0 14px">
-            <div style="height:1px;background:#1e2740"></div></td></tr>
+            <div style="height:1px;background:#e2e8f0"></div></td></tr>
           {rows}
         </table>
       </td></tr>
 
       <!-- CTA button -->
-      <tr><td style="background:#0f1629;border:1px solid #1e2740;border-top:none;
+      <tr><td style="background:#ffffff;border:1px solid #e2e8f0;border-top:none;
         border-radius:0 0 12px 12px;padding:24px 32px 28px;text-align:center">
         <a href="{_REPORT_URL}"
-          style="display:inline-block;background:#1e3a5f;color:#60a5fa;
-          border:1px solid #3b82f6;border-radius:8px;padding:12px 28px;
+          style="display:inline-block;background:#2563eb;color:#ffffff;
+          border:1px solid #1d4ed8;border-radius:8px;padding:12px 28px;
           font-size:14px;font-weight:700;text-decoration:none;letter-spacing:.01em">
           View Full Report →
         </a>
-        <div style="margin-top:14px;font-size:11px;color:#334155">
+        <div style="margin-top:14px;font-size:11px;color:#94a3b8">
           Charts, price data, broker availability and full score breakdowns in the report.
         </div>
       </td></tr>
