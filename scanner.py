@@ -16,6 +16,7 @@ import os
 import smtplib
 import ssl
 import threading
+import time
 import warnings
 import webbrowser
 from concurrent.futures import ThreadPoolExecutor, as_completed
@@ -919,11 +920,22 @@ def _build_chart_data(ticker_obj):
         return ""
 
 
+_META_RETRIES     = 3      # Yahoo's quoteSummary endpoint frequently rate-limits
+_META_RETRY_DELAY = 1.5    # seconds; doubled on each retry (1.5s, 3s, 6s)
+
+
 def _fetch_ticker_meta(ticker):
     """
     Single ticker.info call that returns company name, a one-sentence business
     description, and all fundamental metrics needed for the HTML report.
     Every field falls back gracefully so callers never see an exception.
+
+    Yahoo's quoteSummary API (used for .info) frequently rate-limits or
+    degrades under load — instead of raising, yfinance often just returns a
+    near-empty dict (e.g. {"trailingPegRatio": None}) with no company name
+    and no pricing data. Left unchecked, that produced blank-looking cards
+    (ticker symbol only, "N/A" everywhere) in the report. Retry a few times
+    with backoff before giving up, since the failure is usually transient.
     """
     _NA = "N/A"
     _empty_funds = {
@@ -932,64 +944,81 @@ def _fetch_ticker_meta(ticker):
         "market_cap": _NA, "week52_high": _NA, "week52_low": _NA,
     }
 
-    try:
-        stock = yf.Ticker(ticker)    # one object; reused for both info and history
-        info  = stock.info
+    for attempt in range(_META_RETRIES):
+        try:
+            stock = yf.Ticker(ticker)    # one object; reused for both info and history
+            info  = stock.info
 
-        # ── Company name ──────────────────────────────────────────────────
-        name = info.get("longName") or info.get("shortName") or ticker
+            # Yahoo returning a real quote always includes at least one of
+            # these. Their absence means we got a degraded/rate-limited
+            # response, not a genuinely delisted ticker — worth retrying.
+            has_name  = bool(info.get("longName") or info.get("shortName"))
+            has_price = info.get("currentPrice") is not None or info.get("regularMarketPrice") is not None
+            if not (has_name or has_price) and attempt < _META_RETRIES - 1:
+                time.sleep(_META_RETRY_DELAY * (2 ** attempt))
+                continue
 
-        # ── One-sentence business description ─────────────────────────────
-        summary = info.get("longBusinessSummary", "") or ""
-        if summary:
-            dot = summary.find(". ")
-            description = summary[:dot + 1] if dot >= 0 else summary[:300]
-        else:
-            description = ""
+            # ── Company name ──────────────────────────────────────────────────
+            name = info.get("longName") or info.get("shortName") or ticker
 
-        # ── 1-year price history for the interactive canvas chart ────────
-        chart_data = _build_chart_data(stock)
+            # ── One-sentence business description ─────────────────────────────
+            summary = info.get("longBusinessSummary", "") or ""
+            if summary:
+                dot = summary.find(". ")
+                description = summary[:dot + 1] if dot >= 0 else summary[:300]
+            else:
+                description = ""
 
-        # ── Metric formatters ─────────────────────────────────────────────
-        def _pe(v):
-            return f"{v:.1f}×"          if v is not None else _NA
+            # ── 1-year price history for the interactive canvas chart ────────
+            chart_data = _build_chart_data(stock)
 
-        def _eps(v):
-            return f"${v:.2f}"          if v is not None else _NA
+            # ── Metric formatters ─────────────────────────────────────────────
+            def _pe(v):
+                return f"{v:.1f}×"          if v is not None else _NA
 
-        def _pct(v):
-            return f"{v * 100:+.1f}%"   if v is not None else _NA
+            def _eps(v):
+                return f"${v:.2f}"          if v is not None else _NA
 
-        def _mcap(v):
-            if v is None:    return _NA
-            if v >= 1e12:    return f"${v / 1e12:.2f}T"
-            if v >= 1e9:     return f"${v / 1e9:.1f}B"
-            if v >= 1e6:     return f"${v / 1e6:.0f}M"
-            return f"${v:,.0f}"
+            def _pct(v):
+                return f"{v * 100:+.1f}%"   if v is not None else _NA
 
-        def _price(v):
-            return f"${v:,.2f}"         if v is not None else _NA
+            def _mcap(v):
+                if v is None:    return _NA
+                if v >= 1e12:    return f"${v / 1e12:.2f}T"
+                if v >= 1e9:     return f"${v / 1e9:.1f}B"
+                if v >= 1e6:     return f"${v / 1e6:.0f}M"
+                return f"${v:,.0f}"
 
-        mcap_raw = info.get("marketCap", 0) or 0
-        return {
-            "company_name": name,
-            "description":  description,
-            "chart_data":   chart_data,
-            "fundamentals": {
-                "pe_trailing":      _pe   (info.get("trailingPE")),
-                "pe_forward":       _pe   (info.get("forwardPE")),
-                "eps_ttm":          _eps  (info.get("trailingEps")),
-                "revenue_growth":   _pct  (info.get("revenueGrowth")),
-                "earnings_growth":  _pct  (info.get("earningsGrowth")),
-                "market_cap":       _mcap (info.get("marketCap")),
-                "week52_high":      _price(info.get("fiftyTwoWeekHigh")),
-                "week52_low":       _price(info.get("fiftyTwoWeekLow")),
-                "_market_cap_raw":  mcap_raw,
-            },
-        }
-    except Exception:
-        return {"company_name": ticker, "description": "", "chart_data": "",
-                "fundamentals": _empty_funds}
+            def _price(v):
+                return f"${v:,.2f}"         if v is not None else _NA
+
+            mcap_raw = info.get("marketCap", 0) or 0
+            return {
+                "company_name": name,
+                "description":  description,
+                "chart_data":   chart_data,
+                "fundamentals": {
+                    "pe_trailing":      _pe   (info.get("trailingPE")),
+                    "pe_forward":       _pe   (info.get("forwardPE")),
+                    "eps_ttm":          _eps  (info.get("trailingEps")),
+                    "revenue_growth":   _pct  (info.get("revenueGrowth")),
+                    "earnings_growth":  _pct  (info.get("earningsGrowth")),
+                    "market_cap":       _mcap (info.get("marketCap")),
+                    "week52_high":      _price(info.get("fiftyTwoWeekHigh")),
+                    "week52_low":       _price(info.get("fiftyTwoWeekLow")),
+                    "_market_cap_raw":  mcap_raw,
+                },
+            }
+        except Exception:
+            if attempt < _META_RETRIES - 1:
+                time.sleep(_META_RETRY_DELAY * (2 ** attempt))
+                continue
+            return {"company_name": ticker, "description": "", "chart_data": "",
+                    "fundamentals": _empty_funds}
+
+    # All retries exhausted with a degraded (but non-raising) response
+    return {"company_name": ticker, "description": "", "chart_data": "",
+            "fundamentals": _empty_funds}
 
 _TR_STOCK_MCAP = 1_000_000_000    # $1B — Trade Republic stock coverage
 _TR_DERIV_MCAP = 3_000_000_000    # $3B — Trade Republic derivatives
@@ -2307,6 +2336,25 @@ def main():
             r["fundamentals"] = meta["fundamentals"]
             mcap_raw = meta["fundamentals"].get("_market_cap_raw", 0)
             r["broker_availability"] = _broker_availability(r["ticker"], mcap_raw)
+
+        # Drop finalists _fetch_ticker_meta couldn't resolve after all retries
+        # (no company name, no price chart, no fundamentals — Yahoo's
+        # quoteSummary endpoint returned nothing usable). A row like that
+        # tells the reader nothing and just looks like a broken/invalid
+        # ticker, so it's better excluded from the report than shown blank.
+        valid, dropped = [], []
+        for r in results:
+            enriched = "fundamentals" in r
+            has_name  = enriched and r["company_name"] != r["ticker"]
+            has_chart = enriched and bool(r["chart_data"])
+            has_funds = enriched and any(v != "N/A" for k, v in r["fundamentals"].items() if k != "_market_cap_raw")
+            if enriched and not (has_name or has_chart or has_funds):
+                dropped.append(r["ticker"])
+            else:
+                valid.append(r)
+        if dropped:
+            print(f"  ⚠  Dropped {len(dropped)} ticker(s) with no resolvable data: {', '.join(dropped)}")
+        results = valid
 
     # 6. Display formatted results table
     print_results_table(results)
