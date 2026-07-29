@@ -2357,7 +2357,7 @@ def main():
     print("=" * 62)
     print("  EARNINGS TRADING STRATEGY SCANNER")
     print(f"  Run date : {datetime.now().strftime('%d-%m-%Y %H:%M')}")
-    print(f"  Window   : next 20 calendar days")
+    print(f"  Window   : next 8 calendar days")
     print(f"  History  : last 4 earnings reports per stock")
     print(f"  Filter   : score >= 60 and signal != NO TRADE")
     print("=" * 62)
@@ -2365,8 +2365,8 @@ def main():
     # 1. Build the universe of tickers to check
     tickers = get_tickers()
 
-    # 2. Find tickers with earnings in the next 7 days
-    upcoming = get_upcoming_earnings(tickers, days_ahead=20)
+    # 2. Find tickers with earnings in the next 8 days
+    upcoming = get_upcoming_earnings(tickers, days_ahead=8)
 
     if not upcoming:
         print("No upcoming earnings found in the scan window. Nothing to analyse.")
@@ -2569,7 +2569,7 @@ def main():
     run_date_str = datetime.now().strftime("%d-%m-%Y %H:%M")
     output = {
         "generated_at":        datetime.now().isoformat(),
-        "scan_window_days":    20,
+        "scan_window_days":    8,
         "min_score_threshold": 60,
         "total_upcoming":      len(upcoming),
         "total_signals":       len(results),
@@ -2587,7 +2587,7 @@ def main():
         meta={
             "run_date":       run_date_str,
             "total_scanned":  len(upcoming),
-            "scan_window_days": 20,
+            "scan_window_days": 8,
         },
         all_earnings=all_earnings,
     )
