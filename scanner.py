@@ -924,6 +924,40 @@ _META_RETRIES     = 3      # Yahoo's quoteSummary endpoint frequently rate-limit
 _META_RETRY_DELAY = 1.5    # seconds; doubled on each retry (1.5s, 3s, 6s)
 
 
+def _fmt_market_cap(v):
+    if v is None:    return "N/A"
+    if v >= 1e12:    return f"${v / 1e12:.2f}T"
+    if v >= 1e9:     return f"${v / 1e9:.1f}B"
+    if v >= 1e6:     return f"${v / 1e6:.0f}M"
+    return f"${v:,.0f}"
+
+
+def _fetch_name_and_mcap(ticker):
+    """
+    Lightweight companion to _fetch_ticker_meta — just company name and
+    market cap, skipping the price-history chart and fundamentals calls.
+    Used for the "All Earnings" tab, which can cover far more tickers than
+    the 20 finalists _fetch_ticker_meta enriches, so keeping each call cheap
+    matters. Same retry/backoff, since the underlying .info degradation
+    mode is identical.
+    """
+    for attempt in range(_META_RETRIES):
+        try:
+            info = yf.Ticker(ticker).info
+            name = info.get("longName") or info.get("shortName")
+            mcap = info.get("marketCap")
+            if not name and mcap is None and attempt < _META_RETRIES - 1:
+                time.sleep(_META_RETRY_DELAY * (2 ** attempt))
+                continue
+            return {"company_name": name or ticker, "market_cap_raw": mcap or 0}
+        except Exception:
+            if attempt < _META_RETRIES - 1:
+                time.sleep(_META_RETRY_DELAY * (2 ** attempt))
+                continue
+            return {"company_name": ticker, "market_cap_raw": 0}
+    return {"company_name": ticker, "market_cap_raw": 0}
+
+
 def _fetch_ticker_meta(ticker):
     """
     Single ticker.info call that returns company name, a one-sentence business
@@ -982,13 +1016,6 @@ def _fetch_ticker_meta(ticker):
             def _pct(v):
                 return f"{v * 100:+.1f}%"   if v is not None else _NA
 
-            def _mcap(v):
-                if v is None:    return _NA
-                if v >= 1e12:    return f"${v / 1e12:.2f}T"
-                if v >= 1e9:     return f"${v / 1e9:.1f}B"
-                if v >= 1e6:     return f"${v / 1e6:.0f}M"
-                return f"${v:,.0f}"
-
             def _price(v):
                 return f"${v:,.2f}"         if v is not None else _NA
 
@@ -1003,7 +1030,7 @@ def _fetch_ticker_meta(ticker):
                     "eps_ttm":          _eps  (info.get("trailingEps")),
                     "revenue_growth":   _pct  (info.get("revenueGrowth")),
                     "earnings_growth":  _pct  (info.get("earningsGrowth")),
-                    "market_cap":       _mcap (info.get("marketCap")),
+                    "market_cap":       _fmt_market_cap(info.get("marketCap")),
                     "week52_high":      _price(info.get("fiftyTwoWeekHigh")),
                     "week52_low":       _price(info.get("fiftyTwoWeekLow")),
                     "_market_cap_raw":  mcap_raw,
@@ -1394,6 +1421,36 @@ footer{text-align:center;padding:28px 0 8px;color:var(--text3);font-size:.75rem}
 .modal-dim-body{font-size:.8rem;color:var(--text2);line-height:1.55}
 .modal-footer{font-size:.72rem;color:var(--text2);border-top:1px solid var(--border);
   padding-top:14px;margin-top:4px;line-height:1.6}
+
+/* ── Tab nav ── */
+.tab-nav{display:flex;gap:4px;padding:14px 32px 0;border-bottom:1px solid var(--border)}
+.tab-btn{padding:9px 16px;border:none;background:transparent;color:var(--text2);
+  font-size:.82rem;font-weight:600;cursor:pointer;border-bottom:2px solid transparent;
+  margin-bottom:-1px;transition:color .12s,border-color .12s}
+.tab-btn:hover{color:var(--text1)}
+.tab-btn.active{color:var(--score-blue);border-bottom-color:var(--score-blue)}
+.tab-panel{display:none}
+.tab-panel.active{display:block}
+
+/* ── All Earnings tab ── */
+.ae-toolbar{display:flex;align-items:center;gap:14px;padding:18px 32px;flex-wrap:wrap}
+.ae-title{font-size:1rem;font-weight:800;color:var(--text1)}
+.ae-sub{font-size:.75rem;color:var(--text2)}
+.ae-count{margin-left:auto;font-size:.7rem;color:var(--text2);
+  background:var(--surface);border:1px solid var(--border);border-radius:20px;padding:3px 12px;white-space:nowrap}
+.ae-wrap{padding:0 32px 40px}
+.ae-table{width:100%;border-collapse:collapse;background:var(--surface);
+  border:1px solid var(--border);border-radius:10px;overflow:hidden}
+.ae-table th{text-align:left;font-size:.62rem;text-transform:uppercase;letter-spacing:.08em;
+  color:var(--text2);font-weight:700;padding:10px 16px;background:var(--meta-bg);
+  border-bottom:1px solid var(--border)}
+.ae-table td{padding:10px 16px;font-size:.8rem;color:var(--text1);border-bottom:1px solid var(--border)}
+.ae-table tr:last-child td{border-bottom:none}
+.ae-table tr:hover td{background:var(--pill-bg)}
+.ae-tk{font-weight:700;font-family:ui-monospace,monospace}
+.ae-nm{color:var(--text3)}
+.ae-mc{font-family:ui-monospace,monospace;font-variant-numeric:tabular-nums}
+.ae-dt{font-family:ui-monospace,monospace;color:var(--text2)}
 """
 
 
@@ -1490,12 +1547,17 @@ def _score_color(score):
     return "#ef4444"
 
 
-def generate_html_report(results, meta):
+def generate_html_report(results, meta, all_earnings=None):
     """
     Render a self-contained HTML report for the top 20 results,
     write it to report.html, open it in the default browser, and
     return the absolute file path.
+
+    all_earnings: every ticker with earnings in the next 7 days regardless
+    of score/signal, rendered as the report's second tab (a plain sortable
+    table). Optional so existing callers/tests without it still work.
     """
+    all_earnings = all_earnings or []
     top = results[:20]
     longs  = sum(1 for r in top if r["signal"] == "LONG")
     shorts = len(top) - longs
@@ -1676,6 +1738,23 @@ def generate_html_report(results, meta):
   </div>""")
 
     cards_html = "\n".join(cards)
+
+    # ── "All Earnings" tab: plain table, every ticker due within 7 days ────
+    ae_rows = []
+    for item in all_earnings:
+        ae_ticker  = _html.escape(item["ticker"])
+        ae_company = _html.escape(item.get("company_name") or item["ticker"])
+        ae_mcap    = _html.escape(item.get("market_cap", "N/A"))
+        ae_date    = _html.escape(_fmt_date(item["earnings_date"]))
+        ae_rows.append(
+            f'<tr data-ticker="{ae_ticker.lower()}" data-company="{ae_company.lower()}">'
+            f'<td class="ae-tk">{ae_ticker}</td>'
+            f'<td class="ae-nm">{ae_company}</td>'
+            f'<td class="ae-mc">{ae_mcap}</td>'
+            f'<td class="ae-dt">{ae_date}</td>'
+            f'</tr>'
+        )
+    ae_rows_html = "\n".join(ae_rows)
 
     # ── Summary stats for the 4 metric cards ───────────────────────────────
     n_sig    = len(top)
@@ -1952,6 +2031,46 @@ def generate_html_report(results, meta):
     if (e.key === 'Escape') modal.classList.remove('open');
   });
 })();
+
+/* ── Tab nav + All Earnings search ───────────────────────────────────────── */
+(function () {
+  var tabBtns  = Array.from(document.querySelectorAll('.tab-btn'));
+  var panels   = {
+    'signals':      document.getElementById('tab-signals'),
+    'all-earnings': document.getElementById('tab-all-earnings'),
+  };
+  tabBtns.forEach(function(b) {
+    b.addEventListener('click', function() {
+      tabBtns.forEach(function(x) { x.classList.remove('active'); });
+      b.classList.add('active');
+      Object.keys(panels).forEach(function(k) {
+        panels[k].classList.toggle('active', k === b.dataset.tab);
+      });
+    });
+  });
+
+  var aeRows  = Array.from(document.querySelectorAll('#aeTable tbody tr'));
+  var aeEmpty = document.getElementById('aeEmpty');
+  var aeCount = document.getElementById('aeCount');
+
+  function aeRun(q) {
+    q = q.trim().toLowerCase();
+    var shown = 0;
+    aeRows.forEach(function(row) {
+      var match = q === '' ||
+        row.dataset.ticker.includes(q) ||
+        row.dataset.company.includes(q);
+      row.style.display = match ? '' : 'none';
+      if (match) shown++;
+    });
+    aeCount.textContent = 'Showing ' + shown + ' of ' + aeRows.length;
+    aeEmpty.style.display = shown === 0 ? 'block' : 'none';
+  }
+
+  var aeSearch = document.getElementById('aeSearch');
+  if (aeSearch) aeSearch.addEventListener('input', function(e) { aeRun(e.target.value); });
+  aeRun('');
+})();
 """
 
     # ── Assemble full page ──────────────────────────────────────────────────
@@ -1966,6 +2085,14 @@ def generate_html_report(results, meta):
         f'.page{{max-width:1440px;margin:0 auto;padding:0 0 56px}}'
         f'{_REPORT_CSS}</style>\n'
         '</head>\n<body>\n<div class="page">\n'
+
+        # ── Tab nav ──────────────────────────────────────────────────────────
+        '<nav class="tab-nav">\n'
+        '<button class="tab-btn active" data-tab="signals">Signals</button>\n'
+        '<button class="tab-btn" data-tab="all-earnings">All Earnings</button>\n'
+        '</nav>\n'
+
+        '<div id="tab-signals" class="tab-panel active">\n'
 
         # ── Hero header ────────────────────────────────────────────────────
         '<header class="hero">\n'
@@ -2042,7 +2169,29 @@ def generate_html_report(results, meta):
 
         f'<footer>Top {n_sig} by score &nbsp;·&nbsp; '
         f'Score ≥ 60 &nbsp;·&nbsp; Q1 = most recent past report</footer>\n'
+
+        '</div>\n'    # /#tab-signals
+
+        # ── All Earnings tab ─────────────────────────────────────────────────
+        '<div id="tab-all-earnings" class="tab-panel">\n'
+        '<div class="ae-toolbar">\n'
+        '<div><div class="ae-title">All Earnings — Next 7 Days</div>'
+        f'<div class="ae-sub">{len(all_earnings)} compan{"y" if len(all_earnings) == 1 else "ies"}'
+        ' · sorted by market cap · every ticker, regardless of score or signal</div></div>\n'
+        '<input class="search-box" id="aeSearch" type="text" '
+        'placeholder="Search ticker or company…" autocomplete="off">\n'
+        '<div class="ae-count" id="aeCount">—</div>\n'
         '</div>\n'
+        '<div class="ae-wrap">\n'
+        '<table class="ae-table" id="aeTable">\n'
+        '<thead><tr><th>Ticker</th><th>Company Name</th><th>Market Cap</th><th>Earnings Date</th></tr></thead>\n'
+        f'<tbody>\n{ae_rows_html}\n</tbody>\n'
+        '</table>\n'
+        '<div class="empty-state" id="aeEmpty" style="display:none">No companies match your search.</div>\n'
+        '</div>\n'
+        '</div>\n'    # /#tab-all-earnings
+
+        '</div>\n'    # /.page
 
         # ── Score info modal (single instance, shared across all cards) ───────
         '<div class="modal-backdrop" id="scoreModal">'
@@ -2368,6 +2517,54 @@ def main():
     # 6. Display formatted results table
     print_results_table(results)
 
+    # 6b. Build the "All Earnings" dataset for the report's second tab — every
+    #     ticker with earnings in the next 7 days, regardless of score/signal
+    #     (NO TRADE included). Reuse metadata already fetched above for
+    #     finalists; fetch name + market cap fresh for everyone else.
+    _ALL_EARNINGS_DAYS = 7
+    cutoff_7d   = datetime.now().date() + timedelta(days=_ALL_EARNINGS_DAYS)
+    earnings_7d = {}
+    for item in upcoming:
+        try:
+            d = datetime.strptime(item["earnings_date"], "%Y-%m-%d").date()
+        except (ValueError, TypeError):
+            continue
+        if d <= cutoff_7d and item["ticker"] not in earnings_7d:
+            earnings_7d[item["ticker"]] = item["earnings_date"]
+
+    enriched_lookup = {r["ticker"]: r for r in results if "fundamentals" in r}
+    need_fetch      = [t for t in earnings_7d if t not in enriched_lookup]
+
+    print(f"\nBuilding All Earnings tab — {len(earnings_7d)} ticker(s) due within "
+          f"{_ALL_EARNINGS_DAYS} days ({len(need_fetch)} need a fresh name/mcap lookup)…")
+
+    fetched_meta = {}
+    if need_fetch:
+        with ThreadPoolExecutor(max_workers=_WORKERS) as exe:
+            future_map = {exe.submit(_fetch_name_and_mcap, t): t for t in need_fetch}
+            for fut in as_completed(future_map):
+                fetched_meta[future_map[fut]] = fut.result()
+
+    all_earnings = []
+    for ticker, earnings_date in earnings_7d.items():
+        if ticker in enriched_lookup:
+            r            = enriched_lookup[ticker]
+            company_name = r["company_name"]
+            mcap_raw     = r["fundamentals"].get("_market_cap_raw", 0)
+        else:
+            meta         = fetched_meta[ticker]
+            company_name = meta["company_name"]
+            mcap_raw     = meta["market_cap_raw"]
+        all_earnings.append({
+            "ticker":         ticker,
+            "company_name":   company_name,
+            "market_cap_raw": mcap_raw,
+            "market_cap":     _fmt_market_cap(mcap_raw or None),
+            "earnings_date":  earnings_date,
+        })
+
+    all_earnings.sort(key=lambda x: x["market_cap_raw"], reverse=True)
+
     # 7. Save full results to signals.json
     run_date_str = datetime.now().strftime("%d-%m-%Y %H:%M")
     output = {
@@ -2392,6 +2589,7 @@ def main():
             "total_scanned":  len(upcoming),
             "scan_window_days": 20,
         },
+        all_earnings=all_earnings,
     )
     print(f"Report saved → {report_path}  (opening in browser…)")
 
