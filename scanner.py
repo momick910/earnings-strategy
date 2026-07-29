@@ -4,9 +4,13 @@ Earnings Trading Strategy Scanner
 Fetches upcoming earnings, analyzes historical post-earnings reactions,
 scores each stock, and generates LONG/SHORT signals.
 
-Dependencies: yfinance, pandas
+Dependencies: yfinance, pandas, requests
   (bs4/beautifulsoup4 is used indirectly — it is already a required
   dependency of yfinance, so no separate install is needed)
+
+Earnings calendar and earnings-surprise data come from Financial Modeling
+Prep (FMP_API_KEY). yfinance is still used for historical price data and
+company fundamentals.
 """
 
 import html as _html
@@ -25,6 +29,7 @@ from email.mime.multipart import MIMEMultipart
 from email.mime.text import MIMEText
 from email.utils import formataddr
 import pandas as pd
+import requests
 import yfinance as yf
 from dotenv import load_dotenv
 
@@ -335,43 +340,38 @@ def get_tickers():
 # STEP 2: Identify tickers with earnings in the next 7 days
 # ─────────────────────────────────────────────
 
-def _parse_earnings_date_from_calendar(cal):
-    """
-    Extract the nearest upcoming earnings date from a yfinance calendar object.
-    Handles both dict and DataFrame formats (varies by yfinance version).
-    Returns a date object or None.
-    """
-    try:
-        if isinstance(cal, dict):
-            raw = cal.get("Earnings Date")
-            if raw is None:
-                return None
-            # Newer yfinance wraps the value in a list
-            if isinstance(raw, list):
-                raw = raw[0] if raw else None
-            if raw is None:
-                return None
+_FMP_BASE_URL    = "https://financialmodelingprep.com/stable"
+_FMP_RETRIES     = 3      # transient-failure retries, same backoff shape as the yfinance calls
+_FMP_RETRY_DELAY = 1.5
 
-        elif isinstance(cal, pd.DataFrame):
-            if "Earnings Date" in cal.columns:
-                vals = cal["Earnings Date"].dropna()
-                raw = vals.iloc[0] if len(vals) > 0 else None
-            elif "Earnings Date" in cal.index:
-                raw = cal.loc["Earnings Date"]
-            else:
-                return None
-        else:
-            return None
 
-        # Normalise to a plain date.
-        # pd.Timestamp() accepts datetime.date, datetime.datetime,
-        # pd.Timestamp, and strings — covers all yfinance return types.
-        try:
-            return pd.Timestamp(raw).date()
-        except Exception:
-            return None
-    except Exception:
+def _fmp_get(path, **params):
+    """
+    GET a Financial Modeling Prep "stable" API endpoint and return parsed
+    JSON, or None on failure (missing FMP_API_KEY, network error, non-200,
+    unparseable body). Retries transient failures with backoff.
+
+    Uses /stable/ rather than the older /api/v3/ path — FMP discontinued
+    v3 for non-legacy accounts (it now 403s with an "Legacy Endpoint"
+    error), and /stable/ is the current equivalent.
+    """
+    api_key = os.environ.get("FMP_API_KEY")
+    if not api_key:
         return None
+
+    params = {**params, "apikey": api_key}
+    url = f"{_FMP_BASE_URL}/{path}"
+
+    for attempt in range(_FMP_RETRIES):
+        try:
+            resp = requests.get(url, params=params, timeout=20)
+            if resp.status_code == 200:
+                return resp.json()
+        except Exception:
+            pass
+        if attempt < _FMP_RETRIES - 1:
+            time.sleep(_FMP_RETRY_DELAY * (2 ** attempt))
+    return None
 
 
 # ── Cache ─────────────────────────────────────────────────────────────────────
@@ -418,260 +418,94 @@ def _cache_get(cache, ticker):
 
 # ── Bulk earnings calendar ─────────────────────────────────────────────────────
 
-def _fetch_yf_earnings_calendar(days_ahead=7):
+def _fetch_fmp_earnings_calendar(days_ahead):
     """
     Fetch every company with confirmed earnings in the next `days_ahead` days
-    using Yahoo Finance's market-wide earnings calendar — a single paginated
+    from Financial Modeling Prep's market-wide earnings calendar — a single
     HTTP call that replaces scanning every ticker individually.
 
-    Uses yfinance's internal session (handles cookies / anti-bot headers).
-    Falls back to [] so the caller can switch to the per-ticker scan.
-    """
-    from bs4 import BeautifulSoup
+    Uses FMP's current /stable/earnings-calendar endpoint. The legacy
+    /api/v3/earning_calendar endpoint the surrounding docs might reference
+    was discontinued for non-legacy accounts (returns HTTP 403) — /stable/
+    is the same data under FMP's current API.
 
+    Returns a list of {"ticker", "earnings_date"} dicts, or [] on failure
+    (missing FMP_API_KEY, network error, bad response).
+    """
     today  = datetime.now().date()
     cutoff = today + timedelta(days=days_ahead)
-    # Reuse yfinance's authenticated session via a throwaway Ticker object
-    _sess  = yf.Ticker("SPY")
-    found  = []
 
-    for offset in range(0, 2000, 100):      # paginate; stop when a page is empty
-        url = (
-            f"https://finance.yahoo.com/calendar/earnings"
-            f"?from={today}&to={cutoff}&offset={offset}&size=100"
-        )
-        try:
-            resp = _sess._data.cache_get(url)
-            if resp is None or resp.status_code != 200:
-                break
+    data = _fmp_get("earnings-calendar", **{"from": str(today), "to": str(cutoff)})
+    if not isinstance(data, list):
+        return []
 
-            soup  = BeautifulSoup(resp.text, "html.parser")
-            table = soup.find("table")
-            if table is None:
-                break
-
-            # Map header labels → column index
-            headers = [th.get_text(strip=True).lower() for th in table.find_all("th")]
-            sym_col  = next((i for i, h in enumerate(headers) if "symbol"        in h), None)
-            date_col = next((i for i, h in enumerate(headers) if "earnings date" in h), None)
-
-            if sym_col is None:
-                break
-
-            rows = table.find_all("tr")[1:]
-            if not rows:
-                break
-
-            page_count = 0
-            for row in rows:
-                cells = row.find_all("td")
-                if not cells:
-                    continue
-
-                sym = cells[sym_col].get_text(strip=True).split("[")[0].strip()
-                if not sym:
-                    continue
-
-                # Parse the earnings date; fall back to today if unparseable
-                earn_date = str(today)
-                if date_col is not None and len(cells) > date_col:
-                    raw = cells[date_col].get_text(strip=True).split(" at ")[0].strip()
-                    try:
-                        earn_date = str(datetime.strptime(raw, "%B %d, %Y").date())
-                    except ValueError:
-                        pass
-
-                found.append({"ticker": sym, "earnings_date": earn_date})
-                page_count += 1
-
-            if page_count < 100:
-                break          # last page — no need to request another
-
-        except Exception:
-            break
-
+    found = []
+    for row in data:
+        sym  = row.get("symbol")
+        date = row.get("date")
+        if sym and date:
+            found.append({"ticker": sym, "earnings_date": date})
     return found
 
 
 def get_upcoming_earnings(tickers, days_ahead=7):
     """
-    Return tickers with confirmed earnings in the next `days_ahead` days.
-
-    Fast path  — Yahoo Finance bulk calendar (1 paginated request).
-    Slow path  — parallel per-ticker calendar scan with _WORKERS threads
-                 (used only if the bulk calendar returns nothing).
+    Return tickers with confirmed earnings in the next `days_ahead` days,
+    sourced from Financial Modeling Prep's market-wide earnings calendar and
+    filtered down to `tickers` (the S&P 500 / Nasdaq 100 / Russell 2000 /
+    DAX / MDAX universe) — FMP's calendar on its own covers every ticker it
+    tracks globally, including many illiquid/OTC names outside that universe.
     """
     today  = datetime.now().date()
     cutoff = today + timedelta(days=days_ahead)
 
     print(f"\nFetching earnings calendar for {today} → {cutoff}…")
 
-    # ── Fast path ──────────────────────────────────────────────────────────────
-    bulk = _fetch_yf_earnings_calendar(days_ahead)
-    if bulk:
-        print(f"  Bulk calendar: {len(bulk)} ticker(s) found — universe scan skipped.")
-        return bulk
+    bulk = _fetch_fmp_earnings_calendar(days_ahead)
+    universe = set(tickers)
+    upcoming = [row for row in bulk if row["ticker"] in universe]
 
-    # ── Slow path: parallel per-ticker scan ────────────────────────────────────
-    print(f"  Bulk calendar unavailable. Scanning {len(tickers)} tickers "
-          f"({_WORKERS} workers)…")
-
-    upcoming = []
-    scanned  = 0
-    _lock    = threading.Lock()
-
-    def _check(ticker):
-        try:
-            cal = yf.Ticker(ticker).calendar
-            if cal is None:
-                return None
-            d = _parse_earnings_date_from_calendar(cal)
-            if d and today <= d <= cutoff:
-                return {"ticker": ticker, "earnings_date": str(d)}
-        except Exception:
-            pass
-        return None
-
-    with ThreadPoolExecutor(max_workers=_WORKERS) as exe:
-        futures = {exe.submit(_check, t): t for t in tickers}
-        for fut in as_completed(futures):
-            res = fut.result()
-            with _lock:
-                scanned += 1
-                if res:
-                    upcoming.append(res)
-                if scanned % 100 == 0:
-                    print(f"  Scanned {scanned}/{len(tickers)}, "
-                          f"found {len(upcoming)} so far…")
-
+    print(f"  FMP calendar: {len(bulk)} ticker(s) globally, "
+          f"{len(upcoming)} within our {len(universe)}-ticker universe.")
     print(f"Found {len(upcoming)} ticker(s) with earnings in the next {days_ahead} days.\n")
     return upcoming
 
 
-# ─────────────────────────────────────────────
-# STEP 3: Fetch historical earnings dates
-# ─────────────────────────────────────────────
-
-def _fetch_earnings_dates_with_bs4(ticker_obj, limit=24):
+def fetch_earnings_surprises(ticker, num_quarters=4):
     """
-    Parse historical earnings dates directly from Yahoo Finance's earnings
-    calendar page using BeautifulSoup with Python's built-in html.parser.
+    Fetch the last `num_quarters` earnings surprises for `ticker` from
+    Financial Modeling Prep — estimated EPS, actual EPS, and the surprise
+    percentage (FMP doesn't return the percentage directly, so it's computed
+    here from the two EPS figures).
 
-    This avoids the lxml / html5lib dependency that pd.read_html requires.
-    BeautifulSoup (bs4) is already installed as a transitive dependency of
-    yfinance — no extra package install needed.
+    FMP's dedicated /earnings-surprises endpoint is a discontinued legacy
+    endpoint (403 for non-legacy accounts). /stable/earnings?symbol=TICKER
+    is the current equivalent — it returns both past and upcoming reports
+    for a ticker, so rows still awaiting a real print (epsActual is null)
+    are filtered out before picking the most recent `num_quarters`.
 
-    Returns a pandas DatetimeIndex of past earnings announcement dates,
-    or an empty list on failure.
+    Returns a list of dicts, most recent first, or [] on failure / no data.
     """
-    try:
-        from bs4 import BeautifulSoup  # already a yfinance dependency
-
-        url = (
-            f"https://finance.yahoo.com/calendar/earnings"
-            f"?symbol={ticker_obj.ticker}&offset=0&size={min(limit, 100)}"
-        )
-        # Re-use yfinance's internal session / cache so we don't open a
-        # raw requests.Session ourselves
-        response = ticker_obj._data.cache_get(url)
-        if response is None or response.status_code != 200:
-            return []
-
-        soup = BeautifulSoup(response.text, "html.parser")
-        table = soup.find("table")
-        if table is None:
-            return []
-
-        rows = table.find_all("tr")
-        dates = []
-        for row in rows[1:]:   # skip header row
-            cells = row.find_all("td")
-            if not cells:
-                continue
-            raw_date = cells[0].get_text(strip=True)
-            if not raw_date:
-                continue
-            try:
-                # Format: "May 28, 2025 at 6 AM EDT"  or  "May 28, 2025"
-                clean = raw_date.split(" at ")[0].strip()
-                dt = datetime.strptime(clean, "%B %d, %Y")
-                dates.append(pd.Timestamp(dt))
-            except ValueError:
-                continue
-
-        return dates
-    except Exception:
+    data = _fmp_get("earnings", symbol=ticker)
+    if not isinstance(data, list):
         return []
 
+    rows = []
+    for row in data:
+        date = row.get("date")
+        est  = row.get("epsEstimated")
+        act  = row.get("epsActual")
+        if date is None or est is None or act is None:
+            continue
+        rows.append({
+            "date":          date,
+            "estimated_eps": est,
+            "actual_eps":    act,
+            "surprise_pct":  ((act - est) / abs(est) * 100) if est else None,
+        })
 
-def _earnings_dates_from_quarterly_stmts(ticker_obj):
-    """
-    Fallback: use quarterly income-statement period-end dates as a proxy
-    for earnings announcement dates.
-
-    The actual announcement is typically 2-5 weeks after period end.
-    We add 21 days (3 weeks) as a rough correction so that price-reaction
-    windows centre on approximately the right date.
-    """
-    try:
-        df = ticker_obj.quarterly_income_stmt
-        if df is None or df.empty:
-            return []
-        dates = []
-        for col in df.columns:
-            ts = pd.Timestamp(col)
-            # Shift forward ~3 weeks to approximate the announcement date
-            approx = ts + pd.Timedelta(days=21)
-            if approx < pd.Timestamp.now():
-                dates.append(approx)
-        # Most-recent first
-        dates.sort(reverse=True)
-        return dates
-    except Exception:
-        return []
-
-
-def get_historical_earnings_dates(ticker_obj, num_quarters=4):
-    """
-    Return a list of the last `num_quarters` historical earnings dates
-    for the given ticker, most recent first.
-
-    Tries three paths in order:
-      1. yfinance's get_earnings_dates()  (needs lxml or html5lib)
-      2. Direct BeautifulSoup parse       (needs only bs4, already present)
-      3. quarterly_income_stmt proxy      (always available, less precise)
-    """
-    today = pd.Timestamp.now().normalize()
-
-    # Path 1: native yfinance method
-    try:
-        df = ticker_obj.get_earnings_dates(limit=24)
-        if df is not None and not df.empty:
-            idx = df.index
-            if idx.tz is not None:
-                idx = idx.tz_localize(None)
-            past = sorted([d for d in idx if d < today], reverse=True)
-            if len(past) >= 2:
-                return past[:num_quarters]
-    except Exception:
-        pass
-
-    # Path 2: BeautifulSoup parse (avoids lxml)
-    try:
-        dates = _fetch_earnings_dates_with_bs4(ticker_obj, limit=24)
-        past = sorted([d for d in dates if d < today], reverse=True)
-        if len(past) >= 2:
-            return past[:num_quarters]
-    except Exception:
-        pass
-
-    # Path 3: quarterly income-statement proxy
-    dates = _earnings_dates_from_quarterly_stmts(ticker_obj)
-    past = [d for d in dates if d < today]
-    if len(past) >= 2:
-        return past[:num_quarters]
-
-    return []
+    rows.sort(key=lambda r: r["date"], reverse=True)
+    return rows[:num_quarters]
 
 
 # ─────────────────────────────────────────────
@@ -694,21 +528,52 @@ def _nth_trading_day_after(hist, anchor, n):
     return float(hist.loc[after[n - 1], "Close"])
 
 
+def _recent_trend_signs(ticker):
+    """
+    Return (week_sign, month_sign) describing `ticker`'s current price
+    momentum — each +1 (up), -1 (down), or 0 (flat / insufficient data).
+
+    Feeds the scoring multiplier that rewards a signal whose direction is
+    confirmed by recent price action. Always fetched fresh (never cached
+    alongside the historical reaction data) since momentum changes daily.
+
+    Trading-day windows (5 ≈ 1 week, 22 ≈ 1 month) match the horizons the
+    report's price chart already uses.
+    """
+    try:
+        closes = yf.Ticker(ticker).history(period="2mo", auto_adjust=True)["Close"].dropna()
+        if len(closes) < 23:
+            return 0, 0
+        last   = float(closes.iloc[-1])
+        wk_ago = float(closes.iloc[-6])
+        mo_ago = float(closes.iloc[-23])
+        sign = lambda x: 1 if x > 0 else (-1 if x < 0 else 0)
+        return sign(last - wk_ago), sign(last - mo_ago)
+    except Exception:
+        return 0, 0
+
+
 def analyze_historical_earnings(ticker, num_quarters=4):
     """
     For a given ticker:
-      1. Pull the last `num_quarters` historical earnings announcement dates.
-      2. For each date compute:
+      1. Pull the last `num_quarters` historical earnings dates from
+         Financial Modeling Prep (the same source that backs the EPS
+         surprise table), so the reaction bar chart and the surprise table
+         always agree. yfinance's own earnings-date discovery (calendar
+         scrape / quarterly-statement proxy) was a separate, less reliable
+         source and could disagree by days or even whole quarters.
+      2. For each date compute (from yfinance price history):
            post-earnings reaction: (close t+1 − close t−1) / close t−1 × 100
            pre-earnings drift:     (close t−1 − close t−5) / close t−5 × 100
     Returns a list of result dicts, or None if data is insufficient.
     """
     try:
-        stock = yf.Ticker(ticker)
-
-        earn_dates = get_historical_earnings_dates(stock, num_quarters)
-        if len(earn_dates) < 2:
+        surprises = fetch_earnings_surprises(ticker, num_quarters)
+        if len(surprises) < 2:
             return None
+        earn_dates = [pd.Timestamp(s["date"]) for s in surprises]
+
+        stock = yf.Ticker(ticker)
 
         # Fetch 2 years of price history in a single call to cover all dates
         hist = stock.history(period="2y", auto_adjust=True)
@@ -753,9 +618,10 @@ def analyze_historical_earnings(ticker, num_quarters=4):
 # STEP 5: Score and signal generation
 # ─────────────────────────────────────────────
 
-def _compute_score(reactions):
+def _compute_score(reactions, trend_signs=None):
     """
-    Four-component scoring system, each component worth 25 points (max 100).
+    Four-component scoring system, each component worth 25 points (max 100),
+    then two multipliers on top of that base score:
 
     C1 — Reaction consistency (25 pts)
          4/4 same direction = 25  |  3/4 = 15  |  2/4 or less = 0
@@ -781,10 +647,18 @@ def _compute_score(reactions):
              absolute reactions.  High variance (unpredictable size) reduces
              this component even when direction is consistent.
 
-    Returns (total_score: int, breakdown: dict)
+    Multipliers, applied to (C1+C2+C3+C4) in order, then capped at 100:
+      • ×1.20 if all reactions moved in the same direction (the C1 "4/4" case)
+      • ×1.17 if `trend_signs` — the ticker's current (week_sign, month_sign)
+        price momentum, each +1/-1/0 — both agree with the reactions'
+        majority direction (confirms the historical pattern is still live)
+
+    Returns (total_score: int, breakdown: dict) — breakdown holds the four
+    base components plus "base_score" and "multiplier" for transparency.
     """
     if not reactions:
-        zero = {"consistency": 0, "magnitude": 0, "drift_alignment": 0, "momentum": 0}
+        zero = {"consistency": 0, "magnitude": 0, "drift_alignment": 0, "momentum": 0,
+                "base_score": 0, "multiplier": 1.0}
         return 0, zero
 
     n     = len(reactions)
@@ -795,8 +669,9 @@ def _compute_score(reactions):
     positives      = sum(1 for p in pcts if p > 0)
     majority_count = max(positives, n - positives)
     majority_ratio = majority_count / n
+    all_same_direction = majority_ratio == 1.0
 
-    if majority_ratio == 1.0:     c1 = 25
+    if all_same_direction:         c1 = 25
     elif majority_ratio >= 0.75:  c1 = 15
     else:                         c1 = 0
 
@@ -847,19 +722,35 @@ def _compute_score(reactions):
 
     c4 = round(max(0.0, 25.0 - dir_penalty - var_penalty))
 
-    total = c1 + c2 + c3 + c4
+    base_score = c1 + c2 + c3 + c4
+
+    # ── Multipliers ──────────────────────────────────────────────────────
+    multiplier = 1.0
+    if all_same_direction:
+        multiplier *= 1.2
+
+    reaction_direction = 1 if positives > n - positives else (-1 if positives < n - positives else 0)
+    if trend_signs and reaction_direction != 0:
+        week_sign, month_sign = trend_signs
+        if week_sign == reaction_direction and month_sign == reaction_direction:
+            multiplier *= 1.17
+
+    total = min(100, round(base_score * multiplier))
+
     breakdown = {
-        "consistency":    c1,
-        "magnitude":      c2,
+        "consistency":     c1,
+        "magnitude":       c2,
         "drift_alignment": c3,
-        "momentum":       c4,
+        "momentum":        c4,
+        "base_score":      base_score,
+        "multiplier":      round(multiplier, 4),
     }
     return total, breakdown
 
 
-def score_stock(reactions):
+def score_stock(reactions, trend_signs=None):
     """Return the 0–100 composite score (delegates to _compute_score)."""
-    score, _ = _compute_score(reactions)
+    score, _ = _compute_score(reactions, trend_signs)
     return score
 
 
@@ -890,9 +781,9 @@ def generate_signal(reactions):
 # STEP 6: Output helpers
 # ─────────────────────────────────────────────
 
-def _score_breakdown(reactions):
-    """Return the four score components as a dict (delegates to _compute_score)."""
-    _, breakdown = _compute_score(reactions)
+def _score_breakdown(reactions, trend_signs=None):
+    """Return the score components as a dict (delegates to _compute_score)."""
+    _, breakdown = _compute_score(reactions, trend_signs)
     return breakdown
 
 
@@ -1393,6 +1284,14 @@ main{padding:16px 32px 0}
 .tip-date{color:var(--text2)}
 .price-canvas{width:100%;flex:1;height:0;min-height:190px;display:block;cursor:crosshair}
 
+/* ── Earnings surprises ── */
+.card-surprises{padding:14px 20px 16px;border-top:1px solid var(--border);background:var(--surface)}
+.es-table{width:100%;border-collapse:collapse;margin-top:8px}
+.es-table th{text-align:left;font-size:.58rem;text-transform:uppercase;letter-spacing:.06em;
+  color:var(--text2);font-weight:600;padding:4px 14px 4px 0}
+.es-table td{padding:4px 14px 4px 0;font-size:.76rem;font-family:ui-monospace,monospace;color:var(--text1)}
+.es-empty{font-size:.72rem;color:var(--text3);margin-top:6px}
+
 /* footer */
 footer{text-align:center;padding:28px 0 8px;color:var(--text3);font-size:.75rem}
 
@@ -1593,6 +1492,31 @@ def generate_html_report(results, meta, all_earnings=None):
             f'</div>'
         )
 
+    def surprise_html(surprises):
+        if not surprises:
+            return '<div class="es-empty">No earnings surprise data available.</div>'
+        rows = []
+        for s in surprises:
+            pct = s.get("surprise_pct")
+            if pct is None:
+                pct_cell = '<span class="mp-na">N/A</span>'
+            else:
+                pct_cell = f'<span class="{pct_class(pct)}">{fmt1(pct)}</span>'
+            rows.append(
+                '<tr>'
+                f'<td>{_html.escape(_fmt_date(s["date"]))}</td>'
+                f'<td>${s["estimated_eps"]:.2f}</td>'
+                f'<td>${s["actual_eps"]:.2f}</td>'
+                f'<td>{pct_cell}</td>'
+                '</tr>'
+            )
+        return (
+            '<table class="es-table">'
+            '<thead><tr><th>Date</th><th>Est. EPS</th><th>Actual EPS</th><th>Surprise</th></tr></thead>'
+            f'<tbody>{"".join(rows)}</tbody>'
+            '</table>'
+        )
+
     cards = []
     for r in top:
         ticker  = _html.escape(r["ticker"])
@@ -1610,6 +1534,7 @@ def generate_html_report(results, meta, all_earnings=None):
         broker  = r.get("broker_availability", {})
         chart_data_json = r.get("chart_data", "")
         mcap_raw = fund.get("_market_cap_raw", 0)
+        surprises_html = surprise_html(r.get("earnings_surprises", []))
 
         badge     = f'<span class="badge badge-{"long" if signal == "LONG" else "short"}">{signal}</span>'
         desc_html = f'<div class="description">{desc}</div>' if desc else ""
@@ -1643,16 +1568,28 @@ def generate_html_report(results, meta, all_earnings=None):
             mpill("52W Lo",  fund.get("week52_low",      "N/A"))
         )
 
-        c_score  = bd.get("consistency",     0)
-        m_score  = bd.get("magnitude",       0)
-        da_score = bd.get("drift_alignment", 0)
-        t_score  = bd.get("momentum",        0)
+        c_score    = bd.get("consistency",     0)
+        m_score    = bd.get("magnitude",       0)
+        da_score   = bd.get("drift_alignment", 0)
+        t_score    = bd.get("momentum",        0)
+        base_score = bd.get("base_score",      score)
+        multiplier = bd.get("multiplier",      1.0)
 
         bk_html = (
             bk_bar(c_score,  25, "#3b82f6", "Consistency") +
             bk_bar(m_score,  25, "#8b5cf6", "Magnitude")   +
             bk_bar(da_score, 25, "#06b6d4", "Drift align") +
             bk_bar(t_score,  25, "#f59e0b", "Momentum")
+        )
+
+        # The four components above sum to base_score, pre-multiplier — show
+        # the boost explicitly so a capped/boosted score doesn't look like
+        # it doesn't add up to the visible breakdown.
+        sc_sub_lbl = f"/ 100 · base {base_score}" if multiplier > 1.0 else "/ 100"
+        boost_badge = (
+            f'<span class="sc-badge" style="background:rgba(16,185,129,.12);color:#10b981;'
+            f'border:1px solid rgba(16,185,129,.25)">Boost&nbsp;×{multiplier:.2f}</span>'
+            if multiplier > 1.0 else ""
         )
 
         cards.append(f"""
@@ -1688,13 +1625,14 @@ def generate_html_report(results, meta, all_earnings=None):
         <div class="score-top">
           <div class="sc-num-block">
             <span class="sc-num" style="color:{sc}">{score}</span>
-            <span class="sc-max-lbl">/ 100</span>
+            <span class="sc-max-lbl">{sc_sub_lbl}</span>
           </div>
           <div class="sc-badges">
             <span class="sc-badge" style="background:rgba(59,130,246,.12);color:#60a5fa;border:1px solid rgba(59,130,246,.25)">Con&nbsp;{c_score}</span>
             <span class="sc-badge" style="background:rgba(139,92,246,.12);color:#a78bfa;border:1px solid rgba(139,92,246,.25)">Mag&nbsp;{m_score}</span>
             <span class="sc-badge" style="background:rgba(6,182,212,.12);color:#22d3ee;border:1px solid rgba(6,182,212,.25)">Drft&nbsp;{da_score}</span>
             <span class="sc-badge" style="background:rgba(245,158,11,.12);color:#fbbf24;border:1px solid rgba(245,158,11,.25)">Mom&nbsp;{t_score}</span>
+            {boost_badge}
           </div>
         </div>
         <div class="rxn-sep"></div>
@@ -1733,6 +1671,11 @@ def generate_html_report(results, meta, all_earnings=None):
         <canvas class="price-canvas" data-chart='{chart_data_json}'></canvas>
       </div>
 
+    </div>
+
+    <div class="card-surprises">
+      <div class="section-label">Earnings Surprises (EPS)</div>
+      {surprises_html}
     </div>
 
   </div>""")
@@ -2223,7 +2166,10 @@ def generate_html_report(results, meta, all_earnings=None):
         'rather than mean-reverting.</div>'
         '</div>'
         '<div class="modal-footer">'
-        'Total score = sum of all four components (max 100).<br>'
+        'Base score = sum of all four components (max 100). Two multipliers can then '
+        'boost it: <strong>×1.20</strong> if all reactions moved the same direction, '
+        'and <strong>×1.17</strong> if the stock\'s current 1-week and 1-month price '
+        'trend both confirm that direction. Final score is capped at 100.<br>'
         'Scores <strong style="color:#10b981">≥ 80</strong> = strong edge &nbsp;·&nbsp; '
         '<strong style="color:#f59e0b">60–79</strong> = moderate &nbsp;·&nbsp; '
         '<strong style="color:#ef4444">&lt; 60</strong> = weak / filtered out'
@@ -2382,16 +2328,20 @@ def main():
     _print_buf       = []   # collect per-ticker lines; print after pool finishes
 
     def _analyse(item):
-        """Worker: return (ticker, earnings_date, reactions, from_cache)."""
+        """Worker: return (ticker, earnings_date, reactions, trend_signs, from_cache)."""
         ticker        = item["ticker"]
         earnings_date = item["earnings_date"]
 
+        # Always fetched fresh, even on a reaction-data cache hit — momentum
+        # changes daily, unlike the historical reactions it's paired with.
+        trend_signs = _recent_trend_signs(ticker)
+
         cached = _cache_get(cache, ticker)
         if cached is not None:
-            return ticker, earnings_date, cached, True
+            return ticker, earnings_date, cached, trend_signs, True
 
         reactions = analyze_historical_earnings(ticker, num_quarters=4)
-        return ticker, earnings_date, reactions, False
+        return ticker, earnings_date, reactions, trend_signs, False
 
     print(f"Analysing {len(upcoming)} stock(s) with {_WORKERS} workers…\n")
 
@@ -2400,7 +2350,7 @@ def main():
 
         for fut in as_completed(future_map):
             try:
-                ticker, earnings_date, reactions, from_cache = fut.result()
+                ticker, earnings_date, reactions, trend_signs, from_cache = fut.result()
             except Exception as e:
                 with _lock:
                     _print_buf.append(f"  ✗ {future_map[fut]['ticker']}: {e}")
@@ -2424,7 +2374,7 @@ def main():
                     }
 
             signal = generate_signal(reactions)
-            score  = score_stock(reactions)
+            score  = score_stock(reactions, trend_signs)
 
             if signal == "NO TRADE" or score < 60:
                 continue
@@ -2451,7 +2401,7 @@ def main():
                     "avg_reaction_pct":     round(avg_reaction, 2),
                     "avg_drift_pct":        round(avg_drift,    2),
                     "individual_reactions": individual,
-                    "score_breakdown":      _score_breakdown(reactions),
+                    "score_breakdown":      _score_breakdown(reactions, trend_signs),
                 })
                 _print_buf.append(
                     f"  ✓ {ticker:<6}  {signal:<6}  score={score:>3}  "
@@ -2482,7 +2432,8 @@ def main():
     results.sort(key=lambda x: x["score"], reverse=True)
 
     # 5. Enrich the top-20 results with company name, description, and
-    #    fundamentals — one ticker.info call per stock, only for finalists
+    #    fundamentals (yfinance) plus recent earnings surprises (FMP) — only
+    #    for finalists
     if results:
         top_n = min(len(results), 20)
         print(f"\nFetching fundamentals for {top_n} signal(s)…")
@@ -2492,6 +2443,7 @@ def main():
             r["description"]  = meta["description"]
             r["chart_data"]   = meta["chart_data"]
             r["fundamentals"] = meta["fundamentals"]
+            r["earnings_surprises"] = fetch_earnings_surprises(r["ticker"])
             mcap_raw = meta["fundamentals"].get("_market_cap_raw", 0)
             r["broker_availability"] = _broker_availability(r["ticker"], mcap_raw)
 
