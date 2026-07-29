@@ -2323,6 +2323,15 @@ def main():
         f"  — {len(new_cache)} new entries written to {_CACHE_FILE}"
     )
 
+    # `results` is currently in ThreadPoolExecutor completion order, not score
+    # order. Sort by score now — before enrichment picks its top_n slice —
+    # so the tickers we enrich are the same ones that end up in the report's
+    # top 20. Sorting only after enrichment (as print_results_table used to
+    # do) let high-scoring tickers that simply finished analysis late slip
+    # into the final top 20 with no company name / fundamentals / chart data,
+    # since they'd been outside the enrichment slice when it ran.
+    results.sort(key=lambda x: x["score"], reverse=True)
+
     # 5. Enrich the top-20 results with company name, description, and
     #    fundamentals — one ticker.info call per stock, only for finalists
     if results:
